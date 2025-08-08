@@ -37,7 +37,7 @@
 ## 目录
 
 ```
-base/location/location_cangjie_api
+base/location/location_cangjie_wrapper
 ├── ohos             # 仓颉位置服务接口实现
 ├── kit              # 仓颉kit化代码
 ├── figures          # 存放readme中的架构图
@@ -53,4 +53,4 @@ base/location/location_cangjie_api
 
 **位置服务子系统**
 
-location_cangjie_api
+location_cangjie_wrapper

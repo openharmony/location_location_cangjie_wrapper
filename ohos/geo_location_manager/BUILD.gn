@@ -21,16 +21,16 @@ ohos_cj_library("ohos.geo_location_manager") {
   ]
 
   cj_external_deps = [
-    "global_cangjie_api:ohos.i18n",
-    "cangjie_api:ohos.ffi",
-    "cangjie_api:ohos.labels",
-    "arkui_cangjie_api:ohos.base",
-    "hiviewdfx_cangjie_api:ohos.hilog",
+    "global_cangjie_wrapper:ohos.i18n",
+    "cangjie_ark_interop:ohos.ffi",
+    "cangjie_ark_interop:ohos.labels",
+    "arkui_cangjie_wrapper:ohos.base",
+    "hiviewdfx_cangjie_wrapper:ohos.hilog",
   ]
 
   external_deps = [ "location:cj_geolocationmanager_ffi" ]
 
   subsystem_name = "location"
-  part_name = "location_cangjie_api"
+  part_name = "location_cangjie_wrapper"
   lib_name = "geo_location_manager"
 }

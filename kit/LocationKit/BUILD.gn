@@ -23,6 +23,6 @@ ohos_cj_library("kit.LocationKit") {
 
   kit = true
   subsystem_name = "location"
-  part_name = "location_cangjie_api"
+  part_name = "location_cangjie_wrapper"
   lib_name = "LocationKit"
 }

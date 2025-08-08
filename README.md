@@ -35,7 +35,7 @@ Location awareness helps determine where a mobile device locates. The system ide
 ## Directory Structure
 
 ```
-base/location/location_cangjie_api
+base/location/location_cangjie_wrapper
 ├── ohos             # Cangjie Location code
 ├── kit              # Cangjie kit code
 ├── figures          # architecture pictures
@@ -51,4 +51,4 @@ Since the location information is considered sensitive, your application still n
 
 **Location subsystem**
 
-location_cangjie_api
+location_cangjie_wrapper
