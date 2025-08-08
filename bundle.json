@@ -1,0 +1,38 @@
+{
+    "name": "@ohos/location_cangjie_api",
+    "version": "6.0",
+    "description": "Location service, providing location and geocoding capabilities.",
+    "homePage": "https://gitee.com/openharmony",
+    "license": "Apache License 2.0",
+    "repository": "",
+    "domain": "os",
+    "language": "",
+    "publishAs": "code-segment",
+    "private": false,
+    "segment": {
+        "destPath": "base/location/location_cangjie_api"
+    },
+    "component": {
+        "name": "location_cangjie_api",
+        "subsystem": "location",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "1769KB",
+        "ram": "8458KB",
+        "hisysevent_config": [],
+        "deps": {
+            "components": []
+        },
+        "build": {
+            "sub_component": [
+                "//base/location/location_cangjie_api/ohos/geo_location_manager:ohos.geo_location_manager",
+                "//base/location/location_cangjie_api/kit/LocationKit:kit.LocationKit"
+            ],
+            "inner_kits": [],
+            "test": []
+        }
+    }
+}
