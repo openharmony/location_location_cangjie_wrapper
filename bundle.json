@@ -20,8 +20,8 @@
         "adapted_system_type": [
             "standard"
         ],
-        "rom": "1769KB",
-        "ram": "8458KB",
+        "rom": "120KB",
+        "ram": "360KB",
         "hisysevent_config": [],
         "deps": {
             "components": []
