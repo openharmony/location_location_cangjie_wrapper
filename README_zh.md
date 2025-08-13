@@ -1,4 +1,4 @@
-# 位置服务子系统
+# 位置服务仓颉
 
 ## 简介
 
@@ -31,7 +31,7 @@
 
 **图 1** **子系统架构图**  
 
-![](figures/location_zh-1.png)
+![](figures/location_cangjie_wrapper_architecture.png)
 
 
 ## 目录
@@ -51,6 +51,6 @@ base/location/location_cangjie_wrapper
 
 ## 相关仓
 
-**位置服务子系统**
+**位置服务仓颉**
 
 location_cangjie_wrapper
