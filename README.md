@@ -1,8 +1,8 @@
-# Location
+# location_cangjie_wrapper
 
 ## Introduction
 
-People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
+The location_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony based on the capabilities of the Location Subsystem. People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
 
 With the location awareness capability offered by OpenHarmony, mobile devices will be able to obtain real-time, accurate location data. Building location awareness into your application can also lead to a better contextual experience for application users.
 
@@ -28,9 +28,9 @@ Location awareness helps determine where a mobile device locates. The system ide
 
     WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
-**Figure 1** Location subsystem architecture**  
+**Figure 1** location_cangjie_wrapper architecture**  
 
-![](figures/location_En-1.png)
+![](figures/location_cangjie_wrapper_architecture_en.png)
 
 ## Directory Structure
 
@@ -49,6 +49,4 @@ Since the location information is considered sensitive, your application still n
 
 ## Repositories Involved
 
-**Location subsystem**
-
-location_cangjie_wrapper
+[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
