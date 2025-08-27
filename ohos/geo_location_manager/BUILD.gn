@@ -13,18 +13,18 @@
 
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("ohos.geo_location_manager") {
+ohos_cangjie_shared_library("ohos.geo_location_manager") {
   sources = [
-    "geo_location_manager.cj",
-    "geo_location_manager_common.cj",
-    "geo_location_manager_ffi.cj",
+    "src/geo_location_manager.cj",
+    "src/geo_location_manager_common.cj",
+    "src/geo_location_manager_ffi.cj",
   ]
 
   cj_external_deps = [
     "global_cangjie_wrapper:ohos.i18n",
     "cangjie_ark_interop:ohos.ffi",
     "cangjie_ark_interop:ohos.labels",
-    "arkui_cangjie_wrapper:ohos.base",
+    "cangjie_ark_interop:ohos.business_exception",
     "hiviewdfx_cangjie_wrapper:ohos.hilog",
   ]
 
@@ -32,5 +32,4 @@ ohos_cj_library("ohos.geo_location_manager") {
 
   subsystem_name = "location"
   part_name = "location_cangjie_wrapper"
-  lib_name = "geo_location_manager"
 }
