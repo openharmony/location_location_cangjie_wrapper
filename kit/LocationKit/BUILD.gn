@@ -14,15 +14,13 @@
 import("//build/ohos.gni")
 import("//build/cangjie/cjc.gni")
 
-ohos_cj_library("kit.LocationKit") {
+ohos_cangjie_shared_library("kit.LocationKit") {
   sources = [ "index.cj" ]
 
   cj_deps = [
     "../../ohos/geo_location_manager:ohos.geo_location_manager"
   ]
 
-  kit = true
   subsystem_name = "location"
   part_name = "location_cangjie_wrapper"
-  lib_name = "LocationKit"
 }

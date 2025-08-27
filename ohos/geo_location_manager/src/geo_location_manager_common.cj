@@ -15,176 +15,289 @@
 
 package ohos.geo_location_manager
 
-import ohos.base.*
+import ohos.business_exception.getUniversalErrorMsg
 import ohos.hilog.*
-import ohos.ffi.*
-import std.collection.*
 import ohos.labels.*
-import ohos.i18n.*
+
+import std.collection.*
 
 const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
 let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-GeoLocationManager")
 
+/**
+ * Enum for the source of the location.
+ *
+ * @relation export enum LocationSourceType
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationSourceType {
+    /**
+     * The location is obtained from the GNSS.
+     *
+     * @relation GNSS = 1
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    GNSS
+    Gnss
+    /**
+     * The location comes from the network positioning technology.
+     *
+     * @relation NETWORK = 2
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    NETWORK
+    Network
+    /**
+     * The location comes from the indoor positioning technology.
+     *
+     * @relation INDOOR = 3
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    INDOOR
+    Indoor
+    /**
+     * The location comes from the GNSS RTK technology.
+     *
+     * @relation RTK = 4
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    RTK
+    Rtk
     | ...
 
     static func parse(value: Int32): LocationSourceType {
         match (value) {
-            case 1 => GNSS
-            case 2 => NETWORK
-            case 3 => INDOOR
-            case 4 => RTK
+            case 1 => Gnss
+            case 2 => Network
+            case 3 => Indoor
+            case 4 => Rtk
             case _ => throw IllegalArgumentException("The type is not supported yet.")
         }
     }
 
     func getValue(): Int32 {
         match (this) {
-            case GNSS => 1
-            case NETWORK => 2
-            case INDOOR => 3
-            case RTK => 4
+            case Gnss => 1
+            case Network => 2
+            case Indoor => 3
+            case Rtk => 4
             case _ => throw IllegalArgumentException("The type is not supported yet.")
         }
     }
 }
 
+/**
+ * Provides information about geographic locations.
+ *
+ * @relation export interface Location
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class Location {
+    /**
+     * Indicates latitude information.
+     * A positive value indicates north latitude,
+     * and a negative value indicates south latitude.
+     *
+     * @relation latitude: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var latitude: Float64
+    /**
+     * Indicates Longitude information.
+     * A positive value indicates east longitude ,
+     * and a negative value indicates west longitude.
+     *
+     * @relation longitude: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var longitude: Float64
+    /**
+     * Indicates location altitude, in meters.
+     *
+     * @relation altitude: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var altitude: Float64
+    /**
+     * Indicates location accuracy, in meters.
+     *
+     * @relation accuracy: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var accuracy: Float64
+    /**
+     * Indicates speed, in m/s.
+     *
+     * @relation speed: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var speed: Float64
+    /**
+     * Indicates location timestamp in the UTC format.
+     *
+     * @relation timeStamp: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeStamp: Int64
+    /**
+     * Indicates direction information.
+     *
+     * @relation direction: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var direction: Float64
+    /**
+     * Indicates location timestamp since boot.
+     *
+     * @relation timeSinceBoot: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeSinceBoot: Int64
+    /**
+     * Indicates additional information.
+     *
+     * @relation additions?: Array<string>
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var additions: Array<String>
+    public var additions: ?Array<String>
+    /**
+     * Indicates the amount of additional descriptive information.
+     *
+     * @relation additionSize?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var additionSize: Int64
+    public var additionSize: ?Int64
+    /**
+     * Indicates additional information map.
+     *
+     * @relation additionsMap?: Map<string, string>
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var additionsMap: Map<String, String>
+    public var additionsMap: ?Map<String, String>
+    /**
+     * Indicates vertical position accuracy in meters.
+     *
+     * @relation altitudeAccuracy?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var altitudeAccuracy: Float64
+    public var altitudeAccuracy: ?Float64
+    /**
+     * Indicates speed accuracy in meter per seconds.
+     *
+     * @relation speedAccuracy?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var speedAccuracy: Float64
+    public var speedAccuracy: ?Float64
+    /**
+     * Indicates direction accuracy in degrees.
+     *
+     * @relation directionAccuracy?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var directionAccuracy: Float64
+    public var directionAccuracy: ?Float64
+    /**
+     * Time uncertainty Of timeSinceBoot in nanosecond.
+     *
+     * @relation uncertaintyOfTimeSinceBoot?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var uncertaintyOfTimeSinceBoot: Int64
+    public var uncertaintyOfTimeSinceBoot: ?Int64
+    /**
+     * Indicates the source of the location.
+     *
+     * @relation sourceType?: LocationSourceType
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var sourceType: LocationSourceType
+    public var sourceType: ?LocationSourceType
 
     init(cjLocation: CJLocation, additions!: Array<String> = Array<String>(),
-        additionsMap!: Map<String, String> = HashMap<String, String>(),
-        sourceType!: LocationSourceType = LocationSourceType.GNSS) {
+        additionsMap!: HashMap<String, String> = HashMap<String, String>(),
+        sourceType!: LocationSourceType = LocationSourceType.Gnss) {
         this.latitude = cjLocation.latitude
         this.longitude = cjLocation.longitude
         this.altitude = cjLocation.altitude
@@ -204,130 +317,215 @@ public class Location {
     }
 }
 
+/**
+ * Enum for location priority.
+ *
+ * @relation export enum LocationRequestPriority
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestPriority {
+    /**
+     * Default priority.
+     *
+     * @relation UNSET = 0x200
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    UNSET
+    Unset
+    /**
+     * Preferentially ensure the locating accuracy.
+     *
+     * @relation ACCURACY = 0x201
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    ACCURACY
+    Accuracy
+    /**
+     * Preferentially ensure low power consumption for locating.
+     *
+     * @relation LOW_POWER = 0x202
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    LOW_POWER
+    LowPower
+    /**
+     * Preferentially ensure that the first location is time-consuming.
+     *
+     * @relation FIRST_FIX = 0x203
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    FIRST_FIX
+    FirstFix
     | ...
 
     func getValue(): Int32 {
         match (this) {
-            case UNSET => 0x200
-            case ACCURACY => 0x201
-            case LOW_POWER => 0x202
-            case FIRST_FIX => 0x203
+            case Unset => 0x200
+            case Accuracy => 0x201
+            case LowPower => 0x202
+            case FirstFix => 0x203
             case _ => throw IllegalArgumentException("The type is not supported yet.")
         }
     }
 }
 
+/**
+ * Enum for location scenario.
+ *
+ * @relation export enum LocationRequestScenario
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestScenario {
+    /**
+     * Default scenario.
+     *
+     * @relation UNSET = 0x300
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    UNSET
+    Unset
+    /**
+     * Navigation scenario. High positioning precision and real-time performance are required.
+     *
+     * @relation NAVIGATION = 0x301
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    NAVIGATION
+    Navigation
+    /**
+     * Trajectory tracking scenario. High positioning precision is required.
+     *
+     * @relation TRAJECTORY_TRACKING = 0x302
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    TRAJECTORY_TRACKING
+    TrajectoryTracking
+    /**
+     * Car hailing scenario. High positioning precision and real-time performance are required.
+     *
+     * @relation CAR_HAILING = 0x303
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    CAR_HAILING
+    CarHailing
+    /**
+     * Daily life scenarios. Low requirements on positioning precision and real-time performance.
+     *
+     * @relation DAILY_LIFE_SERVICE = 0x304
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    DAILY_LIFE_SERVICE
+    DailyLifeService
+    /**
+     * Power saving scenarios.
+     *
+     * @relation NO_POWER = 0x305
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    NO_POWER
+    NoPower
     | ...
 
     func getValue(): Int32 {
         match (this) {
-            case UNSET => 0x300
-            case NAVIGATION => 0x301
-            case TRAJECTORY_TRACKING => 0x302
-            case CAR_HAILING => 0x303
-            case DAILY_LIFE_SERVICE => 0x304
-            case NO_POWER => 0x305
+            case Unset => 0x300
+            case Navigation => 0x301
+            case TrajectoryTracking => 0x302
+            case CarHailing => 0x303
+            case DailyLifeService => 0x304
+            case NoPower => 0x305
             case _ => throw IllegalArgumentException("The type is not supported yet.")
         }
     }
 }
 
+/**
+ * Configuring parameters in current location requests.
+ *
+ * @relation export interface CurrentLocationRequest
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class CurrentLocationRequest {
+    /**
+     * Priority of the location request.
+     *
+     * @relation priority?: LocationRequestPriority
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var priority: LocationRequestPriority
+    /**
+     * User scenario of the location request.
+     *
+     * @relation scenario?: LocationRequestScenario
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var scenario: LocationRequestScenario
+    /**
+     * Accuracy requirements for reporting locations.
+     *
+     * @relation maxAccuracy?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var maxAccuracy: Float32
+    /**
+     * Timeout interval of a single location request.
+     *
+     * @relation timeoutMs?: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -335,13 +533,16 @@ public class CurrentLocationRequest {
     ]
     public var timeoutMs: Int32
 
+    /**
+     * CurrentLocationRequest Constructor.
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public init(priority!: LocationRequestPriority = LocationRequestPriority.FIRST_FIX,
-        scenario!: LocationRequestScenario = LocationRequestScenario.UNSET, maxAccuracy!: Float32 = 0.0,
+    public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFix,
+        scenario!: LocationRequestScenario = LocationRequestScenario.Unset, maxAccuracy!: Float32 = 0.0,
         timeoutMs!: Int32 = 5000) {
         this.priority = priority
         this.scenario = scenario
@@ -350,47 +551,77 @@ public class CurrentLocationRequest {
     }
 }
 
+/**
+ * Enum for locating priority.
+ *
+ * @relation export enum LocatingPriority
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocatingPriority {
+    /**
+     * Preferentially ensure the highest locating accuracy.
+     *
+     * @relation PRIORITY_ACCURACY = 0x501
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    PRIORITY_ACCURACY
+    PriorityAccuracy
+    /**
+     * Preferentially ensure the fastest locating speed.
+     *
+     * @relation PRIORITY_LOCATING_SPEED = 0x502
+     */
     | @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    PRIORITY_LOCATING_SPEED
+    PriorityLocatingSpeed
     | ...
 
     func getValue(): Int32 {
         match (this) {
-            case PRIORITY_ACCURACY => 0x501
-            case PRIORITY_LOCATING_SPEED => 0x502
+            case PriorityAccuracy => 0x501
+            case PriorityLocatingSpeed => 0x502
             case _ => throw IllegalArgumentException("The type is not supported yet.")
         }
     }
 }
 
+/**
+ * Configuring parameters in single location requests.
+ *
+ * @relation export interface SingleLocationRequest
+ */
 @!APILevel[
     21,
     stagemodelonly: true,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class SingleLocationRequest {
+    /**
+     * Priority of the location request.
+     *
+     * @relation locatingPriority: LocatingPriority
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var locatingPriority: LocatingPriority
+    /**
+     * Timeout of a single location request, in milliseconds.
+     *
+     * @relation locatingTimeoutMs: number
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
@@ -398,6 +629,9 @@ public class SingleLocationRequest {
     ]
     public var locatingTimeoutMs: Int32
 
+    /**
+     * SingleLocationRequest Constructor.
+     */
     @!APILevel[
         21,
         stagemodelonly: true,
