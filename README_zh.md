@@ -28,6 +28,7 @@
 
     根据设备可搜索到的周围WLAN、蓝牙设备位置，估算设备当前位置。此定位方式的定位结果精度依赖设备周围可见的固定WLAN、蓝牙设备的分布，密度较高时，精度也相较于基站定位方式更高，同时也需要设备可以访问网络。
 
+## 系统架构
 
 **图 1** **子系统架构图**  
 
@@ -45,12 +46,51 @@ base/location/location_cangjie_wrapper
 
 ## 约束
 
+当前开放的位置服务仓颉接口仅支持standard设备。
+
 使用设备的位置能力，需要用户进行确认并主动开启位置开关。如果位置开关没有开启，系统不会向任何应用提供位置服务。
 
 设备位置信息属于用户敏感数据，所以即使用户已经开启位置开关，应用在获取设备位置前仍需向用户申请位置访问权限。在用户确认允许后，系统才会向应用提供位置服务。
+
+## 使用说明
+
+提供了以下位置服务功能：
+
+- 获取当前位置功能
+- 判断位置服务是否已经打开功能
+
+与arkts相比，暂不支持以下功能：
+
+- 开启位置变化订阅，并发起定位请求。
+- 关闭位置变化订阅，并删除对应的定位请求。
+- 订阅位置服务状态变化。
+- 取消订阅位置服务状态变化。
+- 订阅缓存GNSS位置上报。
+- 取消订阅缓存GNSS位置上报。
+- 订阅卫星状态信息更新事件。
+- 取消订阅卫星状态信息更新事件。
+- 订阅GNSS NMEA信息上报。
+- 取消订阅GNSS NMEA信息上报。
+- 添加围栏，并订阅该围栏事件上报。
+- 删除围栏，并取消订阅该围栏事件。
+- 获取上一次位置
+- 请求打开位置服务
+- 打开位置服务
+- 关闭位置服务
+- 获取缓存GNSS位置的个数
+- 获取所有的GNSS缓存位置，并清空GNSS缓存队列
+- 给位置服务子系统发送扩展命令
+- 查询用户是否同意定位服务的隐私申明
+- 设置并记录用户是否同意定位服务的隐私申明
+
+Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location)。
 
 ## 相关仓
 
 **位置服务仓颉**
 
 [base_location](https://gitee.com/openharmony/base_location/blob/master/README.md)
+
+## 参与贡献
+
+欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
