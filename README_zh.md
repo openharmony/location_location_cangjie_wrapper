@@ -83,8 +83,14 @@ base/location/location_cangjie_wrapper
 - 查询用户是否同意定位服务的隐私申明
 - 设置并记录用户是否同意定位服务的隐私申明
 
+Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location)。
+
 ## 相关仓
 
 **位置服务仓颉**
 
 [base_location](https://gitee.com/openharmony/base_location/blob/master/README.md)
+
+## 参与贡献
+
+欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。

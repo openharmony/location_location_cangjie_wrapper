@@ -82,6 +82,12 @@ Compared to arkts, the following functionalities are currently not supported:
 - Checks whether a user agrees with the privacy statement of the location service. 
 - Sets the user confirmation status for the privacy statement of the location service.
 
+For APIs related to location, please refer to [ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit).Please refer to [Location dev guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location) for related guidance.
+
 ## Repositories Involved
 
 [base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
+
+## Code Contribution
+
+Developers are welcome to contribute code, documentation, etc. For specific contribution processes and methods, please refer to [Code Contribution](https://gitcode.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
