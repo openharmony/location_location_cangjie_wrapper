@@ -28,8 +28,6 @@
 
     根据设备可搜索到的周围WLAN、蓝牙设备位置，估算设备当前位置。此定位方式的定位结果精度依赖设备周围可见的固定WLAN、蓝牙设备的分布，密度较高时，精度也相较于基站定位方式更高，同时也需要设备可以访问网络。
 
-## 系统架构
-
 **图 1** **子系统架构图**  
 
 ![](figures/location_cangjie_wrapper_architecture.png)
@@ -40,8 +38,8 @@
 ```
 base/location/location_cangjie_wrapper
 ├── ohos             # 仓颉位置服务接口实现
-├── kit              # 仓颉kit化代码
-├── figures          # 存放readme中的架构图
+├── kit              # 仓颉元能力kit化代码
+└── figures          # 存放README中的架构图
 ```
 
 ## 约束
@@ -59,7 +57,7 @@ base/location/location_cangjie_wrapper
 - 获取当前位置功能
 - 判断位置服务是否已经打开功能
 
-与arkts相比，暂不支持以下功能：
+与ArkTS相比，暂不支持以下功能：
 
 - 开启位置变化订阅，并发起定位请求。
 - 关闭位置变化订阅，并删除对应的定位请求。
@@ -85,12 +83,12 @@ base/location/location_cangjie_wrapper
 
 Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location)。
 
+## 参与贡献
+
+欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
+
 ## 相关仓
 
 **位置服务仓颉**
 
 [base_location](https://gitee.com/openharmony/base_location/blob/master/README.md)
-
-## 参与贡献
-
-欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。

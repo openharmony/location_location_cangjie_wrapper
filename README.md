@@ -28,8 +28,6 @@ Location awareness helps determine where a mobile device locates. The system ide
 
     WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
-## System Architecture
-
 **Figure 1** location_cangjie_wrapper architecture**  
 
 ![](figures/location_cangjie_wrapper_architecture_en.png)
@@ -84,10 +82,10 @@ Compared to arkts, the following functionalities are currently not supported:
 
 For APIs related to location, please refer to [ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit).Please refer to [Location dev guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location) for related guidance.
 
-## Repositories Involved
-
-[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
-
 ## Code Contribution
 
 Developers are welcome to contribute code, documentation, etc. For specific contribution processes and methods, please refer to [Code Contribution](https://gitcode.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
+## Repositories Involved
+
+[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
