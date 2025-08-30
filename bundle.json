@@ -1,12 +1,11 @@
 {
     "name": "@ohos/location_cangjie_wrapper",
     "version": "6.0",
-    "description": "Location service, providing location and geocoding capabilities.",
+    "description": "Location service, provide the functionality to obtain the current location.",
     "homePage": "https://gitee.com/openharmony",
     "license": "Apache License 2.0",
     "repository": "",
     "domain": "os",
-    "language": "",
     "publishAs": "code-segment",
     "private": false,
     "segment": {

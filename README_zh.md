@@ -8,6 +8,8 @@
 
 当应用在实现基于设备位置的功能时，如：驾车导航，记录运动轨迹等，可以调用该模块的API接口，完成位置信息的获取。
 
+当前开放的位置服务仓颉接口仅支持standard设备。
+
 **基本概念**
 
 位置能力用于确定用户设备在哪里，系统使用位置坐标标示设备的位置，并用多种定位技术提供服务，如GNSS定位、基站定位、WLAN/蓝牙定位（基站定位、WLAN/蓝牙定位后续统称“网络定位技术”）。通过这些定位技术，无论用户设备在室内或是户外，都可以准确地确定设备位置。
@@ -28,25 +30,29 @@
 
     根据设备可搜索到的周围WLAN、蓝牙设备位置，估算设备当前位置。此定位方式的定位结果精度依赖设备周围可见的固定WLAN、蓝牙设备的分布，密度较高时，精度也相较于基站定位方式更高，同时也需要设备可以访问网络。
 
-## 系统架构
-
 **图 1** **子系统架构图**  
 
 ![](figures/location_cangjie_wrapper_architecture.png)
 
+如架构图所示：
+
+- 获取当前位置：提供获取当前位置的方法
+- 判断位置服务是否开启：提供判断位置服务是否开启的方法
+- 仓颉位置服务 FFI封装定义：负责定义C互操作仓颉接口，用于实现仓颉位置服务能力
+- 位置服务框架：负责提供位置服务基本功能，封装C接口提供给仓颉进行互操作
 
 ## 目录
 
 ```
 base/location/location_cangjie_wrapper
-├── ohos             # 仓颉位置服务接口实现
-├── kit              # 仓颉kit化代码
-├── figures          # 存放readme中的架构图
+├── figures          # 存放README中的架构图
+├── kit              # 仓颉位置服务kit化代码
+│   └── LocationKit
+└── ohos             # 仓颉位置服务接口实现
+    └── geo_location_manager
 ```
 
 ## 约束
-
-当前开放的位置服务仓颉接口仅支持standard设备。
 
 使用设备的位置能力，需要用户进行确认并主动开启位置开关。如果位置开关没有开启，系统不会向任何应用提供位置服务。
 
@@ -55,24 +61,22 @@ base/location/location_cangjie_wrapper
 ## 使用说明
 
 提供了以下位置服务功能：
-
 - 获取当前位置功能
 - 判断位置服务是否已经打开功能
 
-与arkts相比，暂不支持以下功能：
-
-- 开启位置变化订阅，并发起定位请求。
-- 关闭位置变化订阅，并删除对应的定位请求。
-- 订阅位置服务状态变化。
-- 取消订阅位置服务状态变化。
-- 订阅缓存GNSS位置上报。
-- 取消订阅缓存GNSS位置上报。
-- 订阅卫星状态信息更新事件。
-- 取消订阅卫星状态信息更新事件。
-- 订阅GNSS NMEA信息上报。
-- 取消订阅GNSS NMEA信息上报。
-- 添加围栏，并订阅该围栏事件上报。
-- 删除围栏，并取消订阅该围栏事件。
+与ArkTS相比，暂不支持以下功能：
+- 开启位置变化订阅，并发起定位请求
+- 关闭位置变化订阅，并删除对应的定位请求
+- 订阅位置服务状态变化
+- 取消订阅位置服务状态变化
+- 订阅缓存GNSS位置上报
+- 取消订阅缓存GNSS位置上报
+- 订阅卫星状态信息更新事件
+- 取消订阅卫星状态信息更新事件
+- 订阅GNSS NMEA信息上报
+- 取消订阅GNSS NMEA信息上报
+- 添加围栏，并订阅该围栏事件上报
+- 删除围栏，并取消订阅该围栏事件
 - 获取上一次位置
 - 请求打开位置服务
 - 打开位置服务
@@ -85,12 +89,12 @@ base/location/location_cangjie_wrapper
 
 Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location)。
 
+## 参与贡献
+
+欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
+
 ## 相关仓
 
 **位置服务仓颉**
 
 [base_location](https://gitee.com/openharmony/base_location/blob/master/README.md)
-
-## 参与贡献
-
-欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。

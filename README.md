@@ -8,6 +8,8 @@ With the location awareness capability offered by OpenHarmony, mobile devices wi
 
 Your application can call location-specific APIs to obtain the location information of a mobile device for offering location-based services such as drive navigation and motion track recording.
 
+The currently open position service Cangjie interface supports only standard devices.
+
 **Basic Concepts**
 
 Location awareness helps determine where a mobile device locates. The system identifies the location of a mobile device with its coordinates, and uses location technologies such as Global Navigation Satellite System (GNSS) and network positioning (for example, base station positioning or WLAN/Bluetooth positioning) to provide diverse location-based services. These advanced location technologies make it possible to obtain the accurate location of the mobile device, regardless of whether it is indoors or outdoors.
@@ -28,24 +30,28 @@ Location awareness helps determine where a mobile device locates. The system ide
 
     WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
-## System Architecture
-
 **Figure 1** location_cangjie_wrapper architecture**  
 
 ![](figures/location_cangjie_wrapper_architecture_en.png)
+
+As illustrated in the architecture diagram:
+- Obtaining Current Location: Provides a method for acquiring the current location.
+- Determining if Location Services are Enabled: Provides a method to check if location services are enabled.
+- Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
+- Location Service Framework: Responsible for providing fundamental functionalities for location services, encapsulating C interfaces for interoperability with Cangjie.
 
 ## Directory Structure
 
 ```
 base/location/location_cangjie_wrapper
-├── ohos             # Cangjie Location code
-├── kit              # Cangjie kit code
 ├── figures          # architecture pictures
+├── kit              # Cangjie kit code
+│   └── LocationKit
+└── ohos             # Cangjie Location code
+    └── geo_location_manager
 ```
 
 ## Constraints
-
-The currently open position service Cangjie interface supports only standard devices.
 
 Your application can use the location function only after the user has granted the permission and turned on the function. If the location function is off, the system will not provide the location service for any application.
 
@@ -84,10 +90,10 @@ Compared to arkts, the following functionalities are currently not supported:
 
 For APIs related to location, please refer to [ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit).Please refer to [Location dev guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location) for related guidance.
 
-## Repositories Involved
-
-[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
-
 ## Code Contribution
 
 Developers are welcome to contribute code, documentation, etc. For specific contribution processes and methods, please refer to [Code Contribution](https://gitcode.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
+## Repositories Involved
+
+[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
