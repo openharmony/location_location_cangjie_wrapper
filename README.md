@@ -46,9 +46,10 @@ As illustrated in the architecture diagram:
 base/location/location_cangjie_wrapper
 ├── figures          # architecture pictures
 ├── kit              # Cangjie kit code
-│   └── LocationKit
-└── ohos             # Cangjie Location code
-    └── geo_location_manager
+│   └── LocationKit  # Cangjie LocationKit code
+├── ohos             # Cangjie Location code
+│   └── geo_location_manager # Cangjie geo_location_manager code
+└── test             # Test cases
 ```
 
 ## Constraints
