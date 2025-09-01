@@ -47,10 +47,10 @@
 base/location/location_cangjie_wrapper
 ├── figures          # 存放README中的架构图
 ├── kit              # 仓颉位置服务kit化代码
-│   └── LocationKit
+│   └── LocationKit  # LocationKit代码目录
 ├── ohos             # 仓颉位置服务接口实现
-│   └── geo_location_manager
-└── test
+│   └── geo_location_manager # geo_location_manager仓颉接口代码目录
+└── test             # 测试用例代码
 ```
 
 ## 约束
