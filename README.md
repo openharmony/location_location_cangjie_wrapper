@@ -47,8 +47,9 @@ base/location/location_cangjie_wrapper
 ├── figures          # architecture pictures
 ├── kit              # Cangjie kit code
 │   └── LocationKit
-└── ohos             # Cangjie Location code
-    └── geo_location_manager
+├── ohos             # Cangjie Location code
+│   └── geo_location_manager
+└── test
 ```
 
 ## Constraints
