@@ -1,7 +1,7 @@
 {
     "name": "@ohos/location_cangjie_wrapper",
     "version": "6.0",
-    "description": "Location service, provide the functionality to obtain the current location.",
+    "description": "The cangejie API of Location service, provide the functionality to obtain the current location.",
     "homePage": "https://gitee.com/openharmony",
     "license": "Apache License 2.0",
     "repository": "",
