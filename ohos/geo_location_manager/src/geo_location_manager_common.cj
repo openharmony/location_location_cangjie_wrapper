@@ -31,8 +31,7 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
  * @relation export enum LocationSourceType
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationSourceType {
@@ -42,8 +41,7 @@ public enum LocationSourceType {
      * @relation GNSS = 1
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Gnss
@@ -53,8 +51,7 @@ public enum LocationSourceType {
      * @relation NETWORK = 2
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Network
@@ -64,8 +61,7 @@ public enum LocationSourceType {
      * @relation INDOOR = 3
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Indoor
@@ -75,8 +71,7 @@ public enum LocationSourceType {
      * @relation RTK = 4
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Rtk
@@ -109,8 +104,7 @@ public enum LocationSourceType {
  * @relation export interface Location
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class Location {
@@ -122,8 +116,7 @@ public class Location {
      * @relation latitude: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var latitude: Float64
@@ -135,8 +128,7 @@ public class Location {
      * @relation longitude: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var longitude: Float64
@@ -146,8 +138,7 @@ public class Location {
      * @relation altitude: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var altitude: Float64
@@ -157,8 +148,7 @@ public class Location {
      * @relation accuracy: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var accuracy: Float64
@@ -168,8 +158,7 @@ public class Location {
      * @relation speed: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var speed: Float64
@@ -179,8 +168,7 @@ public class Location {
      * @relation timeStamp: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeStamp: Int64
@@ -190,8 +178,7 @@ public class Location {
      * @relation direction: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var direction: Float64
@@ -201,8 +188,7 @@ public class Location {
      * @relation timeSinceBoot: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeSinceBoot: Int64
@@ -212,8 +198,7 @@ public class Location {
      * @relation additions?: Array<string>
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additions: ?Array<String>
@@ -223,8 +208,7 @@ public class Location {
      * @relation additionSize?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionSize: ?Int64
@@ -234,8 +218,7 @@ public class Location {
      * @relation additionsMap?: Map<string, string>
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionsMap: ?Map<String, String>
@@ -245,8 +228,7 @@ public class Location {
      * @relation altitudeAccuracy?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var altitudeAccuracy: ?Float64
@@ -256,8 +238,7 @@ public class Location {
      * @relation speedAccuracy?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var speedAccuracy: ?Float64
@@ -267,8 +248,7 @@ public class Location {
      * @relation directionAccuracy?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var directionAccuracy: ?Float64
@@ -278,8 +258,7 @@ public class Location {
      * @relation uncertaintyOfTimeSinceBoot?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var uncertaintyOfTimeSinceBoot: ?Int64
@@ -289,8 +268,7 @@ public class Location {
      * @relation sourceType?: LocationSourceType
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var sourceType: ?LocationSourceType
@@ -323,8 +301,7 @@ public class Location {
  * @relation export enum LocationRequestPriority
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestPriority {
@@ -334,8 +311,7 @@ public enum LocationRequestPriority {
      * @relation UNSET = 0x200
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
@@ -345,8 +321,7 @@ public enum LocationRequestPriority {
      * @relation ACCURACY = 0x201
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Accuracy
@@ -356,8 +331,7 @@ public enum LocationRequestPriority {
      * @relation LOW_POWER = 0x202
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     LowPower
@@ -367,8 +341,7 @@ public enum LocationRequestPriority {
      * @relation FIRST_FIX = 0x203
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     FirstFix
@@ -391,8 +364,7 @@ public enum LocationRequestPriority {
  * @relation export enum LocationRequestScenario
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestScenario {
@@ -402,8 +374,7 @@ public enum LocationRequestScenario {
      * @relation UNSET = 0x300
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
@@ -413,8 +384,7 @@ public enum LocationRequestScenario {
      * @relation NAVIGATION = 0x301
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Navigation
@@ -424,8 +394,7 @@ public enum LocationRequestScenario {
      * @relation TRAJECTORY_TRACKING = 0x302
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     TrajectoryTracking
@@ -435,8 +404,7 @@ public enum LocationRequestScenario {
      * @relation CAR_HAILING = 0x303
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     CarHailing
@@ -446,8 +414,7 @@ public enum LocationRequestScenario {
      * @relation DAILY_LIFE_SERVICE = 0x304
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     DailyLifeService
@@ -457,8 +424,7 @@ public enum LocationRequestScenario {
      * @relation NO_POWER = 0x305
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     NoPower
@@ -483,8 +449,7 @@ public enum LocationRequestScenario {
  * @relation export interface CurrentLocationRequest
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class CurrentLocationRequest {
@@ -494,8 +459,7 @@ public class CurrentLocationRequest {
      * @relation priority?: LocationRequestPriority
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var priority: LocationRequestPriority
@@ -505,8 +469,7 @@ public class CurrentLocationRequest {
      * @relation scenario?: LocationRequestScenario
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var scenario: LocationRequestScenario
@@ -516,8 +479,7 @@ public class CurrentLocationRequest {
      * @relation maxAccuracy?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var maxAccuracy: Float32
@@ -527,8 +489,7 @@ public class CurrentLocationRequest {
      * @relation timeoutMs?: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeoutMs: Int32
@@ -537,8 +498,7 @@ public class CurrentLocationRequest {
      * CurrentLocationRequest Constructor.
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFix,
@@ -557,8 +517,7 @@ public class CurrentLocationRequest {
  * @relation export enum LocatingPriority
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocatingPriority {
@@ -568,8 +527,7 @@ public enum LocatingPriority {
      * @relation PRIORITY_ACCURACY = 0x501
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PriorityAccuracy
@@ -579,8 +537,7 @@ public enum LocatingPriority {
      * @relation PRIORITY_LOCATING_SPEED = 0x502
      */
     | @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PriorityLocatingSpeed
@@ -601,8 +558,7 @@ public enum LocatingPriority {
  * @relation export interface SingleLocationRequest
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class SingleLocationRequest {
@@ -612,8 +568,7 @@ public class SingleLocationRequest {
      * @relation locatingPriority: LocatingPriority
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var locatingPriority: LocatingPriority
@@ -623,8 +578,7 @@ public class SingleLocationRequest {
      * @relation locatingTimeoutMs: number
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var locatingTimeoutMs: Int32
@@ -633,8 +587,7 @@ public class SingleLocationRequest {
      * SingleLocationRequest Constructor.
      */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public init(locatingPriority: LocatingPriority, locatingTimeoutMs: Int32) {
