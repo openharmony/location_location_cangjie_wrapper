@@ -26,8 +26,7 @@ import ohos.labels.*
  * @relation declare namespace geoLocationManager
  */
 @!APILevel[
-    21,
-    stagemodelonly: true,
+    22,
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
@@ -43,9 +42,8 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        21,
+        22,
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func getCurrentLocation(): Location {
@@ -73,9 +71,8 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        21,
+        22,
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func getCurrentLocation(request: CurrentLocationRequest): Location {
@@ -105,9 +102,8 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        21,
+        22,
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        stagemodelonly: true,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func getCurrentLocation(request: SingleLocationRequest): Location {
@@ -133,8 +129,7 @@ public class GeoLocationManager {
       * @relation function isLocationEnabled(): boolean
       */
     @!APILevel[
-        21,
-        stagemodelonly: true,
+        22,
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func isLocationEnabled(): Bool {
