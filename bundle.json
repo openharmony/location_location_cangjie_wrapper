@@ -24,7 +24,6 @@
         "hisysevent_config": [],
         "deps": {
             "components": [
-                "global_cangjie_wrapper",
                 "cangjie_ark_interop",
                 "arkui_cangjie_wrapper",
                 "hiviewdfx_cangjie_wrapper",

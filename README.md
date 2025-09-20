@@ -35,21 +35,23 @@ Location awareness helps determine where a mobile device locates. The system ide
 ![](figures/location_cangjie_wrapper_architecture_en.png)
 
 As illustrated in the architecture diagram:
-- Obtaining Current Location: Provides a method for acquiring the current location.
-- Determining if Location Services are Enabled: Provides a method to check if location services are enabled.
-- Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
-- Location Service Framework: Responsible for providing fundamental functionalities for location services, encapsulating C interfaces for interoperability with Cangjie.
+- Location Services Wrapper: Provides a method for acquiring the current location. Provides a method to check if location services are enabled.
+- Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C language interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
+- Location Service Framework: Responsible for providing fundamental functionalities for location services, encapsulating C language interfaces for interoperability with Cangjie.
 
 ## Directory Structure
 
 ```
 base/location/location_cangjie_wrapper
-├── figures          # architecture pictures
-├── kit              # Cangjie kit code
-│   └── LocationKit  # Cangjie LocationKit code
-├── ohos             # Cangjie Location code
-│   └── geo_location_manager # Cangjie geo_location_manager code
-└── test             # Test cases
+├── figures                           # architecture pictures
+├── kit                               # Cangjie kit code
+│   └── LocationKit                   # Cangjie LocationKit code
+├── ohos                              # Cangjie Location code
+│   └── geo_location_manager          # Cangjie geo_location_manager code
+└── test                              # Test cases
+    └── APILevel22                    # API Level 22 test code
+        └── geolocationmanager        # Location manager tests
+            └── test                  # Location manager test project
 ```
 
 ## Constraints
@@ -65,7 +67,7 @@ The following location service functions have been provided:
 - Obtains the current location.
 - Checks whether the location service is enabled.
 
-Compared to arkts, the following functionalities are currently not supported:
+Compared with the API capabilities provided by ArkTS, the following functionalities are currently not supported:
 
 - Registers a listener for location changes with a location request initiated.
 - Unregisters the listener for location changes with the corresponding location request deleted.
@@ -89,7 +91,7 @@ Compared to arkts, the following functionalities are currently not supported:
 - Checks whether a user agrees with the privacy statement of the location service. 
 - Sets the user confirmation status for the privacy statement of the location service.
 
-For APIs related to location, please refer to [ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit).Please refer to [Location dev guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location) for related guidance.
+For APIs related to location, please refer to [geo_location_manager API Reference](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit). Please refer to [Location Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location/cj-location-guidelines.md) for related guidance.
 
 ## Code Contribution
 
@@ -97,4 +99,8 @@ Developers are welcome to contribute code, documentation, etc. For specific cont
 
 ## Repositories Involved
 
-[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)
+[base_location](https://gitcode.com/openharmony/base_location/blob/master/README.en.md)
+
+[arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/README.md)
+
+[hiviewdfx_hiviewdfx_cangjie_wrapper](https://gitcode.com/openharmony-sig/hiviewdfx_hiviewdfx_cangjie_wrapper/blob/master/README.md)
