@@ -33,7 +33,7 @@
         "build": {
             "sub_component": [
                 "//base/location/location_cangjie_wrapper/ohos/geo_location_manager:ohos.geo_location_manager",
-                "//base/location/location_cangjie_wrapper/kit/LocationKit:kit.LocationKit"
+                "//base/location/location_cangjie_wrapper/kit/LocationKit:LocationKit"
             ],
             "inner_kits": [],
             "test": []
