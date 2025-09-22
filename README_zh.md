@@ -12,7 +12,7 @@
 
 **基本概念**
 
-位置能力用于确定用户设备在哪里，系统使用位置坐标标示设备的位置，并用多种定位技术提供服务，如GNSS定位、基站定位、WLAN/蓝牙定位（基站定位、WLAN/蓝牙定位后续统称“网络定位技术”）。通过这些定位技术，无论用户设备在室内或是户外，都可以准确地确定设备位置。
+位置能力用于确定用户设备在哪里，系统使用位置坐标标示设备的位置，并用多种定位技术提供服务，如GNSS定位、基站定位、WLAN/蓝牙定位（基站定位、WLAN/蓝牙定位后续统称"网络定位技术"）。通过这些定位技术，无论用户设备在室内或是户外，都可以准确地确定设备位置。
 
 -   **坐标**
 
@@ -36,21 +36,23 @@
 
 如架构图所示：
 
-- 获取当前位置：提供获取当前位置的方法
-- 判断位置服务是否开启：提供判断位置服务是否开启的方法
-- 仓颉位置服务 FFI封装定义：负责定义C互操作仓颉接口，用于实现仓颉位置服务能力
-- 位置服务框架：负责提供位置服务基本功能，封装C接口提供给仓颉进行互操作
+- 位置服务封装：提供获取当前位置的方法，提供判断位置服务是否开启的方法。
+- 仓颉位置服务 FFI封装定义：负责定义被Cangjie语言调用的C语言互操作接口，用于实现仓颉位置服务能力。
+- 位置服务框架：负责提供位置服务基本功能，封装C接口提供给仓颉进行互操作。
 
 ## 目录
 
 ```
 base/location/location_cangjie_wrapper
-├── figures          # 存放README中的架构图
-├── kit              # 仓颉位置服务kit化代码
-│   └── LocationKit  # LocationKit代码目录
-├── ohos             # 仓颉位置服务接口实现
-│   └── geo_location_manager # geo_location_manager仓颉接口代码目录
-└── test             # 测试用例代码
+├── figures                           # 存放README中的架构图
+├── kit                               # 仓颉位置服务kit化代码
+│   └── LocationKit                   # LocationKit代码目录
+├── ohos                              # 仓颉位置服务接口实现
+│   └── geo_location_manager          # geo_location_manager仓颉接口代码目录
+└── test                              # 测试用例代码
+    └── APILevel22                    # API Level 22测试代码
+        └── geolocationmanager        # 位置管理测试
+            └── test                  # 位置管理测试工程
 ```
 
 ## 约束
@@ -65,7 +67,7 @@ base/location/location_cangjie_wrapper
 - 获取当前位置功能
 - 判断位置服务是否已经打开功能
 
-与ArkTS相比，暂不支持以下功能：
+与ArkTS提供的API能力相比，暂不支持以下功能：
 - 开启位置变化订阅，并发起定位请求
 - 关闭位置变化订阅，并删除对应的定位请求
 - 订阅位置服务状态变化
@@ -88,7 +90,7 @@ base/location/location_cangjie_wrapper
 - 查询用户是否同意定位服务的隐私申明
 - 设置并记录用户是否同意定位服务的隐私申明
 
-Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location)。
+Location相关API使用请参见[geo_location_manager API 参考](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_zh_cn/apis/LocationKit)，相关接口使用指导请参见[Location开发指南](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_zh_cn/location/cj-location-guidelines.md)。
 
 ## 参与贡献
 
@@ -98,4 +100,9 @@ Location相关API请参见[ohos.geo_location_manager](https://gitcode.com/openha
 
 **位置服务仓颉**
 
-[base_location](https://gitee.com/openharmony/base_location/blob/master/README.md)
+[base_location](https://gitcode.com/openharmony/base_location/blob/master/README.md)
+
+[arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/README_zh.md)
+
+
+[hiviewdfx_hiviewdfx_cangjie_wrapper](https://gitcode.com/openharmony-sig/hiviewdfx_hiviewdfx_cangjie_wrapper/blob/master/README_zh.md)
