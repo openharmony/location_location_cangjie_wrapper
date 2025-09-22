@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-package kit.LocationKit
+package LocationKit
 
 public import ohos.geo_location_manager.*
