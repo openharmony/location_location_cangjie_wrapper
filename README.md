@@ -37,7 +37,9 @@ Location awareness helps determine where a mobile device locates. The system ide
 As illustrated in the architecture diagram:
 - Location Services Wrapper: Provides a method for acquiring the current location. Provides a method to check if location services are enabled.
 - Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C language interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
-- Location Service Framework: Responsible for providing fundamental functionalities for location services, encapsulating C language interfaces for interoperability with Cangjie.
+- Cangjie ark interop: Encapsulates public interfaces for C language interoperation, and provides Cangjie tag class implementation for annotating Cangjie APIs, as well as providing BusinessException exception class definitions thrown to users.
+- Location Framework: Provides basic functions of location services through calling underlying GNSS HDI with C language interfaces.
+- Cangjie DFX: Responsible for providing log interfaces for printing logs at critical paths.
 
 ## Directory Structure
 
@@ -49,9 +51,8 @@ base/location/location_cangjie_wrapper
 ├── ohos                              # Cangjie Location code
 │   └── geo_location_manager          # Cangjie geo_location_manager code
 └── test                              # Test cases
-    └── APILevel22                    # API Level 22 test code
-        └── geolocationmanager        # Location manager tests
-            └── test                  # Location manager test project
+    └── geolocationmanager            # Location manager tests
+        └── test                      # Location manager test project
 ```
 
 ## Constraints
@@ -99,7 +100,7 @@ Developers are welcome to contribute code, documentation, etc. For specific cont
 
 ## Repositories Involved
 
-[base_location](https://gitcode.com/openharmony/base_location/blob/master/README.en.md)
+[base_location](https://gitcode.com/openharmony/base_location/blob/master/README.md)
 
 [arkcompiler_cangjie_ark_interop](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/blob/master/README.md)
 
