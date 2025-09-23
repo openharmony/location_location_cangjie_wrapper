@@ -26,7 +26,7 @@ import ohos.labels.*
  * @relation declare namespace geoLocationManager
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
@@ -42,7 +42,7 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -71,7 +71,7 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -102,7 +102,7 @@ public class GeoLocationManager {
       * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -129,7 +129,7 @@ public class GeoLocationManager {
       * @relation function isLocationEnabled(): boolean
       */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func isLocationEnabled(): Bool {
