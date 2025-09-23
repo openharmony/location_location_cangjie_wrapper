@@ -73,7 +73,7 @@ class Test_location {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_getCurrentLocation(): Unit {
         let location = GeoLocationManager.getCurrentLocation()
         @Expect(location.latitude > 30.0 && location.latitude < 35.0, true)
@@ -119,14 +119,14 @@ class Test_location {
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_isLocationEnabled(): Unit {
         let manager = GeoLocationManager()
         @Expect(GeoLocationManager.isLocationEnabled() , true)
     }
 
     @TestCase
-    @Tag[APILevel21, TestLevel0]
+    @Tag[APILevel22, TestLevel0]
     func test_LocationSourceType(): Unit {
         let arr: Array<LocationSourceType> = [Gnss, Network, Indoor, Rtk]
     }
