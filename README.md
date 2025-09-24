@@ -2,44 +2,54 @@
 
 ## Introduction
 
-The location_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony based on the capabilities of the Location Subsystem. People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
+The location_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony based on the capabilities of the Location Component. Mobile terminal devices have been deeply integrated into all aspects of people's daily lives, such as checking the weather in their city, news stories, calling for rides, travel navigation, and fitness tracking. These common activities all rely on locating the user's terminal device.
 
-With the location awareness capability offered by OpenHarmony, mobile devices will be able to obtain real-time, accurate location data. Building location awareness into your application can also lead to a better contextual experience for application users.
+When users are in these rich usage scenarios, the system's location capability can provide real-time and accurate location data. For developers, designing location-based services can make the application experience more personalized for each user.
 
-Your application can call location-specific APIs to obtain the location information of a mobile device for offering location-based services such as drive navigation and motion track recording.
+When applications implement device location-based features, such as driving navigation or recording exercise routes, they can call the module's API interfaces to obtain location information.
 
-The currently open position service Cangjie interface supports only standard devices.
+The currently open location service Cangjie interface only supports standard devices.
 
 **Basic Concepts**
 
-Location awareness helps determine where a mobile device locates. The system identifies the location of a mobile device with its coordinates, and uses location technologies such as Global Navigation Satellite System (GNSS) and network positioning (for example, base station positioning or WLAN/Bluetooth positioning) to provide diverse location-based services. These advanced location technologies make it possible to obtain the accurate location of the mobile device, regardless of whether it is indoors or outdoors.
+Location capability is used to determine where the user's device is located. The system uses location coordinates to indicate the device's position and provides services through multiple positioning technologies, such as GNSS positioning, base station positioning, and WLAN/Bluetooth positioning (base station positioning, WLAN/Bluetooth positioning are collectively referred to as "network positioning technology"). Through these positioning technologies, the device's location can be accurately determined whether the user's device is indoors or outdoors.
 
 -   **Coordinate**
 
-    A coordinate describes a location on the earth using the longitude and latitude in reference to the World Geodetic Coordinate System 1984.
+    The system uses the World Geodetic System 1984 as a reference, using longitude and latitude data to describe a location on Earth.
 
 -   **GNSS positioning**
 
-    GNSS positioning locates a mobile device by using the location algorithm offered by the device chip to compute the location information provided by the Global Navigation Satellite System, for example, GPS, GLONASS, BeiDou, and Galileo. Whichever positioning system will be used during the location process depends on a hardware capability of the device.
+    Based on the Global Navigation Satellite System, including GPS, GLONASS, BeiDou, Galileo, etc., it determines the device's accurate location through navigation satellites and the positioning algorithms provided by the device chip. The specific positioning systems used in the positioning process depend on the hardware capabilities of the user's device.
 
 -   **Base station positioning**
 
-    Base station positioning estimates the current location of a mobile device based on the location of the resident base station in reference to the neighboring base stations. This technology provides only a low accuracy and requires access to the cellular network.
+    Estimates the device's current location based on the position of the current network base station and neighboring base stations. The positioning accuracy of this method is relatively low and requires the device to access the cellular network.
 
--   **WLAN or Bluetooth positioning**
+-   **WLAN and Bluetooth positioning**
 
-    WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
+    Estimates the device's current location based on the positions of surrounding WLAN and Bluetooth devices that can be detected by the device. The positioning accuracy of this method depends on the distribution of visible fixed WLAN and Bluetooth devices around the device. When the density is high, the accuracy is higher compared to base station positioning, and it also requires the device to access the network.
 
 **Figure 1** location_cangjie_wrapper architecture**  
 
 ![](figures/location_cangjie_wrapper_architecture_en.png)
 
 As illustrated in the architecture diagram:
-- Location Services Wrapper: Provides a method for acquiring the current location. Provides a method to check if location services are enabled.
+
+Interface layer description:
+
+- Location Service API: Cangjie public interfaces based on location service encapsulation exposed to users.
+
+Framework layer description:
+
+- Location Service Wrapper: Provides Cangjie encapsulation method implementations for obtaining the current location and checking if the location service is enabled.
 - Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C language interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
-- Cangjie ark interop: Encapsulates public interfaces for C language interoperation, and provides Cangjie tag class implementation for annotating Cangjie APIs, as well as providing BusinessException exception class definitions thrown to users.
-- Location Framework: Provides basic functions of location services through calling underlying GNSS HDI with C language interfaces.
-- Cangjie DFX: Responsible for providing log interfaces for printing logs at critical paths.
+
+Cangjie Location Service Dependencies:
+
+- Cangjie Interop: Encapsulates public interfaces for C language interoperation, and provides Cangjie tag class implementation for annotating Cangjie APIs, as well as providing BusinessException exception class definitions thrown to users.
+- Location Service Framework: Provides C language interfaces for basic location services that can be called by the location service Cangjie interface through calling underlying GNSS driver interfaces.
+- Cangjie DFX: Responsible for providing log interfaces, providing Cangjie interfaces that can be called by the location service Cangjie interface to print logs at critical paths.
 
 ## Directory Structure
 
@@ -55,18 +65,20 @@ base/location/location_cangjie_wrapper
         └── test                      # Location manager test project
 ```
 
-## Constraints
-
-Your application can use the location function only after the user has granted the permission and turned on the function. If the location function is off, the system will not provide the location service for any application.
-
-Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
-
 ## Usage
 
 The following location service functions have been provided:
 
 - Obtains the current location.
 - Checks whether the location service is enabled.
+
+For APIs related to location, please refer to [geo_location_manager API Reference](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit). Please refer to [Location Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location/cj-location-guidelines.md) for related guidance.
+
+## Constraints
+
+Your application can use the location function only after the user has granted the permission and turned on the function. If the location function is off, the system will not provide the location service for any application.
+
+Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
 
 Compared with the API capabilities provided by ArkTS, the following functionalities are currently not supported:
 
@@ -91,8 +103,6 @@ Compared with the API capabilities provided by ArkTS, the following functionalit
 - Sends extended commands to the location subsystem. 
 - Checks whether a user agrees with the privacy statement of the location service. 
 - Sets the user confirmation status for the privacy statement of the location service.
-
-For APIs related to location, please refer to [geo_location_manager API Reference](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/API_Reference/source_en/apis/LocationKit). Please refer to [Location Development Guide](https://gitcode.com/openharmony-sig/arkcompiler_cangjie_ark_interop/tree/master/doc/Dev_Guide/source_en/location/cj-location-guidelines.md) for related guidance.
 
 ## Code Contribution
 
