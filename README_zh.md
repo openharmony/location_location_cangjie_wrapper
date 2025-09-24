@@ -38,7 +38,9 @@
 
 - 位置服务封装：提供获取当前位置的方法，提供判断位置服务是否开启的方法。
 - 仓颉位置服务 FFI封装定义：负责定义被Cangjie语言调用的C语言互操作接口，用于实现仓颉位置服务能力。
-- 位置服务框架：负责提供位置服务基本功能，封装C接口提供给仓颉进行互操作。
+- 仓颉互操作：封装C语言互操作公共接口，并提供仓颉标签类实现用于对仓颉API进行标注，以及提供抛向用户的BusinessException异常类定义。
+- 位置服务框架：通过调用底层GNSS驱动接口，提供位置服务基本功能的C语言接口。
+- 仓颉DFX：负责提供日志接口，用于在关键路径处打印日志。
 
 ## 目录
 
@@ -50,9 +52,8 @@ base/location/location_cangjie_wrapper
 ├── ohos                              # 仓颉位置服务接口实现
 │   └── geo_location_manager          # geo_location_manager仓颉接口代码目录
 └── test                              # 测试用例代码
-    └── APILevel22                    # API Level 22测试代码
-        └── geolocationmanager        # 位置管理测试
-            └── test                  # 位置管理测试工程
+    └── geolocationmanager            # 位置管理测试
+        └── test                      # 位置管理测试工程
 ```
 
 ## 约束
