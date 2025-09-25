@@ -2,17 +2,11 @@
 
 ## Introduction
 
-The location_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony based on the capabilities of the Location Component. Mobile terminal devices have been deeply integrated into all aspects of people's daily lives, such as checking the weather in their city, news stories, calling for rides, travel navigation, and fitness tracking. These common activities all rely on locating the user's terminal device.
-
-When users are in these rich usage scenarios, the system's location capability can provide real-time and accurate location data. For developers, designing location-based services can make the application experience more personalized for each user.
-
-When applications implement device location-based features, such as driving navigation or recording exercise routes, they can call the module's API interfaces to obtain location information.
-
-The currently open location service Cangjie interface only supports standard devices.
+The location_cangjie_wrapper is a Cangjie API encapsulated on OpenHarmony for developers to use location service capabilities for application development. The system's location capability can provide real-time and accurate location data. For developers, designing location-based services can make the application experience more personalized for each user. The currently open location service Cangjie interface only supports standard devices.
 
 **Basic Concepts**
 
-Location capability is used to determine where the user's device is located. The system uses location coordinates to indicate the device's position and provides services through multiple positioning technologies, such as GNSS positioning, base station positioning, and WLAN/Bluetooth positioning (base station positioning, WLAN/Bluetooth positioning are collectively referred to as "network positioning technology"). Through these positioning technologies, the device's location can be accurately determined whether the user's device is indoors or outdoors.
+Location capability is used to determine where the user's device is located. The system uses location coordinates to indicate the device's position and provides services through GNSS positioning technology. Through these positioning technologies, the device's location can be accurately determined whether the user's device is indoors or outdoors.
 
 -   **Coordinate**
 
@@ -22,13 +16,7 @@ Location capability is used to determine where the user's device is located. The
 
     Based on the Global Navigation Satellite System, including GPS, GLONASS, BeiDou, Galileo, etc., it determines the device's accurate location through navigation satellites and the positioning algorithms provided by the device chip. The specific positioning systems used in the positioning process depend on the hardware capabilities of the user's device.
 
--   **Base station positioning**
-
-    Estimates the device's current location based on the position of the current network base station and neighboring base stations. The positioning accuracy of this method is relatively low and requires the device to access the cellular network.
-
--   **WLAN and Bluetooth positioning**
-
-    Estimates the device's current location based on the positions of surrounding WLAN and Bluetooth devices that can be detected by the device. The positioning accuracy of this method depends on the distribution of visible fixed WLAN and Bluetooth devices around the device. When the density is high, the accuracy is higher compared to base station positioning, and it also requires the device to access the network.
+## System Architecture
 
 **Figure 1** location_cangjie_wrapper architecture**  
 
@@ -38,18 +26,17 @@ As illustrated in the architecture diagram:
 
 Interface layer description:
 
-- Location Service API: Cangjie public interfaces based on location service encapsulation exposed to users.
+- Location Service API: Provides Cangjie public interface declarations for obtaining the current location and checking if the location service is enabled. When using the location service API, please turn on the device's "Location" switch.
 
 Framework layer description:
 
-- Location Service Wrapper: Provides Cangjie encapsulation method implementations for obtaining the current location and checking if the location service is enabled.
-- Cangjie Location Services FFI Wrapper Definition: Responsible for defining the C language interoperability interface for Cangjie, aimed at implementing Cangjie location service capabilities.
+- Location Service Wrapper: Provides Cangjie encapsulation method implementations for obtaining the current location and checking if the location service is enabled. This encapsulation layer is a Cangjie encapsulation implementation of location service functionality based on the location service component.
 
 Cangjie Location Service Dependencies:
 
-- Cangjie Interop: Encapsulates public interfaces for C language interoperation, and provides Cangjie tag class implementation for annotating Cangjie APIs, as well as providing BusinessException exception class definitions thrown to users.
-- Location Service Framework: Provides C language interfaces for basic location services that can be called by the location service Cangjie interface through calling underlying GNSS driver interfaces.
-- Cangjie DFX: Responsible for providing log interfaces, providing Cangjie interfaces that can be called by the location service Cangjie interface to print logs at critical paths.
+- cangjie_ark_interop: Encapsulates public interfaces for C language interoperation, and provides Cangjie tag class implementation for annotating Cangjie APIs, as well as providing BusinessException exception class definitions thrown to users.
+- Location Service Component: Provides basic functions such as GNSS positioning, network positioning (cellular base station, WLAN, Bluetooth positioning technology), geocoding, country code, and geofencing by calling underlying GNSS driver interfaces.
+- hiviewdfx_cangjie_wrapper: Responsible for providing log interfaces, providing Cangjie interfaces that can be called by the location service Cangjie interface to print logs at critical paths.
 
 ## Directory Structure
 
@@ -82,27 +69,12 @@ Since the location information is considered sensitive, your application still n
 
 Compared with the API capabilities provided by ArkTS, the following functionalities are currently not supported:
 
-- Registers a listener for location changes with a location request initiated.
-- Unregisters the listener for location changes with the corresponding location request deleted.
-- Registers a listener for location service status change events.
-- Unregisters the listener for location service status change events.
-- Registers a listener for cached GNSS location reports.
-- Unregisters the listener for cached GNSS location reports.
-- Registers a listener for satellite status change events.
-- Unregisters the listener for satellite status change events.
-- Registers a listener for GNSS NMEA message change events.
-- Unregisters the listener for GNSS NMEA message change events.
-- Registers a listener for status change events of the specified geofence.
-- Unregisters the listener for status change events of the specified geofence.
-- Obtains the previous location.
-- Requests to enable the location service. 
-- Enables the location service.
-- Disables the location service. 
-- Obtains the number of cached GNSS locations.
-- Obtains all cached GNSS locations and clears the GNSS cache queue. 
-- Sends extended commands to the location subsystem. 
-- Checks whether a user agrees with the privacy statement of the location service. 
-- Sets the user confirmation status for the privacy statement of the location service.
+- Network positioning: Including cellular base station positioning, WLAN positioning, and Bluetooth positioning technology.
+- Historical location acquisition: Obtaining the most recently cached location information.
+- Geofencing services: Geofencing is a virtual geographic boundary function that can receive automatic notifications and alerts when a device enters or leaves a specific geographic area.
+- Geocoding services: The geocoding function provides conversion between address information and geographic coordinates.
+- Location listener services: Supports registering location change listeners to continuously receive location updates.
+- Location status management: Determining whether the geocoding service is available and obtaining country code information.
 
 ## Code Contribution
 
