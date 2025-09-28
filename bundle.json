@@ -25,7 +25,6 @@
         "deps": {
             "components": [
                 "cangjie_ark_interop",
-                "arkui_cangjie_wrapper",
                 "hiviewdfx_cangjie_wrapper",
                 "location"
             ]
