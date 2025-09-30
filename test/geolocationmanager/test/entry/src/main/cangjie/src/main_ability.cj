@@ -16,7 +16,7 @@
 package ohos_app_cangjie_entry
 
 import ohos.window.WindowStage
-import AbilityKit.*
+import kit.AbilityKit.*
 import ohos.arkui.state_management.AppStorage
 
 class MainAbility <: UIAbility {
