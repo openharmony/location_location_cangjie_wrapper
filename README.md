@@ -1,4 +1,4 @@
-# location_cangjie_wrapper
+# location_cangjie_wrapper(beta feature)
 
 ## Introduction
 
