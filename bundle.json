@@ -1,6 +1,6 @@
 {
     "name": "@ohos/location_cangjie_wrapper",
-    "version": "6.0",
+    "version": "6.1",
     "description": "The cangejie API of Location service, provide the functionality to obtain the current location.",
     "homePage": "https://gitee.com/openharmony",
     "license": "Apache License 2.0",
@@ -32,7 +32,7 @@
         "build": {
             "sub_component": [
                 "//base/location/location_cangjie_wrapper/ohos/geo_location_manager:ohos.geo_location_manager",
-                "//base/location/location_cangjie_wrapper/kit/LocationKit:LocationKit"
+                "//base/location/location_cangjie_wrapper/kit/LocationKit:kit.LocationKit"
             ],
             "inner_kits": [],
             "test": []

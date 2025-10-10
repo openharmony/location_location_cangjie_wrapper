@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
@@ -22,8 +24,6 @@ import ohos.labels.*
 /**
  * Provides interfaces for acquiring location information, managing location switches,
  * geocoding, reverse geocoding, country code, fencing and other functions.
- *
- * @relation declare namespace geoLocationManager
  */
 @!APILevel[
     since: "22",
@@ -39,7 +39,6 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301000 - The location service is   unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
-      * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
         since: "22",
@@ -68,7 +67,6 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301000 - The location service is   unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
-      * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
         since: "22",
@@ -99,7 +97,6 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301000 - The location service is   unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
-      * @relation function getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise<Location>
       */
     @!APILevel[
         since: "22",
@@ -126,7 +123,6 @@ public class GeoLocationManager {
       *
       * @throws { BusinessException } 801 - Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
-      * @relation function isLocationEnabled(): boolean
       */
     @!APILevel[
         since: "22",

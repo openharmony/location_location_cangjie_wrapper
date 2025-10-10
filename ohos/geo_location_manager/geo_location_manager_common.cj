@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// The Cangjie API is in Beta. For details on its capabilities and limitations, please refer to the README file.
+
 package ohos.geo_location_manager
 
 import ohos.business_exception.getUniversalErrorMsg
@@ -27,8 +29,6 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
 
 /**
  * Enum for the source of the location.
- *
- * @relation export enum LocationSourceType
  */
 @!APILevel[
     since: "22",
@@ -37,8 +37,6 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
 public enum LocationSourceType {
     /**
      * The location is obtained from the GNSS.
-     *
-     * @relation GNSS = 1
      */
     @!APILevel[
         since: "22",
@@ -47,8 +45,6 @@ public enum LocationSourceType {
     Gnss
     /**
      * The location comes from the network positioning technology.
-     *
-     * @relation NETWORK = 2
      */
     | @!APILevel[
         since: "22",
@@ -57,8 +53,6 @@ public enum LocationSourceType {
     Network
     /**
      * The location comes from the indoor positioning technology.
-     *
-     * @relation INDOOR = 3
      */
     | @!APILevel[
         since: "22",
@@ -67,8 +61,6 @@ public enum LocationSourceType {
     Indoor
     /**
      * The location comes from the GNSS RTK technology.
-     *
-     * @relation RTK = 4
      */
     | @!APILevel[
         since: "22",
@@ -100,8 +92,6 @@ public enum LocationSourceType {
 
 /**
  * Provides information about geographic locations.
- *
- * @relation export interface Location
  */
 @!APILevel[
     since: "22",
@@ -112,8 +102,6 @@ public class Location {
      * Indicates latitude information.
      * A positive value indicates north latitude,
      * and a negative value indicates south latitude.
-     *
-     * @relation latitude: number
      */
     @!APILevel[
         since: "22",
@@ -124,8 +112,6 @@ public class Location {
      * Indicates Longitude information.
      * A positive value indicates east longitude ,
      * and a negative value indicates west longitude.
-     *
-     * @relation longitude: number
      */
     @!APILevel[
         since: "22",
@@ -134,8 +120,6 @@ public class Location {
     public var longitude: Float64
     /**
      * Indicates location altitude, in meters.
-     *
-     * @relation altitude: number
      */
     @!APILevel[
         since: "22",
@@ -144,8 +128,6 @@ public class Location {
     public var altitude: Float64
     /**
      * Indicates location accuracy, in meters.
-     *
-     * @relation accuracy: number
      */
     @!APILevel[
         since: "22",
@@ -154,8 +136,6 @@ public class Location {
     public var accuracy: Float64
     /**
      * Indicates speed, in m/s.
-     *
-     * @relation speed: number
      */
     @!APILevel[
         since: "22",
@@ -164,8 +144,6 @@ public class Location {
     public var speed: Float64
     /**
      * Indicates location timestamp in the UTC format.
-     *
-     * @relation timeStamp: number
      */
     @!APILevel[
         since: "22",
@@ -174,8 +152,6 @@ public class Location {
     public var timeStamp: Int64
     /**
      * Indicates direction information.
-     *
-     * @relation direction: number
      */
     @!APILevel[
         since: "22",
@@ -184,8 +160,6 @@ public class Location {
     public var direction: Float64
     /**
      * Indicates location timestamp since boot.
-     *
-     * @relation timeSinceBoot: number
      */
     @!APILevel[
         since: "22",
@@ -194,8 +168,6 @@ public class Location {
     public var timeSinceBoot: Int64
     /**
      * Indicates additional information.
-     *
-     * @relation additions?: Array<string>
      */
     @!APILevel[
         since: "22",
@@ -204,8 +176,6 @@ public class Location {
     public var additions: ?Array<String>
     /**
      * Indicates the amount of additional descriptive information.
-     *
-     * @relation additionSize?: number
      */
     @!APILevel[
         since: "22",
@@ -214,8 +184,6 @@ public class Location {
     public var additionSize: ?Int64
     /**
      * Indicates additional information map.
-     *
-     * @relation additionsMap?: Map<string, string>
      */
     @!APILevel[
         since: "22",
@@ -224,8 +192,6 @@ public class Location {
     public var additionsMap: ?Map<String, String>
     /**
      * Indicates vertical position accuracy in meters.
-     *
-     * @relation altitudeAccuracy?: number
      */
     @!APILevel[
         since: "22",
@@ -234,8 +200,6 @@ public class Location {
     public var altitudeAccuracy: ?Float64
     /**
      * Indicates speed accuracy in meter per seconds.
-     *
-     * @relation speedAccuracy?: number
      */
     @!APILevel[
         since: "22",
@@ -244,8 +208,6 @@ public class Location {
     public var speedAccuracy: ?Float64
     /**
      * Indicates direction accuracy in degrees.
-     *
-     * @relation directionAccuracy?: number
      */
     @!APILevel[
         since: "22",
@@ -254,8 +216,6 @@ public class Location {
     public var directionAccuracy: ?Float64
     /**
      * Time uncertainty Of timeSinceBoot in nanosecond.
-     *
-     * @relation uncertaintyOfTimeSinceBoot?: number
      */
     @!APILevel[
         since: "22",
@@ -264,8 +224,6 @@ public class Location {
     public var uncertaintyOfTimeSinceBoot: ?Int64
     /**
      * Indicates the source of the location.
-     *
-     * @relation sourceType?: LocationSourceType
      */
     @!APILevel[
         since: "22",
@@ -297,8 +255,6 @@ public class Location {
 
 /**
  * Enum for location priority.
- *
- * @relation export enum LocationRequestPriority
  */
 @!APILevel[
     since: "22",
@@ -307,8 +263,6 @@ public class Location {
 public enum LocationRequestPriority {
     /**
      * Default priority.
-     *
-     * @relation UNSET = 0x200
      */
     @!APILevel[
         since: "22",
@@ -317,8 +271,6 @@ public enum LocationRequestPriority {
     Unset
     /**
      * Preferentially ensure the locating accuracy.
-     *
-     * @relation ACCURACY = 0x201
      */
     | @!APILevel[
         since: "22",
@@ -327,8 +279,6 @@ public enum LocationRequestPriority {
     Accuracy
     /**
      * Preferentially ensure low power consumption for locating.
-     *
-     * @relation LOW_POWER = 0x202
      */
     | @!APILevel[
         since: "22",
@@ -337,8 +287,6 @@ public enum LocationRequestPriority {
     LowPower
     /**
      * Preferentially ensure that the first location is time-consuming.
-     *
-     * @relation FIRST_FIX = 0x203
      */
     | @!APILevel[
         since: "22",
@@ -360,8 +308,6 @@ public enum LocationRequestPriority {
 
 /**
  * Enum for location scenario.
- *
- * @relation export enum LocationRequestScenario
  */
 @!APILevel[
     since: "22",
@@ -370,8 +316,6 @@ public enum LocationRequestPriority {
 public enum LocationRequestScenario {
     /**
      * Default scenario.
-     *
-     * @relation UNSET = 0x300
      */
     @!APILevel[
         since: "22",
@@ -380,8 +324,6 @@ public enum LocationRequestScenario {
     Unset
     /**
      * Navigation scenario. High positioning precision and real-time performance are required.
-     *
-     * @relation NAVIGATION = 0x301
      */
     | @!APILevel[
         since: "22",
@@ -390,8 +332,6 @@ public enum LocationRequestScenario {
     Navigation
     /**
      * Trajectory tracking scenario. High positioning precision is required.
-     *
-     * @relation TRAJECTORY_TRACKING = 0x302
      */
     | @!APILevel[
         since: "22",
@@ -400,8 +340,6 @@ public enum LocationRequestScenario {
     TrajectoryTracking
     /**
      * Car hailing scenario. High positioning precision and real-time performance are required.
-     *
-     * @relation CAR_HAILING = 0x303
      */
     | @!APILevel[
         since: "22",
@@ -410,8 +348,6 @@ public enum LocationRequestScenario {
     CarHailing
     /**
      * Daily life scenarios. Low requirements on positioning precision and real-time performance.
-     *
-     * @relation DAILY_LIFE_SERVICE = 0x304
      */
     | @!APILevel[
         since: "22",
@@ -420,8 +356,6 @@ public enum LocationRequestScenario {
     DailyLifeService
     /**
      * Power saving scenarios.
-     *
-     * @relation NO_POWER = 0x305
      */
     | @!APILevel[
         since: "22",
@@ -445,8 +379,6 @@ public enum LocationRequestScenario {
 
 /**
  * Configuring parameters in current location requests.
- *
- * @relation export interface CurrentLocationRequest
  */
 @!APILevel[
     since: "22",
@@ -455,8 +387,6 @@ public enum LocationRequestScenario {
 public class CurrentLocationRequest {
     /**
      * Priority of the location request.
-     *
-     * @relation priority?: LocationRequestPriority
      */
     @!APILevel[
         since: "22",
@@ -465,8 +395,6 @@ public class CurrentLocationRequest {
     public var priority: LocationRequestPriority
     /**
      * User scenario of the location request.
-     *
-     * @relation scenario?: LocationRequestScenario
      */
     @!APILevel[
         since: "22",
@@ -475,8 +403,6 @@ public class CurrentLocationRequest {
     public var scenario: LocationRequestScenario
     /**
      * Accuracy requirements for reporting locations.
-     *
-     * @relation maxAccuracy?: number
      */
     @!APILevel[
         since: "22",
@@ -485,8 +411,6 @@ public class CurrentLocationRequest {
     public var maxAccuracy: Float32
     /**
      * Timeout interval of a single location request.
-     *
-     * @relation timeoutMs?: number
      */
     @!APILevel[
         since: "22",
@@ -513,8 +437,6 @@ public class CurrentLocationRequest {
 
 /**
  * Enum for locating priority.
- *
- * @relation export enum LocatingPriority
  */
 @!APILevel[
     since: "22",
@@ -523,8 +445,6 @@ public class CurrentLocationRequest {
 public enum LocatingPriority {
     /**
      * Preferentially ensure the highest locating accuracy.
-     *
-     * @relation PRIORITY_ACCURACY = 0x501
      */
     @!APILevel[
         since: "22",
@@ -533,8 +453,6 @@ public enum LocatingPriority {
     PriorityAccuracy
     /**
      * Preferentially ensure the fastest locating speed.
-     *
-     * @relation PRIORITY_LOCATING_SPEED = 0x502
      */
     | @!APILevel[
         since: "22",
@@ -554,8 +472,6 @@ public enum LocatingPriority {
 
 /**
  * Configuring parameters in single location requests.
- *
- * @relation export interface SingleLocationRequest
  */
 @!APILevel[
     since: "22",
@@ -564,8 +480,6 @@ public enum LocatingPriority {
 public class SingleLocationRequest {
     /**
      * Priority of the location request.
-     *
-     * @relation locatingPriority: LocatingPriority
      */
     @!APILevel[
         since: "22",
@@ -574,8 +488,6 @@ public class SingleLocationRequest {
     public var locatingPriority: LocatingPriority
     /**
      * Timeout of a single location request, in milliseconds.
-     *
-     * @relation locatingTimeoutMs: number
      */
     @!APILevel[
         since: "22",
