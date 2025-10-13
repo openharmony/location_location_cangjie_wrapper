@@ -31,17 +31,18 @@ import ohos.labels.*
 ]
 public class GeoLocationManager {
      /**
-      * Subscribe location changed.
+      * Obtain current location.
       *
-      * @throws { BusinessException } 201 - Permission verification failed. The   application does not have the
+      * @returns { Location } Returns the current location information.
+      * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes:   1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter   types; 3. Parameter verification failed.
+      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
+      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
-      * ${geoLocationManager.getCurrentLocation} due to limited device   capabilities.
-      * @throws { BusinessException } 3301000 - The location service is   unavailable.
+      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
-      * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
+      * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
         22,
@@ -64,15 +65,17 @@ public class GeoLocationManager {
     /**
       * Obtain current location.
       *
-      * @throws { BusinessException } 201 - Permission verification failed. The   application does not have the
+      * @param { CurrentLocationRequest } request - Indicates the location request parameters.
+      * @returns { Location } Returns the current location information.
+      * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes:   1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter   types; 3. Parameter verification failed.
-      * @throws { BusinessException } 801 - Capability not supported. Failed to   call
-      * ${geoLocationManager.getCurrentLocation} due to limited device   capabilities.
-      * @throws { BusinessException } 3301000 - The location service is   unavailable.
+      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
+      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
+      * @throws { BusinessException } 801 - Capability not supported. Failed to call
+      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
-      * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
+      * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
         22,
@@ -97,15 +100,17 @@ public class GeoLocationManager {
     /**
       * Obtain current location.
       *
-      * @throws { BusinessException } 201 - Permission verification failed. The   application does not have the
+      * @param { SingleLocationRequest } request - Indicates the location request parameters.
+      * @returns { Location } Returns the current location information.
+      * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes:   1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter   types; 3. Parameter verification failed.
-      * @throws { BusinessException } 801 - Capability not supported. Failed to   call
-      * ${geoLocationManager.getCurrentLocation} due to limited device   capabilities.
-      * @throws { BusinessException } 3301000 - The location service is   unavailable.
+      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
+      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
+      * @throws { BusinessException } 801 - Capability not supported. Failed to call
+      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
-      * @throws { BusinessException } 3301200 - Failed to obtain the   geographical location.
+      * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
         22,
@@ -130,6 +135,7 @@ public class GeoLocationManager {
     /**
       * Obtain current location switch status.
       *
+      * @returns { Bool } Returns true if the location switch is on, returns false otherwise.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
       * ${geoLocationManager.isLocationEnabled} due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
