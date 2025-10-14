@@ -17,7 +17,7 @@
 
 package ohos.geo_location_manager
 
-import ohos.business_exception.getUniversalErrorMsg
+import ohos.business_exception.{ BusinessException, getUniversalErrorMsg }
 import ohos.hilog.*
 import ohos.labels.*
 
@@ -29,6 +29,7 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
 
 /**
  * Enum for the source of the location.
+ *
  */
 @!APILevel[
     22,
@@ -37,6 +38,7 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
 public enum LocationSourceType {
     /**
      * The location is obtained from the GNSS.
+     *
      */
     @!APILevel[
         22,
@@ -45,6 +47,7 @@ public enum LocationSourceType {
     Gnss
     /**
      * The location comes from the network positioning technology.
+     *
      */
     | @!APILevel[
         22,
@@ -53,6 +56,7 @@ public enum LocationSourceType {
     Network
     /**
      * The location comes from the indoor positioning technology.
+     *
      */
     | @!APILevel[
         22,
@@ -61,6 +65,7 @@ public enum LocationSourceType {
     Indoor
     /**
      * The location comes from the GNSS RTK technology.
+     *
      */
     | @!APILevel[
         22,
@@ -75,7 +80,7 @@ public enum LocationSourceType {
             case 2 => Network
             case 3 => Indoor
             case 4 => Rtk
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 
@@ -85,13 +90,14 @@ public enum LocationSourceType {
             case Network => 2
             case Indoor => 3
             case Rtk => 4
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 }
 
 /**
  * Provides information about geographic locations.
+ *
  */
 @!APILevel[
     22,
@@ -102,6 +108,7 @@ public class Location {
      * Indicates latitude information.
      * A positive value indicates north latitude,
      * and a negative value indicates south latitude.
+     *
      */
     @!APILevel[
         22,
@@ -112,6 +119,7 @@ public class Location {
      * Indicates Longitude information.
      * A positive value indicates east longitude ,
      * and a negative value indicates west longitude.
+     *
      */
     @!APILevel[
         22,
@@ -120,6 +128,7 @@ public class Location {
     public var longitude: Float64
     /**
      * Indicates location altitude, in meters.
+     *
      */
     @!APILevel[
         22,
@@ -128,6 +137,7 @@ public class Location {
     public var altitude: Float64
     /**
      * Indicates location accuracy, in meters.
+     *
      */
     @!APILevel[
         22,
@@ -136,6 +146,7 @@ public class Location {
     public var accuracy: Float64
     /**
      * Indicates speed, in m/s.
+     *
      */
     @!APILevel[
         22,
@@ -144,6 +155,7 @@ public class Location {
     public var speed: Float64
     /**
      * Indicates location timestamp in the UTC format.
+     *
      */
     @!APILevel[
         22,
@@ -152,6 +164,7 @@ public class Location {
     public var timeStamp: Int64
     /**
      * Indicates direction information.
+     *
      */
     @!APILevel[
         22,
@@ -160,6 +173,7 @@ public class Location {
     public var direction: Float64
     /**
      * Indicates location timestamp since boot.
+     *
      */
     @!APILevel[
         22,
@@ -168,6 +182,7 @@ public class Location {
     public var timeSinceBoot: Int64
     /**
      * Indicates additional information.
+     *
      */
     @!APILevel[
         22,
@@ -176,6 +191,7 @@ public class Location {
     public var additions: ?Array<String>
     /**
      * Indicates the amount of additional descriptive information.
+     *
      */
     @!APILevel[
         22,
@@ -184,6 +200,7 @@ public class Location {
     public var additionSize: ?Int64
     /**
      * Indicates additional information map.
+     *
      */
     @!APILevel[
         22,
@@ -192,6 +209,7 @@ public class Location {
     public var additionsMap: ?Map<String, String>
     /**
      * Indicates vertical position accuracy in meters.
+     *
      */
     @!APILevel[
         22,
@@ -200,6 +218,7 @@ public class Location {
     public var altitudeAccuracy: ?Float64
     /**
      * Indicates speed accuracy in meter per seconds.
+     *
      */
     @!APILevel[
         22,
@@ -208,6 +227,7 @@ public class Location {
     public var speedAccuracy: ?Float64
     /**
      * Indicates direction accuracy in degrees.
+     *
      */
     @!APILevel[
         22,
@@ -216,6 +236,7 @@ public class Location {
     public var directionAccuracy: ?Float64
     /**
      * Time uncertainty Of timeSinceBoot in nanosecond.
+     *
      */
     @!APILevel[
         22,
@@ -224,6 +245,7 @@ public class Location {
     public var uncertaintyOfTimeSinceBoot: ?Int64
     /**
      * Indicates the source of the location.
+     *
      */
     @!APILevel[
         22,
@@ -255,6 +277,7 @@ public class Location {
 
 /**
  * Enum for location priority.
+ *
  */
 @!APILevel[
     22,
@@ -263,6 +286,7 @@ public class Location {
 public enum LocationRequestPriority {
     /**
      * Default priority.
+     *
      */
     @!APILevel[
         22,
@@ -271,6 +295,7 @@ public enum LocationRequestPriority {
     Unset
     /**
      * Preferentially ensure the locating accuracy.
+     *
      */
     | @!APILevel[
         22,
@@ -279,6 +304,7 @@ public enum LocationRequestPriority {
     Accuracy
     /**
      * Preferentially ensure low power consumption for locating.
+     *
      */
     | @!APILevel[
         22,
@@ -287,6 +313,7 @@ public enum LocationRequestPriority {
     LowPower
     /**
      * Preferentially ensure that the first location is time-consuming.
+     *
      */
     | @!APILevel[
         22,
@@ -301,13 +328,14 @@ public enum LocationRequestPriority {
             case Accuracy => 0x201
             case LowPower => 0x202
             case FirstFix => 0x203
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 }
 
 /**
  * Enum for location scenario.
+ *
  */
 @!APILevel[
     22,
@@ -316,6 +344,7 @@ public enum LocationRequestPriority {
 public enum LocationRequestScenario {
     /**
      * Default scenario.
+     *
      */
     @!APILevel[
         22,
@@ -324,6 +353,7 @@ public enum LocationRequestScenario {
     Unset
     /**
      * Navigation scenario. High positioning precision and real-time performance are required.
+     *
      */
     | @!APILevel[
         22,
@@ -332,6 +362,7 @@ public enum LocationRequestScenario {
     Navigation
     /**
      * Trajectory tracking scenario. High positioning precision is required.
+     *
      */
     | @!APILevel[
         22,
@@ -340,6 +371,7 @@ public enum LocationRequestScenario {
     TrajectoryTracking
     /**
      * Car hailing scenario. High positioning precision and real-time performance are required.
+     *
      */
     | @!APILevel[
         22,
@@ -348,6 +380,7 @@ public enum LocationRequestScenario {
     CarHailing
     /**
      * Daily life scenarios. Low requirements on positioning precision and real-time performance.
+     *
      */
     | @!APILevel[
         22,
@@ -356,6 +389,7 @@ public enum LocationRequestScenario {
     DailyLifeService
     /**
      * Power saving scenarios.
+     *
      */
     | @!APILevel[
         22,
@@ -372,13 +406,14 @@ public enum LocationRequestScenario {
             case CarHailing => 0x303
             case DailyLifeService => 0x304
             case NoPower => 0x305
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 }
 
 /**
  * Configuring parameters in current location requests.
+ *
  */
 @!APILevel[
     22,
@@ -387,6 +422,7 @@ public enum LocationRequestScenario {
 public class CurrentLocationRequest {
     /**
      * Priority of the location request.
+     *
      */
     @!APILevel[
         22,
@@ -395,6 +431,7 @@ public class CurrentLocationRequest {
     public var priority: LocationRequestPriority
     /**
      * User scenario of the location request.
+     *
      */
     @!APILevel[
         22,
@@ -403,6 +440,7 @@ public class CurrentLocationRequest {
     public var scenario: LocationRequestScenario
     /**
      * Accuracy requirements for reporting locations.
+     *
      */
     @!APILevel[
         22,
@@ -411,6 +449,7 @@ public class CurrentLocationRequest {
     public var maxAccuracy: Float32
     /**
      * Timeout interval of a single location request.
+     *
      */
     @!APILevel[
         22,
@@ -437,6 +476,7 @@ public class CurrentLocationRequest {
 
 /**
  * Enum for locating priority.
+ *
  */
 @!APILevel[
     22,
@@ -445,6 +485,7 @@ public class CurrentLocationRequest {
 public enum LocatingPriority {
     /**
      * Preferentially ensure the highest locating accuracy.
+     *
      */
     @!APILevel[
         22,
@@ -453,6 +494,7 @@ public enum LocatingPriority {
     PriorityAccuracy
     /**
      * Preferentially ensure the fastest locating speed.
+     *
      */
     | @!APILevel[
         22,
@@ -465,13 +507,14 @@ public enum LocatingPriority {
         match (this) {
             case PriorityAccuracy => 0x501
             case PriorityLocatingSpeed => 0x502
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 }
 
 /**
  * Configuring parameters in single location requests.
+ *
  */
 @!APILevel[
     22,
@@ -480,6 +523,7 @@ public enum LocatingPriority {
 public class SingleLocationRequest {
     /**
      * Priority of the location request.
+     *
      */
     @!APILevel[
         22,
@@ -488,6 +532,7 @@ public class SingleLocationRequest {
     public var locatingPriority: LocatingPriority
     /**
      * Timeout of a single location request, in milliseconds.
+     *
      */
     @!APILevel[
         22,
