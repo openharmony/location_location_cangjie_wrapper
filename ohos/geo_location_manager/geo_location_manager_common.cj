@@ -18,10 +18,10 @@
 package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, getUniversalErrorMsg }
-import ohos.hilog.*
-import ohos.labels.*
+import ohos.hilog.HilogChannel
+import ohos.labels.APILevel
 
-import std.collection.*
+import std.collection.{HashMap, Map}
 
 const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
