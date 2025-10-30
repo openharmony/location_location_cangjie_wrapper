@@ -17,7 +17,7 @@
 
 package ohos.geo_location_manager
 
-import std.collection.*
+import std.collection.HashMap
 
 foreign {
     func FfiOHOSGeoLocationManagerGetCurrentLocation(errCode: CPointer<Int32>): CJLocation

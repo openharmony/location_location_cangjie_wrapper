@@ -18,8 +18,8 @@
 package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
-import ohos.ffi.*
-import ohos.labels.*
+import ohos.ffi.SUCCESS_CODE
+import ohos.labels.APILevel
 
 /**
  * Provides interfaces for acquiring location information, managing location switches,
