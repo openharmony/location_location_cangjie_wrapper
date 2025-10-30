@@ -32,7 +32,7 @@ let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-G
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationSourceType {
@@ -41,7 +41,7 @@ public enum LocationSourceType {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Gnss
@@ -50,7 +50,7 @@ public enum LocationSourceType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Network
@@ -59,7 +59,7 @@ public enum LocationSourceType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Indoor
@@ -68,7 +68,7 @@ public enum LocationSourceType {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Rtk
@@ -100,7 +100,7 @@ public enum LocationSourceType {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class Location {
@@ -111,7 +111,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var latitude: Float64
@@ -122,7 +122,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var longitude: Float64
@@ -131,7 +131,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var altitude: Float64
@@ -140,7 +140,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var accuracy: Float64
@@ -149,7 +149,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var speed: Float64
@@ -158,7 +158,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeStamp: Int64
@@ -167,7 +167,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var direction: Float64
@@ -176,7 +176,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeSinceBoot: Int64
@@ -185,7 +185,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additions: ?Array<String>
@@ -194,7 +194,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionSize: ?Int64
@@ -203,7 +203,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionsMap: ?Map<String, String>
@@ -212,7 +212,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var altitudeAccuracy: ?Float64
@@ -221,7 +221,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var speedAccuracy: ?Float64
@@ -230,7 +230,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var directionAccuracy: ?Float64
@@ -239,7 +239,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var uncertaintyOfTimeSinceBoot: ?Int64
@@ -248,7 +248,7 @@ public class Location {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var sourceType: ?LocationSourceType
@@ -280,7 +280,7 @@ public class Location {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestPriority {
@@ -289,7 +289,7 @@ public enum LocationRequestPriority {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
@@ -298,7 +298,7 @@ public enum LocationRequestPriority {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Accuracy
@@ -307,7 +307,7 @@ public enum LocationRequestPriority {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     LowPower
@@ -316,7 +316,7 @@ public enum LocationRequestPriority {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     FirstFix
@@ -338,7 +338,7 @@ public enum LocationRequestPriority {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocationRequestScenario {
@@ -347,7 +347,7 @@ public enum LocationRequestScenario {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
@@ -356,7 +356,7 @@ public enum LocationRequestScenario {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Navigation
@@ -365,7 +365,7 @@ public enum LocationRequestScenario {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     TrajectoryTracking
@@ -374,7 +374,7 @@ public enum LocationRequestScenario {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     CarHailing
@@ -383,7 +383,7 @@ public enum LocationRequestScenario {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     DailyLifeService
@@ -392,7 +392,7 @@ public enum LocationRequestScenario {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     NoPower
@@ -416,7 +416,7 @@ public enum LocationRequestScenario {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class CurrentLocationRequest {
@@ -425,7 +425,7 @@ public class CurrentLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var priority: LocationRequestPriority
@@ -434,7 +434,7 @@ public class CurrentLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var scenario: LocationRequestScenario
@@ -443,7 +443,7 @@ public class CurrentLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var maxAccuracy: Float32
@@ -452,7 +452,7 @@ public class CurrentLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var timeoutMs: Int32
@@ -461,7 +461,7 @@ public class CurrentLocationRequest {
      * CurrentLocationRequest Constructor.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFix,
@@ -479,7 +479,7 @@ public class CurrentLocationRequest {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public enum LocatingPriority {
@@ -488,7 +488,7 @@ public enum LocatingPriority {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PriorityAccuracy
@@ -497,7 +497,7 @@ public enum LocatingPriority {
      *
      */
     | @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PriorityLocatingSpeed
@@ -517,7 +517,7 @@ public enum LocatingPriority {
  *
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class SingleLocationRequest {
@@ -526,7 +526,7 @@ public class SingleLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var locatingPriority: LocatingPriority
@@ -535,7 +535,7 @@ public class SingleLocationRequest {
      *
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var locatingTimeoutMs: Int32
@@ -544,7 +544,7 @@ public class SingleLocationRequest {
      * SingleLocationRequest Constructor.
      */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public init(locatingPriority: LocatingPriority, locatingTimeoutMs: Int32) {

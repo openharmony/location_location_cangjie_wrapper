@@ -26,7 +26,7 @@ import ohos.labels.APILevel
  * geocoding, reverse geocoding, country code, fencing and other functions.
  */
 @!APILevel[
-    22,
+    since: "22",
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
@@ -45,7 +45,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -78,7 +78,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -113,7 +113,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
       */
     @!APILevel[
-        22,
+        since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -141,7 +141,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 3301000 - The location service is unavailable.
       */
     @!APILevel[
-        22,
+        since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static func isLocationEnabled(): Bool {
