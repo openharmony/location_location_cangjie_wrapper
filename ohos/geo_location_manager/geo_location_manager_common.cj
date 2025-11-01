@@ -27,6 +27,9 @@ const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
 let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-GeoLocationManager")
 
+@!Hide
+internal class PoiInfo {}
+
 /**
  * Enum for the source of the location.
  *
@@ -190,15 +193,6 @@ public class Location {
     ]
     public var additions: ?Array<String>
     /**
-     * Indicates the amount of additional descriptive information.
-     *
-     */
-    @!APILevel[
-        since: "22",
-        syscap: "SystemCapability.Location.Location.Core"
-    ]
-    public var additionSize: ?Int64
-    /**
      * Indicates additional information map.
      *
      */
@@ -207,6 +201,17 @@ public class Location {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionsMap: ?Map<String, String>
+    /**
+     * Indicates the amount of additional descriptive information.
+     *
+     */
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public var additionSize: ?Int64
+    @!Hide
+    internal var isFromMock: ?Bool
     /**
      * Indicates vertical position accuracy in meters.
      *
@@ -252,6 +257,8 @@ public class Location {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var sourceType: ?LocationSourceType
+    @!Hide
+    internal var poi: ?PoiInfo = Option<PoiInfo>.None
 
     init(cjLocation: CJLocation, additions!: Array<String> = Array<String>(),
         additionsMap!: HashMap<String, String> = HashMap<String, String>(),
@@ -540,6 +547,8 @@ public class SingleLocationRequest {
     ]
     public var locatingTimeoutMs: Int32
 
+    @!Hide
+    internal var needPoi: ?Bool = Option<Bool>.None
     /**
      * SingleLocationRequest Constructor.
      */
