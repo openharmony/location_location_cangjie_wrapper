@@ -74,6 +74,9 @@ public enum LocationSourceType {
     Rtk
     | ...
 
+    /*
+     * @throws { BusinessException } 3301000 - The type is not supported yet.
+     */
     static func parse(value: Int32): LocationSourceType {
         match (value) {
             case 1 => Gnss
@@ -553,7 +556,15 @@ public class SingleLocationRequest {
     }
 }
 
-const MEMORY_ERROR: Int32 = -1
+func getErrorCode(code: Int32): Int32 {
+    const MEMORY_ERROR: Int32 = -1
+    if (code == MEMORY_ERROR) {
+        3301000
+    } else {
+        code
+    }
+}
+
 let ERROR_CODE_MAP = HashMap<Int32, String>(
     [
         (3301000, "The location service is unavailable."),
@@ -569,14 +580,6 @@ let ERROR_CODE_MAP = HashMap<Int32, String>(
         (3301800, "Failed to start WiFi or Bluetooth scanning.")
     ]
 )
-
-func getErrorCode(code: Int32): Int32 {
-    if (code == MEMORY_ERROR) {
-        3301000
-    } else {
-        code
-    }
-}
 
 func getErrorMsg(code: Int32): String {
     let errorCode = getErrorCode(code)
