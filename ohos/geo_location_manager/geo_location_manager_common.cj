@@ -19,7 +19,7 @@ package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, getUniversalErrorMsg }
 import ohos.hilog.HilogChannel
-import ohos.labels.APILevel
+import ohos.labels.{APILevel, Hide}
 
 import std.collection.{HashMap, Map}
 
