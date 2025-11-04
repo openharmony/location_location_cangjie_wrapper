@@ -214,7 +214,7 @@ public class Location {
     ]
     public var additionSize: ?Int64
     @!Hide
-    internal var isFromMock: ?Bool
+    internal var isFromMock: ?Bool = Option<Bool>.None
     /**
      * Indicates vertical position accuracy in meters.
      *
