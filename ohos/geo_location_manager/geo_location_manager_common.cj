@@ -32,7 +32,6 @@ internal class PoiInfo {}
 
 /**
  * Enum for the source of the location.
- *
  */
 @!APILevel[
     since: "22",
@@ -41,36 +40,35 @@ internal class PoiInfo {}
 public enum LocationSourceType {
     /**
      * The location is obtained from the GNSS.
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Gnss
+    |
     /**
      * The location comes from the network positioning technology.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Network
+    |
     /**
      * The location comes from the indoor positioning technology.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Indoor
+    |
     /**
      * The location comes from the GNSS RTK technology.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -103,7 +101,6 @@ public enum LocationSourceType {
 
 /**
  * Provides information about geographic locations.
- *
  */
 @!APILevel[
     since: "22",
@@ -114,7 +111,6 @@ public class Location {
      * Indicates latitude information.
      * A positive value indicates north latitude,
      * and a negative value indicates south latitude.
-     *
      */
     @!APILevel[
         since: "22",
@@ -125,7 +121,6 @@ public class Location {
      * Indicates Longitude information.
      * A positive value indicates east longitude ,
      * and a negative value indicates west longitude.
-     *
      */
     @!APILevel[
         since: "22",
@@ -134,7 +129,6 @@ public class Location {
     public var longitude: Float64
     /**
      * Indicates location altitude, in meters.
-     *
      */
     @!APILevel[
         since: "22",
@@ -143,7 +137,6 @@ public class Location {
     public var altitude: Float64
     /**
      * Indicates location accuracy, in meters.
-     *
      */
     @!APILevel[
         since: "22",
@@ -152,7 +145,6 @@ public class Location {
     public var accuracy: Float64
     /**
      * Indicates speed, in m/s.
-     *
      */
     @!APILevel[
         since: "22",
@@ -161,16 +153,14 @@ public class Location {
     public var speed: Float64
     /**
      * Indicates location timestamp in the UTC format.
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
-    public var timeStamp: Int64
+    public var timestamp: Int64
     /**
      * Indicates direction information.
-     *
      */
     @!APILevel[
         since: "22",
@@ -179,7 +169,6 @@ public class Location {
     public var direction: Float64
     /**
      * Indicates location timestamp since boot.
-     *
      */
     @!APILevel[
         since: "22",
@@ -188,7 +177,6 @@ public class Location {
     public var timeSinceBoot: Int64
     /**
      * Indicates additional information.
-     *
      */
     @!APILevel[
         since: "22",
@@ -197,7 +185,6 @@ public class Location {
     public var additions: ?Array<String>
     /**
      * Indicates additional information map.
-     *
      */
     @!APILevel[
         since: "22",
@@ -206,7 +193,6 @@ public class Location {
     public var additionsMap: ?Map<String, String>
     /**
      * Indicates the amount of additional descriptive information.
-     *
      */
     @!APILevel[
         since: "22",
@@ -217,7 +203,6 @@ public class Location {
     internal var isFromMock: ?Bool = Option<Bool>.None
     /**
      * Indicates vertical position accuracy in meters.
-     *
      */
     @!APILevel[
         since: "22",
@@ -226,7 +211,6 @@ public class Location {
     public var altitudeAccuracy: ?Float64
     /**
      * Indicates speed accuracy in meter per seconds.
-     *
      */
     @!APILevel[
         since: "22",
@@ -235,7 +219,6 @@ public class Location {
     public var speedAccuracy: ?Float64
     /**
      * Indicates direction accuracy in degrees.
-     *
      */
     @!APILevel[
         since: "22",
@@ -244,7 +227,6 @@ public class Location {
     public var directionAccuracy: ?Float64
     /**
      * Time uncertainty Of timeSinceBoot in nanosecond.
-     *
      */
     @!APILevel[
         since: "22",
@@ -253,7 +235,6 @@ public class Location {
     public var uncertaintyOfTimeSinceBoot: ?Int64
     /**
      * Indicates the source of the location.
-     *
      */
     @!APILevel[
         since: "22",
@@ -271,7 +252,7 @@ public class Location {
         this.altitude = cjLocation.altitude
         this.accuracy = cjLocation.accuracy
         this.speed = cjLocation.speed
-        this.timeStamp = cjLocation.timeStamp
+        this.timestamp = cjLocation.timeStamp
         this.direction = cjLocation.direction
         this.timeSinceBoot = cjLocation.timeSinceBoot
         this.additions = additions
@@ -287,7 +268,6 @@ public class Location {
 
 /**
  * Enum for location priority.
- *
  */
 @!APILevel[
     since: "22",
@@ -296,36 +276,35 @@ public class Location {
 public enum LocationRequestPriority {
     /**
      * Default priority.
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
+    |
     /**
      * Preferentially ensure the locating accuracy.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Accuracy
+    |
     /**
      * Preferentially ensure low power consumption for locating.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     LowPower
+    |
     /**
      * Preferentially ensure that the first location is time-consuming.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -345,7 +324,6 @@ public enum LocationRequestPriority {
 
 /**
  * Enum for location scenario.
- *
  */
 @!APILevel[
     since: "22",
@@ -354,54 +332,53 @@ public enum LocationRequestPriority {
 public enum LocationRequestScenario {
     /**
      * Default scenario.
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Unset
+    |
     /**
      * Navigation scenario. High positioning precision and real-time performance are required.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     Navigation
+    |
     /**
      * Trajectory tracking scenario. High positioning precision is required.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     TrajectoryTracking
+    |
     /**
      * Car hailing scenario. High positioning precision and real-time performance are required.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     CarHailing
+    |
     /**
      * Daily life scenarios. Low requirements on positioning precision and real-time performance.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     DailyLifeService
+    |
     /**
      * Power saving scenarios.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -423,7 +400,6 @@ public enum LocationRequestScenario {
 
 /**
  * Configuring parameters in current location requests.
- *
  */
 @!APILevel[
     since: "22",
@@ -432,7 +408,6 @@ public enum LocationRequestScenario {
 public class CurrentLocationRequest {
     /**
      * Priority of the location request.
-     *
      */
     @!APILevel[
         since: "22",
@@ -441,7 +416,6 @@ public class CurrentLocationRequest {
     public var priority: LocationRequestPriority
     /**
      * User scenario of the location request.
-     *
      */
     @!APILevel[
         since: "22",
@@ -450,7 +424,6 @@ public class CurrentLocationRequest {
     public var scenario: LocationRequestScenario
     /**
      * Accuracy requirements for reporting locations.
-     *
      */
     @!APILevel[
         since: "22",
@@ -459,7 +432,6 @@ public class CurrentLocationRequest {
     public var maxAccuracy: Float32
     /**
      * Timeout interval of a single location request.
-     *
      */
     @!APILevel[
         since: "22",
@@ -469,6 +441,11 @@ public class CurrentLocationRequest {
 
     /**
      * CurrentLocationRequest Constructor.
+     *
+     * @param { LocationRequestPriority } [priority] - The priority of the location request. The default value is FirstFix.
+     * @param { LocationRequestScenario } [scenario] - The user scenario of the location request. The default value is Unset.
+     * @param { Float32 } [maxAccuracy] - The accuracy requirements for reporting locations. The default value is 0.0.
+     * @param { Int32 } [timeoutMs] - The timeout interval of a single location request. The default value is 5000.
      */
     @!APILevel[
         since: "22",
@@ -486,7 +463,6 @@ public class CurrentLocationRequest {
 
 /**
  * Enum for locating priority.
- *
  */
 @!APILevel[
     since: "22",
@@ -495,18 +471,17 @@ public class CurrentLocationRequest {
 public enum LocatingPriority {
     /**
      * Preferentially ensure the highest locating accuracy.
-     *
      */
     @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PriorityAccuracy
+    |
     /**
      * Preferentially ensure the fastest locating speed.
-     *
      */
-    | @!APILevel[
+    @!APILevel[
         since: "22",
         syscap: "SystemCapability.Location.Location.Core"
     ]
@@ -524,7 +499,6 @@ public enum LocatingPriority {
 
 /**
  * Configuring parameters in single location requests.
- *
  */
 @!APILevel[
     since: "22",
@@ -533,7 +507,6 @@ public enum LocatingPriority {
 public class SingleLocationRequest {
     /**
      * Priority of the location request.
-     *
      */
     @!APILevel[
         since: "22",
@@ -542,7 +515,6 @@ public class SingleLocationRequest {
     public var locatingPriority: LocatingPriority
     /**
      * Timeout of a single location request, in milliseconds.
-     *
      */
     @!APILevel[
         since: "22",
@@ -554,6 +526,9 @@ public class SingleLocationRequest {
     internal var needPoi: ?Bool = Option<Bool>.None
     /**
      * SingleLocationRequest Constructor.
+     *
+     * @param { LocatingPriority } locatingPriority - The priority of the location request.
+     * @param { Int32 } locatingTimeoutMs - The timeout of a single location request, in milliseconds.
      */
     @!APILevel[
         since: "22",

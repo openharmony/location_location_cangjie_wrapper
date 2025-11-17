@@ -30,14 +30,12 @@ import ohos.labels.APILevel
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
-     /**
+    /**
       * Obtain current location.
       *
       * @returns { Location } Returns the current location information.
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
       * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
@@ -47,7 +45,9 @@ public class GeoLocationManager {
     @!APILevel[
         since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        syscap: "SystemCapability.Location.Location.Core"
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
     ]
     public static func getCurrentLocation(): Location {
         var errCode: Int32 = 0
@@ -69,8 +69,6 @@ public class GeoLocationManager {
       * @returns { Location } Returns the current location information.
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
       * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
@@ -80,7 +78,9 @@ public class GeoLocationManager {
     @!APILevel[
         since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        syscap: "SystemCapability.Location.Location.Core"
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
     ]
     public static func getCurrentLocation(request: CurrentLocationRequest): Location {
         var errCode: Int32 = 0
@@ -104,8 +104,6 @@ public class GeoLocationManager {
       * @returns { Location } Returns the current location information.
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
-      * @throws { BusinessException } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left
-      * unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
       * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
@@ -115,7 +113,9 @@ public class GeoLocationManager {
     @!APILevel[
         since: "22",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        syscap: "SystemCapability.Location.Location.Core"
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
     ]
     public static func getCurrentLocation(request: SingleLocationRequest): Location {
         var errCode: Int32 = 0
@@ -142,7 +142,8 @@ public class GeoLocationManager {
       */
     @!APILevel[
         since: "22",
-        syscap: "SystemCapability.Location.Location.Core"
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true
     ]
     public static func isLocationEnabled(): Bool {
         var errCode: Int32 = 0
