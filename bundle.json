@@ -34,7 +34,14 @@
                 "//base/location/location_cangjie_wrapper/ohos/geo_location_manager:ohos.geo_location_manager",
                 "//base/location/location_cangjie_wrapper/kit/LocationKit:kit.LocationKit"
             ],
-            "inner_kits": [],
+            "inner_kits": [
+                {
+                    "name": "//base/location/location_cangjie_wrapper:copy_sdk_location_cangjie_libs"
+                },
+                {
+                    "name": "//base/location/location_cangjie_wrapper:copy_sdk_location_cangjie_libs_kit"
+                }
+            ],
             "test": []
         }
     }
