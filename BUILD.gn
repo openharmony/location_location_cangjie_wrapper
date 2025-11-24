@@ -1,0 +1,24 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/templates/cangjie/cjc.gni")
+
+location_cangjie_wrapper_packages_ohos = [ "//base/location/location_cangjie_wrapper/ohos/geo_location_manager:ohos.geo_location_manager" ]
+location_cangjie_wrapper_packages_kit = [
+  "//base/location/location_cangjie_wrapper/kit/LocationKit:kit.LocationKit",
+]
+
+copy_ohos_cangjie_sdk_api_lib("copy_sdk_location_cangjie_libs") {
+  ohos_inputs = location_cangjie_wrapper_packages_ohos
+  kit_inputs = location_cangjie_wrapper_packages_kit
+}
