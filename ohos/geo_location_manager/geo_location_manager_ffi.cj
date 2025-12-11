@@ -18,6 +18,7 @@
 package ohos.geo_location_manager
 
 import std.collection.HashMap
+import ohos.ffi.*
 
 foreign {
     func FfiOHOSGeoLocationManagerGetCurrentLocation(errCode: CPointer<Int32>): CJLocation
@@ -27,6 +28,18 @@ foreign {
     func FfiOHOSGeoLocationManagerGetCurrentLocationSingle(request: CJSingleLocationRequest, errCode: CPointer<Int32>): CJLocation
 
     func FfiOHOSGeoLocationManagerIsLocationEnabled(errCode: CPointer<Int32>): Bool
+
+    func FfiGeoLocationManagerOnContinuousLocationRequest(request: CJContinuousLocationRequest, callbackId: Int64): Int32
+
+    func FfiGeoLocationManagerOnSatelliteStatusChange(callbackId: Int64): Int32
+
+    func FfiGeoLocationManagerOffSatelliteStatusChange(callbackId: Int64): Int32
+
+    func FfiGeoLocationManagerOnNmeaMessage(callbackId: Int64): Int32
+
+    func FfiGeoLocationManagerOffNmeaMessage(callbackId: Int64): Int32
+
+    func FfiGeoLocationManagerOffLocationChange(callbackId: Int64): Int32
 }
 
 @C
@@ -127,5 +140,99 @@ struct CJSingleLocationRequest {
     init(request: SingleLocationRequest) {
         this.locatingPriority = request.locatingPriority.getValue()
         this.locatingTimeoutMs = request.locatingTimeoutMs
+    }
+}
+
+@C
+struct CJContinuousLocationRequest {
+    var interval: Int32
+    var locationScenario: Int32
+
+    init(request: ContinuousLocationRequest) {
+        this.interval = request.interval
+        this.locationScenario = request.locationScenario
+    }
+}
+
+@C
+struct CArrF64 {
+    var head: CPointer<Float64> = CPointer<Float64>()
+    var size: Int64 = 0
+}
+
+@C
+struct CJSatelliteStatusInfo {
+    var satellitesNumber: Int32 = 0
+    var satelliteIds: CArrI32 = CArrI32(CPointer<Int32>(), 0)
+    var carrierToNoiseDensitys: CArrF64 = CArrF64()
+    var altitudes: CArrF64 = CArrF64()
+    var azimuths: CArrF64 = CArrF64()
+    var carrierFrequencies: CArrF64 = CArrF64()
+    var satelliteConstellation: CArrI32 = CArrI32(CPointer<Int32>(), 0)
+    var satelliteAdditionalInfo: CArrI32 = CArrI32(CPointer<Int32>(), 0)
+
+    func toSatelliteStatusInfo(): SatelliteStatusInfo {
+        let cjSatelliteIds = if (satelliteIds.head.isNotNull()) {
+            unsafe { Array<Int32>(satelliteIds.size, {i => satelliteIds.head.read(i)}) }
+        } else {
+            Array<Int32>()
+        }
+        let cjCarrierToNoiseDensitys = if (carrierToNoiseDensitys.head.isNotNull()) {
+            unsafe { Array<Float64>(carrierToNoiseDensitys.size, {i => carrierToNoiseDensitys.head.read(i)}) }
+        } else {
+            Array<Float64>()
+        }
+        let cjAltitudes = if (altitudes.head.isNotNull()) {
+            unsafe { Array<Float64>(altitudes.size, {i => altitudes.head.read(i)}) }
+        } else {
+            Array<Float64>()
+        }
+        let cjAzimuths = if (azimuths.head.isNotNull()) {
+            unsafe { Array<Float64>(azimuths.size, {i => azimuths.head.read(i)}) }
+        } else {
+            Array<Float64>()
+        }
+        let cjCarrierFrequencies = if (carrierFrequencies.head.isNotNull()) {
+            unsafe { Array<Float64>(carrierFrequencies.size, {i => carrierFrequencies.head.read(i)}) }
+        } else {
+            Array<Float64>()
+        }
+        let cjSatelliteConstellation = if (satelliteConstellation.head.isNotNull()) {
+            unsafe {
+                Array<SatelliteConstellationCategory>(satelliteConstellation.size,
+                    {i => SatelliteConstellationCategory.parse(satelliteConstellation.head.read(i))})
+            }
+        } else {
+            Array<SatelliteConstellationCategory>()
+        }
+        let cjSatelliteAdditionalInfo = if (satelliteAdditionalInfo.head.isNotNull()) {
+            unsafe { Array<Int32>(satelliteAdditionalInfo.size, {i => satelliteAdditionalInfo.head.read(i)}) }
+        } else {
+            Array<Int32>()
+        }
+        return SatelliteStatusInfo(satellitesNumber, cjSatelliteIds, cjCarrierToNoiseDensitys, cjAltitudes, cjAzimuths,
+            cjCarrierFrequencies, satelliteConstellation: cjSatelliteConstellation,
+            satelliteAdditionalInfo: cjSatelliteAdditionalInfo)
+    }
+
+    func toSatelliteStatusInfoAndFree(): SatelliteStatusInfo {
+        try {
+            let res = this.toSatelliteStatusInfo()
+            return res
+        } finally {
+            this.free()
+        }
+    }
+
+    func free() {
+        unsafe {
+            LibC.free<Int32>(satelliteIds.head)
+            LibC.free<Float64>(carrierToNoiseDensitys.head)
+            LibC.free<Float64>(altitudes.head)
+            LibC.free<Float64>(azimuths.head)
+            LibC.free<Float64>(carrierFrequencies.head)
+            LibC.free<Int32>(satelliteConstellation.head)
+            LibC.free<Int32>(satelliteAdditionalInfo.head)
+        }
     }
 }
