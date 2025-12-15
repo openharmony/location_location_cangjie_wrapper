@@ -18,9 +18,9 @@
 package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
-import ohos.ffi.*
+import ohos.ffi.{SUCCESS_CODE, Callback1Param}
 import ohos.labels.APILevel
-import ohos.callback_invoke.*
+import ohos.callback_invoke.{CallbackObject, Callback1Argument}
 import std.collection.ArrayList
 import std.sync.Mutex
 
@@ -162,15 +162,6 @@ public class GeoLocationManager {
         return res
     }
 
-    static func findCallbackObject(list: ArrayList<(CallbackObject, Int64)>, callback: CallbackObject): Bool {
-        for (item in list) {
-            if (refEq(callback, item[0])) {
-                return true
-            }
-        }
-        return false
-    }
-
     /**
      * Subscribe location changed.
      *
@@ -179,7 +170,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. 
      *     The application does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.on('locationChange')} due to limited device capabilities.
+     *     ${geoLocationManager.onLocationChange} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -190,20 +181,18 @@ public class GeoLocationManager {
         throwexception: true
     ]
     public static func onLocationChange(request: ContinuousLocationRequest, callback: Callback1Argument<Location>): Unit {
-        synchronized(ON_OFF_MUTEX) {
-            let callbackList = LOCATION_CALLBACKS
-            if (findCallbackObject(callbackList, callback)) {
-                GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
-                return
-            }
-            unsafe {
-                let wrapper = {value: CJLocation => callback.invoke(None, value.toLocationAndFree())}
-                let lambdaData = Callback1Param<CJLocation, Unit>(wrapper)
-                let errCode = FfiGeoLocationManagerOnContinuousLocationRequest(
-                    CJContinuousLocationRequest(request), lambdaData.getID())
-                checkRet(errCode)
-                callbackList.add((callback, lambdaData.getID()))
-            }
+        let callbackList = LOCATION_CALLBACKS
+        if (findCallbackObject(callbackList, callback)) {
+            GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
+            return
+        }
+        synchronized(ON_OFF_MUTEX) {    
+            let wrapper = {value: CJLocation => callback.invoke(None, value.toLocationAndFree())}
+            let lambdaData = Callback1Param<CJLocation, Unit>(wrapper)
+            let errCode = unsafe { FfiGeoLocationManagerOnContinuousLocationRequest(
+                CJContinuousLocationRequest(request), lambdaData.getID()) }
+            checkRet(errCode)
+            callbackList.add((callback, lambdaData.getID()))
         }
     }
 
@@ -214,7 +203,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.on('satelliteStatusChange')} due to limited device capabilities.
+     *     ${geoLocationManager.onSatelliteStatusChange} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -225,31 +214,29 @@ public class GeoLocationManager {
         throwexception: true
     ]
     public static func onSatelliteStatusChange(callback: Callback1Argument<SatelliteStatusInfo>): Unit {
-        synchronized(ON_OFF_MUTEX) {
-            let callbackList = GNSS_STATUS_INFO_CALLBACKS
-            if (findCallbackObject(callbackList, callback)) {
-                GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
-                return
+        let callbackList = GNSS_STATUS_INFO_CALLBACKS
+        if (findCallbackObject(callbackList, callback)) {
+            GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
+            return
+        }
+        synchronized(ON_OFF_MUTEX) {    
+            let wrapper = {
+                value: CJSatelliteStatusInfo => 
+                callback.invoke(None, value.toSatelliteStatusInfoAndFree())
             }
-            unsafe {
-                let wrapper = {
-                    value: CJSatelliteStatusInfo => 
-                    callback.invoke(None, value.toSatelliteStatusInfoAndFree())
-                }
-                let lambdaData = Callback1Param<CJSatelliteStatusInfo, Unit>(wrapper)
-                let errCode = FfiGeoLocationManagerOnSatelliteStatusChange(lambdaData.getID())
-                checkRet(errCode)
-                callbackList.add((callback, lambdaData.getID()))
-            }
+            let lambdaData = Callback1Param<CJSatelliteStatusInfo, Unit>(wrapper)
+            let errCode = unsafe { FfiGeoLocationManagerOnSatelliteStatusChange(lambdaData.getID()) }
+            checkRet(errCode)
+            callbackList.add((callback, lambdaData.getID()))
         }
     }
 
     /**
      * Unsubscribe satellite status changed.
      *
-     * @param { Callback1Argument<SatelliteStatusInfo> } [callback] - Indicates the callback for reporting the satellite status.
+     * @param { ?Callback1Argument<SatelliteStatusInfo> } [callback] - Indicates the callback for reporting the satellite status.
      * @throws { BusinessException } 201 - Permission verification failed. The application does not have the permission  required to call the API.
-     * @throws { BusinessException } 801 - Capability not supported. Failed to call ${geoLocationManager.off ('satelliteStatusChange')} due to limited device capabilities.
+     * @throws { BusinessException } 801 - Capability not supported. Failed to call ${geoLocationManager.offSatelliteStatusChange} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -275,7 +262,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.on('nmeaMessage')} due to limited device capabilities.
+     *     ${geoLocationManager.onNmeaMessage} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -285,38 +272,36 @@ public class GeoLocationManager {
         syscap: "SystemCapability.Location.Location.Gnss"
     ]
     public static func onNmeaMessage(callback: Callback1Argument<String>): Unit {
-        synchronized(ON_OFF_MUTEX) {
-            let callbackList = NMEA_CALLBACKS
-            if (findCallbackObject(callbackList, callback)) {
-                GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
-                return
+        let callbackList = NMEA_CALLBACKS
+        if (findCallbackObject(callbackList, callback)) {
+            GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager On failed: This request already exists")
+            return
+        }
+        synchronized(ON_OFF_MUTEX) {    
+            let wrapper = {
+                value: CString => callback.invoke(None, try {
+                    value.toString()
+                } finally {
+                    unsafe { LibC.free(value) }
+                })
             }
-            unsafe {
-                let wrapper = {
-                    value: CString => callback.invoke(None, try {
-                        value.toString()
-                    } finally {
-                        LibC.free(value)
-                    })
-                }
-                let lambdaData = Callback1Param<CString, Unit>(wrapper)
-                let errCode = FfiGeoLocationManagerOnNmeaMessage(lambdaData.getID())
-                if (errCode != SUCCESS_CODE) {
-                    throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
-                }
-                callbackList.add((callback, lambdaData.getID()))
+            let lambdaData = Callback1Param<CString, Unit>(wrapper)
+            let errCode = unsafe { FfiGeoLocationManagerOnNmeaMessage(lambdaData.getID()) }
+            if (errCode != SUCCESS_CODE) {
+                throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
             }
+            callbackList.add((callback, lambdaData.getID()))
         }
     }
 
     /**
      * Unsubscribe nmea message changed.
      *
-     * @param { Callback1Argument<String> } [callback] - Indicates the callback for reporting the nmea message.
+     * @param { ?Callback1Argument<String> } [callback] - Indicates the callback for reporting the nmea message.
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.off('nmeaMessage')} due to limited device capabilities.
+     *     ${geoLocationManager.offNmeaMessage} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -339,11 +324,11 @@ public class GeoLocationManager {
     /**
      * Unsubscribe location changed.
      *
-     * @param { Callback1Argument<Location> } [callback] - Indicates the callback for reporting the location.
+     * @param { ?Callback1Argument<Location> } [callback] - Indicates the callback for reporting the location.
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.off('location')} due to limited device capabilities.
+     *     ${geoLocationManager.offLocationChange} due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -365,49 +350,55 @@ public class GeoLocationManager {
 
     static func off(callbackList: ArrayList<(CallbackObject, Int64)>, callback: CallbackObject,
         offFunc: CFunc<(Int64) -> Int32>): Unit {
-        synchronized(ON_OFF_MUTEX) {
-            if (callbackList.size == 0) {
-                GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager Off failed: The event is not registered")
-                return
-            }
-            unsafe {
-                callbackList.removeIf(
-                    {
-                        item => if (refEq(item[0], callback)) {
-                            let errCode = offFunc(item[1])
-                            if (errCode != SUCCESS_CODE) {
-                                throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
-                            }
-                            true
-                        } else {
-                            GEO_LOCATION_MANAGER_LOG.error(
-                                "GeoLocationManager Off failed: The callback is not registered")
-                            false
+        if (callbackList.size == 0) {
+            GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager Off failed: The event is not registered")
+            return
+        }
+        synchronized(ON_OFF_MUTEX) {    
+            callbackList.removeIf(
+                {
+                    item => if (refEq(item[0], callback)) {
+                        let errCode = unsafe { offFunc(item[1]) }
+                        if (errCode != SUCCESS_CODE) {
+                            throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
                         }
-                    })
-            }
+                        true
+                    } else {
+                        GEO_LOCATION_MANAGER_LOG.error(
+                            "GeoLocationManager Off failed: The callback is not registered")
+                        false
+                    }
+                })
         }
     }
 
     static func off(callbackList: ArrayList<(CallbackObject, Int64)>, offFunc: CFunc<(Int64) -> Int32>): Unit {
-        synchronized(ON_OFF_MUTEX) {
-            if (callbackList.size == 0) {
-                GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager Off failed: The event is not registered")
-                return
-            }
-            unsafe {
-                callbackList.removeIf(
-                    {
-                        item =>
-                            let errCode = offFunc(item[1])
-                            if (errCode != SUCCESS_CODE) {
-                                throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
-                            }
-                            true
-                    })
-            }
+        if (callbackList.size == 0) {
+            GEO_LOCATION_MANAGER_LOG.error("GeoLocationManager Off failed: The event is not registered")
+            return
+        }
+        synchronized(ON_OFF_MUTEX) {    
+            callbackList.removeIf(
+                {
+                    item =>
+                        let errCode = unsafe { offFunc(item[1]) }
+                        if (errCode != SUCCESS_CODE) {
+                            throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
+                        }
+                        true
+                })
+            
         }
     }
+}
+
+func findCallbackObject(list: ArrayList<(CallbackObject, Int64)>, callback: CallbackObject): Bool {
+    for (item in list) {
+        if (refEq(callback, item[0])) {
+            return true
+        }
+    }
+    return false
 }
 
 func checkRet(errCode: Int32): Unit {

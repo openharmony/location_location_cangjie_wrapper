@@ -25,6 +25,7 @@ import std.collection.{HashMap, Map}
 
 const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
+const ERROR_CODE_INNER: Int32 = 3301200
 let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-GeoLocationManager")
 
 @!Hide
