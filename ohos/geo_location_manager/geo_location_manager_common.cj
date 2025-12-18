@@ -710,7 +710,7 @@ public enum SatelliteConstellationCategory {
             case 5 => ConstellationCategoryBeidou
             case 6 => ConstellationCategoryGalileo
             case 7 => ConstellationCategoryIrnss
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 
@@ -724,7 +724,7 @@ public enum SatelliteConstellationCategory {
             case ConstellationCategoryBeidou => 5
             case ConstellationCategoryGalileo => 6
             case ConstellationCategoryIrnss => 7
-            case _ => throw IllegalArgumentException("The type is not supported yet.")
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
 }
