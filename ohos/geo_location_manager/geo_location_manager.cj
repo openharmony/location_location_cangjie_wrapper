@@ -45,7 +45,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
-      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * geoLocationManager.getCurrentLocation due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
@@ -78,7 +78,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
-      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * geoLocationManager.getCurrentLocation due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
@@ -113,7 +113,7 @@ public class GeoLocationManager {
       * @throws { BusinessException } 201 - Permission verification failed. The application does not have the
       * permission required to call the API.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
-      * ${geoLocationManager.getCurrentLocation} due to limited device capabilities.
+      * geoLocationManager.getCurrentLocation due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
       * @throws { BusinessException } 3301100 - The location switch is off.
       * @throws { BusinessException } 3301200 - Failed to obtain the geographical location.
@@ -145,7 +145,7 @@ public class GeoLocationManager {
       *
       * @returns { Bool } Returns true if the location switch is on, returns false otherwise.
       * @throws { BusinessException } 801 - Capability not supported. Failed to call
-      * ${geoLocationManager.isLocationEnabled} due to limited device capabilities.
+      * geoLocationManager.isLocationEnabled due to limited device capabilities.
       * @throws { BusinessException } 3301000 - The location service is unavailable.
       */
     @!APILevel[
@@ -170,7 +170,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. 
      *     The application does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.onLocationChange} due to limited device capabilities.
+     *     geoLocationManager.onLocationChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -203,7 +203,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.onSatelliteStatusChange} due to limited device capabilities.
+     *     geoLocationManager.onSatelliteStatusChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -234,9 +234,9 @@ public class GeoLocationManager {
     /**
      * Unsubscribe satellite status changed.
      *
-     * @param { ?Callback1Argument<SatelliteStatusInfo> } [callback] - Indicates the callback for reporting the satellite status.
+     * @param { ?Callback1Argument<SatelliteStatusInfo> } [ callback ] - Indicates the callback for reporting the satellite status.
      * @throws { BusinessException } 201 - Permission verification failed. The application does not have the permission  required to call the API.
-     * @throws { BusinessException } 801 - Capability not supported. Failed to call ${geoLocationManager.offSatelliteStatusChange} due to limited device capabilities.
+     * @throws { BusinessException } 801 - Capability not supported. Failed to call geoLocationManager.offSatelliteStatusChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -262,7 +262,7 @@ public class GeoLocationManager {
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.onNmeaMessage} due to limited device capabilities.
+     *     geoLocationManager.onNmeaMessage due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -297,11 +297,11 @@ public class GeoLocationManager {
     /**
      * Unsubscribe nmea message changed.
      *
-     * @param { ?Callback1Argument<String> } [callback] - Indicates the callback for reporting the nmea message.
+     * @param { ?Callback1Argument<String> } [ callback ] - Indicates the callback for reporting the nmea message.
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.offNmeaMessage} due to limited device capabilities.
+     *     geoLocationManager.offNmeaMessage due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -324,11 +324,11 @@ public class GeoLocationManager {
     /**
      * Unsubscribe location changed.
      *
-     * @param { ?Callback1Argument<Location> } [callback] - Indicates the callback for reporting the location.
+     * @param { ?Callback1Argument<Location> } [ callback ] - Indicates the callback for reporting the location.
      * @throws { BusinessException } 201 - Permission verification failed. The application 
      *     does not have the permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
-     *     ${geoLocationManager.offLocationChange} due to limited device capabilities.
+     *     geoLocationManager.offLocationChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */

@@ -615,6 +615,8 @@ public class PowerConsumptionScenario {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static const NO_POWER_CONSUMPTION: Int32 = 0x603
+
+    init() {}
 }
 
 /**
@@ -857,6 +859,8 @@ public class UserActivityScenario {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public static const DAILY_LIFE_SERVICE: Int32 = 0x404
+
+    init() {}
 }
 
 func getErrorCode(code: Int32): Int32 {
