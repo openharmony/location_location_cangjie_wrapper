@@ -25,6 +25,7 @@ import std.collection.{HashMap, Map}
 
 const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
+const ERROR_CODE_INNER: Int32 = 3301200
 let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-GeoLocationManager")
 
 @!Hide
@@ -538,6 +539,328 @@ public class SingleLocationRequest {
         this.locatingPriority = locatingPriority
         this.locatingTimeoutMs = locatingTimeoutMs
     }
+}
+
+/**
+ * Configuring parameters in continuous location requests.
+ */
+@!APILevel[
+    since: "24",
+    syscap: "SystemCapability.Location.Location.Core"
+]
+public class ContinuousLocationRequest {
+    /**
+     * Location report interval, in seconds.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public var interval: Int32
+
+    /**
+     * Location scenario. You can select a user activity scenario or power consumption scenario.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public var locationScenario: Int32
+
+    /**
+     * ContinuousLocationRequest constructor
+     *
+     * @param { Int32 } interval - Location report interval, in seconds.
+     * @param { Int32 } locationScenario - Location scenario. You can select a user activity scenario or power consumption scenario.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public init(interval: Int32, locationScenario: Int32) {
+        this.interval = interval
+        this.locationScenario = locationScenario
+    }
+}
+
+/**
+ * Class for power consumption scenario.
+ */
+@!APILevel[
+    since: "24",
+    syscap: "SystemCapability.Location.Location.Core"
+]
+public class PowerConsumptionScenario {
+    /**
+     * High power consumption mode.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const HIGH_POWER_CONSUMPTION: Int32 = 0x601
+    /**
+     * Low power consumption mode.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const LOW_POWER_CONSUMPTION: Int32 = 0x602
+    /**
+     * Power saving scenarios.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const NO_POWER_CONSUMPTION: Int32 = 0x603
+
+    init() {}
+}
+
+/**
+ * Enum for satellite constellation category.
+ */
+@!APILevel[
+    since: "24",
+    syscap: "SystemCapability.Location.Location.Gnss"
+]
+public enum SatelliteConstellationCategory {
+    /**
+     * Unknown type. This is the default value.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryUnknown
+    |
+    /**
+     * Global positioning system (GPS), a high-precision radio navigation positioning system made up of artificial earth satellites launched by the United States.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryGps
+    |
+    /**
+     * Satellite-based augmentation system (SBAS), which supports wide-area or regional augmentation through the use of 
+     * geostationary (GEO) satellites for broadcasting augmentation information, such as ephemeris error, satellite 
+     * clock difference, and ionospheric delay, to users. It enhances the accuracy, integrity, and availability of basic global navigation satellite systems.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategorySbas
+    |
+    /**
+     * Global navigation satellite system (GLONASS), a Russia space-based satellite navigation system that provides a global coverage positioning service similar to the GPS.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryGlonass
+    |
+    /**
+     * Quasi-Zenith satellite system (QZSS), a regional navigation satellite system developed by Japan to enhance and augment GPS coverage over Japan's territory.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryQzss
+    |
+    /**
+     * Beidou navigation satellite system (BNSS), a global satellite navigation system developed by China.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryBeidou
+    |
+    /**
+     * Galileo satellite navigation system (GALILEO), a global satellite navigation and positioning system developed and established by the European Union.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryGalileo
+    |
+    /**
+     * Indian regional navigation satellite system (IRNSS), an independent regional satellite navigation system developed and operated by India.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    ConstellationCategoryIrnss
+    | ...
+
+    static func parse(value: Int32): SatelliteConstellationCategory {
+        match (value) {
+            case 0 => ConstellationCategoryUnknown
+            case 1 => ConstellationCategoryGps
+            case 2 => ConstellationCategorySbas
+            case 3 => ConstellationCategoryGlonass
+            case 4 => ConstellationCategoryQzss
+            case 5 => ConstellationCategoryBeidou
+            case 6 => ConstellationCategoryGalileo
+            case 7 => ConstellationCategoryIrnss
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
+        }
+    }
+
+    func getValue(): Int32 {
+        match (this) {
+            case ConstellationCategoryUnknown => 0
+            case ConstellationCategoryGps => 1
+            case ConstellationCategorySbas => 2
+            case ConstellationCategoryGlonass => 3
+            case ConstellationCategoryQzss => 4
+            case ConstellationCategoryBeidou => 5
+            case ConstellationCategoryGalileo => 6
+            case ConstellationCategoryIrnss => 7
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
+        }
+    }
+}
+
+/**
+ * Satellite status information.
+ */
+@!APILevel[
+    since: "24",
+    syscap: "SystemCapability.Location.Location.Gnss"
+]
+public class SatelliteStatusInfo {
+    /**
+     * Number of satellites.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var satellitesNumber: Int32
+    /**
+     * Satellite ID array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var satelliteIds: Array<Int32>
+    /**
+     * Carrier to noise density array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var carrierToNoiseDensitys: Array<Float64>
+    /**
+     * Satellite altitude array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var altitudes: Array<Float64>
+    /**
+     * Satellite azimuth array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var azimuths: Array<Float64>
+    /**
+     * Satellite carrier frequency array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var carrierFrequencies: Array<Float64>
+    /**
+     * Satellite constellation type array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var satelliteConstellation: Array<SatelliteConstellationCategory>
+    /**
+     * Satellite additional information array.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Gnss"
+    ]
+    public var satelliteAdditionalInfo: Array<Int32>
+
+    protected init(satellitesNumber: Int32, satelliteIds: Array<Int32>, carrierToNoiseDensitys: Array<Float64>,
+        altitudes: Array<Float64>, azimuths: Array<Float64>, carrierFrequencies: Array<Float64>,
+        satelliteConstellation!: Array<SatelliteConstellationCategory> = Array<SatelliteConstellationCategory>(),
+        satelliteAdditionalInfo!: Array<Int32> = Array<Int32>()) {
+        this.satellitesNumber = satellitesNumber
+        this.satelliteIds = satelliteIds
+        this.carrierToNoiseDensitys = carrierToNoiseDensitys
+        this.altitudes = altitudes
+        this.azimuths = azimuths
+        this.carrierFrequencies = carrierFrequencies
+        this.satelliteConstellation = satelliteConstellation
+        this.satelliteAdditionalInfo = satelliteAdditionalInfo
+    }
+}
+
+/**
+ * Class for user activity scenario.
+ */
+@!APILevel[
+    since: "24",
+    syscap: "SystemCapability.Location.Location.Core"
+]
+public class UserActivityScenario {
+    /**
+     * Navigation scenario. High positioning precision and real-time performance are required.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const NAVIGATION: Int32 = 0x401
+    /**
+     * Sport scenario. High positioning precision is required.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const SPORT: Int32 = 0x402
+    /**
+     * Transport scenario. High positioning precision and real-time performance are required.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const TRANSPORT: Int32 = 0x403
+    /**
+     * Daily life scenarios. Low requirements on positioning precision.
+     */
+    @!APILevel[
+        since: "24",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
+    public static const DAILY_LIFE_SERVICE: Int32 = 0x404
+
+    init() {}
 }
 
 func getErrorCode(code: Int32): Int32 {
