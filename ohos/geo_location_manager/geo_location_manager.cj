@@ -30,6 +30,7 @@ import ohos.labels.APILevel
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
+    init() {}
     /**
       * Obtain current location.
       *
