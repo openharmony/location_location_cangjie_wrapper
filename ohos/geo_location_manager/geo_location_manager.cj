@@ -38,6 +38,7 @@ let ON_OFF_MUTEX = Mutex()
     syscap: "SystemCapability.Location.Location.Core"
 ]
 public class GeoLocationManager {
+    init() {}
     /**
       * Obtain current location.
       *
@@ -243,7 +244,8 @@ public class GeoLocationManager {
     @!APILevel[
         since: "24",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        syscap: "SystemCapability.Location.Location.Gnss"
+        syscap: "SystemCapability.Location.Location.Gnss",
+        throwexception: true
     ]
     public static func offSatelliteStatusChange(callback!: ?Callback1Argument<SatelliteStatusInfo> = None): Unit {
         synchronized(ON_OFF_MUTEX) {
@@ -269,7 +271,8 @@ public class GeoLocationManager {
     @!APILevel[
         since: "24",
         permission: "ohos.permission.APPROXIMATELY_LOCATION",
-        syscap: "SystemCapability.Location.Location.Gnss"
+        syscap: "SystemCapability.Location.Location.Gnss",
+        throwexception: true
     ]
     public static func onNmeaMessage(callback: Callback1Argument<String>): Unit {
         let callbackList = NMEA_CALLBACKS
