@@ -27,7 +27,7 @@ const LOG_CORE: UInt32 = 3
 const LOCATION_LOG_DOMAIN: UInt32 = 0xD002300
 let GEO_LOCATION_MANAGER_LOG = HilogChannel(LOG_CORE, LOCATION_LOG_DOMAIN, "CJ-GeoLocationManager")
 
-@!Hide
+@!Hide[isChecked: true]
 internal class PoiInfo {}
 
 /**
@@ -199,7 +199,7 @@ public class Location {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var additionSize: ?Int64
-    @!Hide
+    @!Hide[isChecked: true]
     internal var isFromMock: ?Bool = Option<Bool>.None
     /**
      * Indicates vertical position accuracy in meters.
@@ -241,7 +241,7 @@ public class Location {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     public var sourceType: ?LocationSourceType
-    @!Hide
+    @!Hide[isChecked: true]
     internal var poi: ?PoiInfo = Option<PoiInfo>.None
 
     init(cjLocation: CJLocation, additions!: Array<String> = Array<String>(),
@@ -522,7 +522,7 @@ public class SingleLocationRequest {
     ]
     public var locatingTimeoutMs: Int32
 
-    @!Hide
+    @!Hide[isChecked: true]
     internal var needPoi: ?Bool = Option<Bool>.None
     /**
      * SingleLocationRequest Constructor.
