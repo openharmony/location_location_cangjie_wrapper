@@ -19,7 +19,7 @@ package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
 import ohos.ffi.{SUCCESS_CODE, Callback1Param}
-import ohos.labels.APILevel
+import ohos.labels.{APILevel, PermissionValue}
 import ohos.callback_invoke.{CallbackObject, Callback1Argument}
 import std.collection.ArrayList
 import std.sync.Mutex
@@ -272,7 +272,7 @@ public class GeoLocationManager {
      */
     @!APILevel[
         since: "24",
-        permission: "ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION",
+        permission: "ohos.permission.LOCATION" & "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Gnss",
         throwexception: true
     ]
@@ -312,7 +312,7 @@ public class GeoLocationManager {
      */
     @!APILevel[
         since: "24",
-        permission: "ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION",
+        permission: "ohos.permission.LOCATION" & "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Gnss",
         throwexception: true
     ]
