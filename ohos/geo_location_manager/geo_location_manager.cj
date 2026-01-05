@@ -19,7 +19,7 @@ package ohos.geo_location_manager
 
 import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
 import ohos.ffi.{SUCCESS_CODE, Callback1Param}
-import ohos.labels.APILevel
+import ohos.labels.{APILevel, PermissionValue}
 import ohos.callback_invoke.{CallbackObject, Callback1Argument}
 import std.collection.ArrayList
 import std.sync.Mutex
@@ -236,8 +236,10 @@ public class GeoLocationManager {
      * Unsubscribe satellite status changed.
      *
      * @param { ?Callback1Argument<SatelliteStatusInfo> } [ callback ] - Indicates the callback for reporting the satellite status.
-     * @throws { BusinessException } 201 - Permission verification failed. The application does not have the permission  required to call the API.
-     * @throws { BusinessException } 801 - Capability not supported. Failed to call geoLocationManager.offSatelliteStatusChange due to limited device capabilities.
+     * @throws { BusinessException } 201 - Permission verification failed. The application 
+     *     does not have the permission required to call the API.
+     * @throws { BusinessException } 801 - Capability not supported. Failed to call 
+     *     geoLocationManager.offSatelliteStatusChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
      * @throws { BusinessException } 3301100 - The location switch is off.
      */
@@ -270,7 +272,7 @@ public class GeoLocationManager {
      */
     @!APILevel[
         since: "24",
-        permission: "ohos.permission.APPROXIMATELY_LOCATION",
+        permission: "ohos.permission.LOCATION" & "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Gnss",
         throwexception: true
     ]
@@ -310,7 +312,7 @@ public class GeoLocationManager {
      */
     @!APILevel[
         since: "24",
-        permission: "ohos.permission.APPROXIMATELY_LOCATION & ohos.permission.LOCATION",
+        permission: "ohos.permission.LOCATION" & "ohos.permission.APPROXIMATELY_LOCATION",
         syscap: "SystemCapability.Location.Location.Gnss",
         throwexception: true
     ]
@@ -327,18 +329,17 @@ public class GeoLocationManager {
     /**
      * Unsubscribe location changed.
      *
-     * @param { ?Callback1Argument<Location> } [ callback ] - Indicates the callback for reporting the location.
-     * @throws { BusinessException } 201 - Permission verification failed. The application 
-     *     does not have the permission required to call the API.
+     * @param { ?Callback1Argument<Location> } [ callback ] - Indicates the callback for reporting the location result.
+     * @throws { BusinessException } 201 - Permission verification failed. The application does not have the 
+     *     permission required to call the API.
      * @throws { BusinessException } 801 - Capability not supported. Failed to call 
      *     geoLocationManager.offLocationChange due to limited device capabilities.
      * @throws { BusinessException } 3301000 - The location service is unavailable.
-     * @throws { BusinessException } 3301100 - The location switch is off.
      */
     @!APILevel[
         since: "24",
-        permission: "ohos.permission.APPROXIMATELY_LOCATION & ohos.permission.LOCATION",
-        syscap: "SystemCapability.Location.Location.Gnss",
+        permission: "ohos.permission.APPROXIMATELY_LOCATION",
+        syscap: "SystemCapability.Location.Location.Core",
         throwexception: true
     ]
     public static func offLocationChange(callback!: ?Callback1Argument<Location> = None): Unit {
