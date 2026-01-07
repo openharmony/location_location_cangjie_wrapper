@@ -16,11 +16,16 @@
 import("//build/templates/cangjie/cjc.gni")
 
 ohos_cangjie_shared_library("ohos.geo_location_manager") {
-  sources = [
-    "geo_location_manager.cj",
-    "geo_location_manager_common.cj",
-    "geo_location_manager_ffi.cj",
-  ]
+
+  if (is_mingw || is_mac){
+    sources = [ "../../mock/ohos.geo_location_manager.cj" ]
+  } else {
+    sources = [
+      "geo_location_manager.cj",
+      "geo_location_manager_common.cj",
+      "geo_location_manager_ffi.cj",
+    ]
+  }
 
   cj_external_deps = [
     "cangjie_ark_interop:ohos.ffi",
