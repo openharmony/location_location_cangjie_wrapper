@@ -18,24 +18,49 @@ package ohos.geo_location_manager
 import ohos.labels.APILevel
 import std.collection.{HashMap, Map}
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public class GeoLocationManager {
-    @!APILevel[since: "22", permission: "ohos.permission.APPROXIMATELY_LOCATION", syscap: "SystemCapability.Location.Location.Core", throwexception: true, workerthread: true]
+    @!APILevel[
+        since: "22",
+        permission: "ohos.permission.APPROXIMATELY_LOCATION",
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
+    ]
     public static func getCurrentLocation(): Location {
         return Location()
     }
 
-    @!APILevel[since: "22", permission: "ohos.permission.APPROXIMATELY_LOCATION", syscap: "SystemCapability.Location.Location.Core", throwexception: true, workerthread: true]
+    @!APILevel[
+        since: "22",
+        permission: "ohos.permission.APPROXIMATELY_LOCATION",
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
+    ]
     public static func getCurrentLocation(request: CurrentLocationRequest): Location {
         return Location()
     }
 
-    @!APILevel[since: "22", permission: "ohos.permission.APPROXIMATELY_LOCATION", syscap: "SystemCapability.Location.Location.Core", throwexception: true, workerthread: true]
+    @!APILevel[
+        since: "22",
+        permission: "ohos.permission.APPROXIMATELY_LOCATION",
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true,
+        workerthread: true
+    ]
     public static func getCurrentLocation(request: SingleLocationRequest): Location {
         return Location()
     }
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core", throwexception: true]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core",
+        throwexception: true
+    ]
     public static func isLocationEnabled(): Bool {
         return true
     }
@@ -45,67 +70,136 @@ public class GeoLocationManager {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public enum LocationSourceType {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Gnss
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Network
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Indoor
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Rtk
     | ...
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public class Location {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var latitude: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var longitude: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var altitude: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var accuracy: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var speed: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var timestamp: Int64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var direction: Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var timeSinceBoot: Int64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var additions: ?Array<String>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var additionsMap: ?Map<String, String>
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var additionSize: ?Int64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var altitudeAccuracy: ?Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var speedAccuracy: ?Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var directionAccuracy: ?Float64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var uncertaintyOfTimeSinceBoot: ?Int64
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var sourceType: ?LocationSourceType
     
     public init() {
@@ -129,51 +223,113 @@ public class Location {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public enum LocationRequestPriority {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Unset
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Accuracy
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     LowPower
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     FirstFix
     | ...
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public enum LocationRequestScenario {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Unset
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     Navigation
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     TrajectoryTracking
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     CarHailing
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     DailyLifeService
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     NoPower
     | ...
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public class CurrentLocationRequest {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var priority: LocationRequestPriority
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var scenario: LocationRequestScenario
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var maxAccuracy: Float32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var timeoutMs: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFix,
         scenario!: LocationRequestScenario = LocationRequestScenario.Unset, maxAccuracy!: Float32 = 0.0,
         timeoutMs!: Int32 = 5000) {
@@ -185,24 +341,46 @@ public class CurrentLocationRequest {
     }
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public enum LocatingPriority {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     PriorityAccuracy
-    | @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    |
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     PriorityLocatingSpeed
     | ...
 }
 
-@!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+@!APILevel[
+    since: "22",
+    syscap: "SystemCapability.Location.Location.Core"
+]
 public class SingleLocationRequest {
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var locatingPriority: LocatingPriority
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public var locatingTimeoutMs: Int32
 
-    @!APILevel[since: "22", syscap: "SystemCapability.Location.Location.Core"]
+    @!APILevel[
+        since: "22",
+        syscap: "SystemCapability.Location.Location.Core"
+    ]
     public init(locatingPriority: LocatingPriority, locatingTimeoutMs: Int32) {
         super()
         this.locatingPriority = LocatingPriority.PriorityAccuracy
