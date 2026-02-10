@@ -35,13 +35,13 @@ class Test_location {
     override func beforeAll(): Unit {
         if (!GeoLocationManager.isLocationEnabled()) {
             swipe(from: Point(1146, 77), deltaY: 200)
-            sleepFor(1.second)
+            sleepFor(3.second)
             click(
                 at: Screen
                     .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
                     .centerPoint)
             pressBack()
-            sleepFor(1.second)
+            sleepFor(3.second)
         }
         ["ohos.permission.APPROXIMATELY_LOCATION", "ohos.permission.LOCATION"] |>
             forEach<Permissions> {
