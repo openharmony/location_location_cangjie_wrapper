@@ -17,7 +17,7 @@
 
 package ohos.geo_location_manager
 
-import ohos.business_exception.{ BusinessException, UNIVERSAL_ERROR_MAP }
+import ohos.business_exception.BusinessException
 import ohos.ffi.{SUCCESS_CODE, Callback1Param}
 import ohos.labels.{APILevel, PermissionValue}
 import ohos.callback_invoke.{CallbackObject, Callback1Argument}
