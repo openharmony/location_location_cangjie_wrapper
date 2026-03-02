@@ -121,7 +121,6 @@ class Test_location {
     @TestCase
     @Tag[APILevel22, TestLevel0]
     func test_isLocationEnabled(): Unit {
-        let manager = GeoLocationManager()
         @Expect(GeoLocationManager.isLocationEnabled() , true)
     }
 
