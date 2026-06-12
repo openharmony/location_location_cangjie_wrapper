@@ -171,9 +171,9 @@ class Test_location {
             } catch (e: Exception) {}
             try {
                 let location = GeoLocationManager.getCurrentLocation()
-                @Expect(false, true)
+                @Expect(false)
             } catch (e: BusinessException) {
-                @Expect(e.code == 3301100 || e.code == 3301200, true)
+                @Expect(e.code, 201)
             } finally {
                 try {
                     click(at: Screen
@@ -196,9 +196,9 @@ class Test_location {
         } catch (e: Exception) {}
         try {
             let location = GeoLocationManager.getCurrentLocation()
-            @Expect(false, true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
+            @Expect(e.code, 201)
         } finally {
             try {
                 click(at: Screen
@@ -220,9 +220,9 @@ class Test_location {
         )
         try {
             let location = GeoLocationManager.getCurrentLocation(invalidRequest)
-            @Expect(true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code >= 3301000 && e.code <= 3301800, true)
+            @Expect(e.code, 401)
         }
     }
 
@@ -235,9 +235,9 @@ class Test_location {
         )
         try {
             let location = GeoLocationManager.getCurrentLocation(singleRequest)
-            @Expect(true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code >= 3301000 && e.code <= 3301800, true)
+            @Expect(401)
         }
     }
 
@@ -258,9 +258,9 @@ class Test_location {
                 timeoutMs: 10000
             )
             let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(false, true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
+            @Expect(e.code, 401)
         } finally {
             try {
                 click(at: Screen
@@ -286,9 +286,9 @@ class Test_location {
                 10000
             )
             let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(false, true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
+            @Expect(e.code, 201)
         } finally {
             try {
                 click(at: Screen
@@ -310,9 +310,9 @@ class Test_location {
         } catch (e: Exception) {}
         try {
             let enabled = GeoLocationManager.isLocationEnabled()
-            @Expect(true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code == 3301000 || e.code == 801, true)
+            @Expect(e.code, 201)
         } finally {
             try {
                 click(at: Screen
@@ -334,9 +334,9 @@ class Test_location {
         )
         try {
             let location = GeoLocationManager.getCurrentLocation(timeoutRequest)
-            @Expect(true)
+            @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code == 3301200 || e.code == 3301700, true)
+            @Expect(e.code, 401)
         }
     }
 
