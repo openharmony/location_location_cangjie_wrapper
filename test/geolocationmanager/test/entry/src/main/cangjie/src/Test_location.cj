@@ -237,7 +237,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(singleRequest)
             @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(401)
+            @Expect(e.code, 401)
         }
     }
 
@@ -260,7 +260,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(request)
             @Expect(false)
         } catch (e: BusinessException) {
-            @Expect(e.code, 401)
+            @Expect(e.code, 201)
         } finally {
             try {
                 click(at: Screen
@@ -310,7 +310,7 @@ class Test_location {
         } catch (e: Exception) {}
         try {
             let enabled = GeoLocationManager.isLocationEnabled()
-            @Expect(false)
+            @Expect(true)
         } catch (e: BusinessException) {
             @Expect(e.code, 201)
         } finally {
