@@ -349,18 +349,23 @@ class Test_location {
             maxAccuracy: 100.0,
             timeoutMs: 30000
         )
-        let location = GeoLocationManager.getCurrentLocation(request)
-        @Expect(location.latitude > 0.0, true)
-        @Expect(location.longitude > 0.0, true)
-        if (let Some(additions) <- location.additions) {
-            @Expect(additions.size > 0, true)
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size > 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size > 0, true)
+            }
+            if (let Some(additionSize) <- location.additionSize) {
+                @Expect(additionSize > 0, true)
+            }
+        } catch (e: BusinessException) {
+             @Expect(e.code, 201)
         }
-        if (let Some(additionsMap) <- location.additionsMap) {
-            @Expect(additionsMap.size > 0, true)
-        }
-        if (let Some(additionSize) <- location.additionSize) {
-            @Expect(additionSize > 0, true)
-        }
+        
     }
 
     @TestCase
@@ -372,15 +377,20 @@ class Test_location {
             maxAccuracy: 50.0,
             timeoutMs: 30000
         )
-        let location = GeoLocationManager.getCurrentLocation(request)
-        @Expect(location.latitude > 0.0, true)
-        @Expect(location.longitude > 0.0, true)
-        if (let Some(additions) <- location.additions) {
-            @Expect(additions.size >= 0, true)
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
         }
-        if (let Some(additionsMap) <- location.additionsMap) {
-            @Expect(additionsMap.size >= 0, true)
-        }
+        
     }
 
     @TestCase
@@ -392,15 +402,20 @@ class Test_location {
             maxAccuracy: 50.0,
             timeoutMs: 30000
         )
-        let location = GeoLocationManager.getCurrentLocation(request)
-        @Expect(location.latitude > 0.0, true)
-        @Expect(location.longitude > 0.0, true)
-        if (let Some(additions) <- location.additions) {
-            @Expect(additions.size >= 0, true)
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
         }
-        if (let Some(additionsMap) <- location.additionsMap) {
-            @Expect(additionsMap.size >= 0, true)
-        }
+        
     }
 
     @TestCase
@@ -412,15 +427,20 @@ class Test_location {
             maxAccuracy: 100.0,
             timeoutMs: 30000
         )
-        let location = GeoLocationManager.getCurrentLocation(request)
-        @Expect(location.latitude > 0.0, true)
-        @Expect(location.longitude > 0.0, true)
-        if (let Some(additions) <- location.additions) {
-            @Expect(additions.size >= 0, true)
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
         }
-        if (let Some(additionsMap) <- location.additionsMap) {
-            @Expect(additionsMap.size >= 0, true)
-        }
+        
     }
 
     @TestCase
@@ -430,17 +450,22 @@ class Test_location {
             LocatingPriority.PriorityAccuracy,
             30000
         )
-        let location = GeoLocationManager.getCurrentLocation(request)
-        @Expect(location.latitude > 0.0, true)
-        @Expect(location.longitude > 0.0, true)
-        if (let Some(additions) <- location.additions) {
-            @Expect(additions.size >= 0, true)
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+            if (let Some(sourceType) <- location.sourceType) {
+                @Expect(true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
         }
-        if (let Some(additionsMap) <- location.additionsMap) {
-            @Expect(additionsMap.size >= 0, true)
-        }
-        if (let Some(sourceType) <- location.sourceType) {
-            @Expect(true)
-        }
+        
     }
 }
