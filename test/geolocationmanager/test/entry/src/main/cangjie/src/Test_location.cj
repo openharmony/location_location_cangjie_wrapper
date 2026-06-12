@@ -29,6 +29,7 @@ import ohos.base.*
 import std.collection.map
 import std.collection.collectArray
 import std.collection.forEach
+import ohos.business_exception.*
 
 @Test
 class Test_location {
@@ -172,7 +173,7 @@ class Test_location {
                 let location = GeoLocationManager.getCurrentLocation()
                 @Expect(false, true)
             } catch (e: BusinessException) {
-                @Expect(e.getCode() == 3301100 || e.getCode() == 3301200, true)
+                @Expect(e.code == 3301100 || e.code == 3301200, true)
             } finally {
                 try {
                     click(at: Screen
@@ -197,7 +198,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation()
             @Expect(false, true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() == 3301100 || e.getCode() == 3301200 || e.getCode() == 3301000, true)
+            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
         } finally {
             try {
                 click(at: Screen
@@ -221,7 +222,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(invalidRequest)
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() >= 3301000 && e.getCode() <= 3301800, true)
+            @Expect(e.code >= 3301000 && e.code <= 3301800, true)
         }
     }
 
@@ -236,7 +237,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(singleRequest)
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() >= 3301000 && e.getCode() <= 3301800, true)
+            @Expect(e.code >= 3301000 && e.code <= 3301800, true)
         }
     }
 
@@ -259,7 +260,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(request)
             @Expect(false, true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() == 3301100 || e.getCode() == 3301200 || e.getCode() == 3301000, true)
+            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
         } finally {
             try {
                 click(at: Screen
@@ -287,7 +288,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(request)
             @Expect(false, true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() == 3301100 || e.getCode() == 3301200 || e.getCode() == 3301000, true)
+            @Expect(e.code == 3301100 || e.code == 3301200 || e.code == 3301000, true)
         } finally {
             try {
                 click(at: Screen
@@ -311,7 +312,7 @@ class Test_location {
             let enabled = GeoLocationManager.isLocationEnabled()
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() == 3301000 || e.getCode() == 801, true)
+            @Expect(e.code == 3301000 || e.code == 801, true)
         } finally {
             try {
                 click(at: Screen
@@ -335,7 +336,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(timeoutRequest)
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.getCode() == 3301200 || e.getCode() == 3301700, true)
+            @Expect(e.code == 3301200 || e.code == 3301700, true)
         }
     }
 
