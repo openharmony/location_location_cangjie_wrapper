@@ -29,6 +29,7 @@ import ohos.base.*
 import std.collection.map
 import std.collection.collectArray
 import std.collection.forEach
+import ohos.business_exception.*
 
 @Test
 class Test_location {
@@ -126,7 +127,345 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithFirstFix(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.FirstFix,
+            scenario: LocationRequestScenario.Unset,
+            maxAccuracy: 200.0,
+            timeoutMs: 10000
+        )
+        let location = GeoLocationManager.getCurrentLocation(request)
+        @Expect(location.latitude > 0.0, true)
+        @Expect(location.longitude > 0.0, true)
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithAccuracy(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.Accuracy,
+            scenario: LocationRequestScenario.Unset,
+            maxAccuracy: 200.0,
+            timeoutMs: 10000
+        )
+        let location = GeoLocationManager.getCurrentLocation(request)
+        @Expect(location.latitude > 0.0, true)
+        @Expect(location.longitude > 0.0, true)
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
     func test_LocationSourceType(): Unit {
         let arr: Array<LocationSourceType> = [Gnss, Network, Indoor, Rtk]
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_locationDisabled(): Unit {
+        if (GeoLocationManager.isLocationEnabled()) {
+            try {
+                click(at: Screen
+                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                        .centerPoint)
+                sleepFor(2.second)
+            } catch (e: Exception) {}
+            try {
+                let location = GeoLocationManager.getCurrentLocation()
+                @Expect(false)
+            } catch (e: BusinessException) {
+                @Expect(e.code, 201)
+            } finally {
+                try {
+                    click(at: Screen
+                            .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                            .centerPoint)
+                    sleepFor(2.second)
+                } catch (e: Exception) {}
+            }
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_getCurrentLocationError(): Unit {
+        try {
+            click(at: Screen
+                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                    .centerPoint)
+            sleepFor(2.second)
+        } catch (e: Exception) {}
+        try {
+            let location = GeoLocationManager.getCurrentLocation()
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 201)
+        } finally {
+            try {
+                click(at: Screen
+                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                        .centerPoint)
+                sleepFor(2.second)
+            } catch (e: Exception) {}
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_invalidRequest(): Unit {
+        let invalidRequest = CurrentLocationRequest(
+            priority: LocationRequestPriority.Unset,
+            scenario: LocationRequestScenario.Unset,
+            maxAccuracy: -1.0,
+            timeoutMs: -1
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(invalidRequest)
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 401)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_singleLocationRequest(): Unit {
+        let singleRequest = SingleLocationRequest(
+            LocatingPriority.PriorityAccuracy,
+            1
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(singleRequest)
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 401)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_currentLocationRequestDisabled(): Unit {
+        try {
+            click(at: Screen
+                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                    .centerPoint)
+            sleepFor(2.second)
+        } catch (e: Exception) {}
+        try {
+            let request = CurrentLocationRequest(
+                priority: LocationRequestPriority.FirstFix,
+                scenario: LocationRequestScenario.Unset,
+                maxAccuracy: 200.0,
+                timeoutMs: 10000
+            )
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 201)
+        } finally {
+            try {
+                click(at: Screen
+                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                        .centerPoint)
+                sleepFor(2.second)
+            } catch (e: Exception) {}
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_singleLocationRequestDisabled(): Unit {
+        try {
+            click(at: Screen
+                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                    .centerPoint)
+            sleepFor(2.second)
+        } catch (e: Exception) {}
+        try {
+            let request = SingleLocationRequest(
+                LocatingPriority.PriorityAccuracy,
+                10000
+            )
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 201)
+        } finally {
+            try {
+                click(at: Screen
+                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                        .centerPoint)
+                sleepFor(2.second)
+            } catch (e: Exception) {}
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_isLocationEnabledError(): Unit {
+        try {
+            click(at: Screen
+                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                    .centerPoint)
+            sleepFor(2.second)
+        } catch (e: Exception) {}
+        try {
+            let enabled = GeoLocationManager.isLocationEnabled()
+            @Expect(true)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 201)
+        } finally {
+            try {
+                click(at: Screen
+                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
+                        .centerPoint)
+                sleepFor(2.second)
+            } catch (e: Exception) {}
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_errorHandling_timeout(): Unit {
+        let timeoutRequest = CurrentLocationRequest(
+            priority: LocationRequestPriority.FirstFix,
+            scenario: LocationRequestScenario.Unset,
+            maxAccuracy: 0.0,
+            timeoutMs: 100
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(timeoutRequest)
+            @Expect(false)
+        } catch (e: BusinessException) {
+            @Expect(e.code, 401)
+        }
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithAdditions(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.Accuracy,
+            scenario: LocationRequestScenario.Navigation,
+            maxAccuracy: 100.0,
+            timeoutMs: 30000
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size > 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size > 0, true)
+            }
+            if (let Some(additionSize) <- location.additionSize) {
+                @Expect(additionSize > 0, true)
+            }
+        } catch (e: BusinessException) {
+             @Expect(e.code, 201)
+        }
+        
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithTrajectoryTracking(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.Accuracy,
+            scenario: LocationRequestScenario.TrajectoryTracking,
+            maxAccuracy: 50.0,
+            timeoutMs: 30000
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
+        }
+        
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithCarHailing(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.Accuracy,
+            scenario: LocationRequestScenario.CarHailing,
+            maxAccuracy: 50.0,
+            timeoutMs: 30000
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
+        }
+        
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationWithDailyLifeService(): Unit {
+        let request = CurrentLocationRequest(
+            priority: LocationRequestPriority.LowPower,
+            scenario: LocationRequestScenario.DailyLifeService,
+            maxAccuracy: 100.0,
+            timeoutMs: 30000
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
+        }
+        
+    }
+
+    @TestCase
+    @Tag[APILevel22, TestLevel0]
+    func test_getCurrentLocationSingleWithAdditions(): Unit {
+        let request = SingleLocationRequest(
+            LocatingPriority.PriorityAccuracy,
+            30000
+        )
+        try {
+            let location = GeoLocationManager.getCurrentLocation(request)
+            @Expect(location.latitude > 0.0, true)
+            @Expect(location.longitude > 0.0, true)
+            if (let Some(additions) <- location.additions) {
+                @Expect(additions.size >= 0, true)
+            }
+            if (let Some(additionsMap) <- location.additionsMap) {
+                @Expect(additionsMap.size >= 0, true)
+            }
+            if (let Some(sourceType) <- location.sourceType) {
+                @Expect(true)
+            }
+        } catch(e: BusinessException) {
+            @Expect(e.code, 201)
+        }
+        
     }
 }
