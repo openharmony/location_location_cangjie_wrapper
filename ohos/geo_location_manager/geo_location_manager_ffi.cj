@@ -74,12 +74,6 @@ struct CJLocation {
             sourceType: LocationSourceType.parse(sourceType))
     }
 
-    func toLocationAndFree(): Location {
-        let location = this.toLocation()
-        this.free()
-        return location
-    }
-
     func free(): Unit {
         unsafe {
             if (additions.isNotNull()) {

@@ -87,16 +87,6 @@ public enum LocationSourceType {
             case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }
-
-    func getValue(): Int32 {
-        match (this) {
-            case Gnss => 1
-            case Network => 2
-            case Indoor => 3
-            case Rtk => 4
-            case _ => throw BusinessException(3301000, "The type is not supported yet.")
-        }
-    }
 }
 
 /**
