@@ -161,7 +161,7 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_errorHandling_locationDisabled(): Unit {
+    func test_Handling_location(): Unit {
         if (GeoLocationManager.isLocationEnabled()) {
             try {
                 click(at: Screen
@@ -173,7 +173,7 @@ class Test_location {
                 let location = GeoLocationManager.getCurrentLocation()
                 @Expect(true)
             } catch (e: BusinessException) {
-                @Expect(e.code, 201)
+                @Expect(false)
             } finally {
                 try {
                     click(at: Screen
@@ -187,7 +187,7 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_errorHandling_getCurrentLocationError(): Unit {
+    func test_Handling_getCurrentLocation(): Unit {
         try {
             click(at: Screen
                     .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
@@ -198,7 +198,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation()
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.code, 201)
+            @Expect(false)
         } finally {
             try {
                 click(at: Screen
@@ -243,7 +243,7 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_errorHandling_currentLocationRequestDisabled(): Unit {
+    func test_Handling_currentLocationRequest(): Unit {
         try {
             click(at: Screen
                     .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
@@ -260,7 +260,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(request)
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.code, 201)
+            @Expect(false)
         } finally {
             try {
                 click(at: Screen
@@ -273,7 +273,7 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_errorHandling_singleLocationRequestDisabled(): Unit {
+    func test_Handling_singleLocationRequest(): Unit {
         try {
             click(at: Screen
                     .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
@@ -288,7 +288,7 @@ class Test_location {
             let location = GeoLocationManager.getCurrentLocation(request)
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.code, 201)
+            @Expect(false)
         } finally {
             try {
                 click(at: Screen
@@ -301,7 +301,7 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_errorHandling_isLocationEnabledError(): Unit {
+    func test_Handling_isLocationEnabled(): Unit {
         try {
             click(at: Screen
                     .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
@@ -312,7 +312,7 @@ class Test_location {
             let enabled = GeoLocationManager.isLocationEnabled()
             @Expect(true)
         } catch (e: BusinessException) {
-            @Expect(e.code, 201)
+            @Expect(false)
         } finally {
             try {
                 click(at: Screen
