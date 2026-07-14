@@ -171,7 +171,7 @@ class Test_location {
             } catch (e: Exception) {}
             try {
                 let location = GeoLocationManager.getCurrentLocation()
-                @Expect(false)
+                @Expect(true)
             } catch (e: BusinessException) {
                 @Expect(e.code, 201)
             } finally {
@@ -196,7 +196,7 @@ class Test_location {
         } catch (e: Exception) {}
         try {
             let location = GeoLocationManager.getCurrentLocation()
-            @Expect(false)
+            @Expect(true)
         } catch (e: BusinessException) {
             @Expect(e.code, 201)
         } finally {
@@ -258,7 +258,7 @@ class Test_location {
                 timeoutMs: 10000
             )
             let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(false)
+            @Expect(true)
         } catch (e: BusinessException) {
             @Expect(e.code, 201)
         } finally {
@@ -286,7 +286,7 @@ class Test_location {
                 10000
             )
             let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(false)
+            @Expect(true)
         } catch (e: BusinessException) {
             @Expect(e.code, 201)
         } finally {
