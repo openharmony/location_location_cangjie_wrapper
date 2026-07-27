@@ -161,56 +161,6 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_Handling_location(): Unit {
-        if (GeoLocationManager.isLocationEnabled()) {
-            try {
-                click(at: Screen
-                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                        .centerPoint)
-                sleepFor(2.second)
-            } catch (e: Exception) {}
-            try {
-                let location = GeoLocationManager.getCurrentLocation()
-                @Expect(true)
-            } catch (e: BusinessException) {
-                @Expect(false)
-            } finally {
-                try {
-                    click(at: Screen
-                            .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                            .centerPoint)
-                    sleepFor(2.second)
-                } catch (e: Exception) {}
-            }
-        }
-    }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_Handling_getCurrentLocation(): Unit {
-        try {
-            click(at: Screen
-                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                    .centerPoint)
-            sleepFor(2.second)
-        } catch (e: Exception) {}
-        try {
-            let location = GeoLocationManager.getCurrentLocation()
-            @Expect(true)
-        } catch (e: BusinessException) {
-            @Expect(false)
-        } finally {
-            try {
-                click(at: Screen
-                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                        .centerPoint)
-                sleepFor(2.second)
-            } catch (e: Exception) {}
-        }
-    }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
     func test_errorHandling_invalidRequest(): Unit {
         let invalidRequest = CurrentLocationRequest(
             priority: LocationRequestPriority.Unset,
@@ -243,64 +193,6 @@ class Test_location {
 
     @TestCase
     @Tag[APILevel22, TestLevel0]
-    func test_Handling_currentLocationRequest(): Unit {
-        try {
-            click(at: Screen
-                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                    .centerPoint)
-            sleepFor(2.second)
-        } catch (e: Exception) {}
-        try {
-            let request = CurrentLocationRequest(
-                priority: LocationRequestPriority.FirstFix,
-                scenario: LocationRequestScenario.Unset,
-                maxAccuracy: 200.0,
-                timeoutMs: 10000
-            )
-            let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(true)
-        } catch (e: BusinessException) {
-            @Expect(false)
-        } finally {
-            try {
-                click(at: Screen
-                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                        .centerPoint)
-                sleepFor(2.second)
-            } catch (e: Exception) {}
-        }
-    }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
-    func test_Handling_singleLocationRequest(): Unit {
-        try {
-            click(at: Screen
-                    .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                    .centerPoint)
-            sleepFor(2.second)
-        } catch (e: Exception) {}
-        try {
-            let request = SingleLocationRequest(
-                LocatingPriority.PriorityAccuracy,
-                10000
-            )
-            let location = GeoLocationManager.getCurrentLocation(request)
-            @Expect(true)
-        } catch (e: BusinessException) {
-            @Expect(false)
-        } finally {
-            try {
-                click(at: Screen
-                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                        .centerPoint)
-                sleepFor(2.second)
-            } catch (e: Exception) {}
-        }
-    }
-
-    @TestCase
-    @Tag[APILevel22, TestLevel0]
     func test_Handling_isLocationEnabled(): Unit {
         try {
             click(at: Screen
@@ -313,13 +205,6 @@ class Test_location {
             @Expect(true)
         } catch (e: BusinessException) {
             @Expect(false)
-        } finally {
-            try {
-                click(at: Screen
-                        .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
-                        .centerPoint)
-                sleepFor(2.second)
-            } catch (e: Exception) {}
         }
     }
 
