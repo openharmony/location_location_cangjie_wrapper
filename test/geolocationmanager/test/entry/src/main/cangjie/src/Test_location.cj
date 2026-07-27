@@ -205,13 +205,14 @@ class Test_location {
             @Expect(true)
         } catch (e: BusinessException) {
             @Expect(false)
-        } finally { 
+        } finally {
             try {
                 click(at: Screen
                         .getTheOnlyUiComponentWhoseIdEqualsTo("Ctrl.NewToggleBaseComponent_Image_location")
                         .centerPoint)
                 sleepFor(2.second)
             } catch (e: Exception) {}
+        }
     }
 
     @TestCase
