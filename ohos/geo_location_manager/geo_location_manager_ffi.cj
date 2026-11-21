@@ -45,6 +45,16 @@ foreign {
 
     func FfiOHOSGeoLocationManagerFreeCJGeoAddressArr(geoAddressArr: CJGeoAddressArr): Unit
 
+    func FfiOHOSGeoLocationManagerFreeCJLocation(location: CJLocation): Unit
+
+    func FfiOHOSGeoLocationManagerFreeCJCountryCode(countryCode: CJCountryCode): Unit
+
+    func FfiGeoLocationManagerFreeCArrI32(arr: CArrI32): Unit
+
+    func FfiGeoLocationManagerFreeCArrF64(arr: CArrF64): Unit
+
+    func FfiGeoLocationManagerFreeCJSatelliteStatusInfo(info: CJSatelliteStatusInfo): Unit
+
     func FfiGeoLocationManagerOnLocationChange(request: CJLocationRequest, callbackId: Int64): Int32
 
     func FfiGeoLocationManagerOnContinuousLocationRequest(request: CJContinuousLocationRequest,
@@ -144,26 +154,7 @@ struct CJLocation {
     }
 
     func free(): Unit {
-        unsafe {
-            if (additions.isNotNull()) {
-                for (i in 0..additionSize) {
-                    LibC.free(additions.read(i))
-                }
-                LibC.free(additions)
-            }
-            if (additionsMap.keys.isNotNull()) {
-                for (i in 0..additionSize) {
-                    LibC.free(additionsMap.keys.read(i))
-                }
-                LibC.free(additionsMap.keys)
-            }
-            if (additionsMap.values.isNotNull()) {
-                for (i in 0..additionSize) {
-                    LibC.free(additionsMap.values.read(i))
-                }
-                LibC.free(additionsMap.values)
-            }
-        }
+        unsafe { FfiOHOSGeoLocationManagerFreeCJLocation(this) }
     }
 }
 
@@ -226,7 +217,7 @@ struct CJCountryCode {
     }
 
     func free(): Unit {
-        unsafe { LibC.free(country) }
+        unsafe { FfiOHOSGeoLocationManagerFreeCJCountryCode(this) }
     }
 }
 
@@ -410,7 +401,7 @@ struct CArrI32 {
     }
 
     func free(): Unit {
-        unsafe { LibC.free(head) }
+        unsafe { FfiGeoLocationManagerFreeCArrI32(this) }
     }
 }
 
@@ -428,7 +419,7 @@ struct CArrF64 {
     }
 
     func free(): Unit {
-        unsafe { LibC.free(head) }
+        unsafe { FfiGeoLocationManagerFreeCArrF64(this) }
     }
 }
 
@@ -467,12 +458,6 @@ struct CJSatelliteStatusInfo {
     }
 
     func free(): Unit {
-        satelliteIds.free()
-        carrierToNoiseDensitys.free()
-        altitudes.free()
-        azimuths.free()
-        carrierFrequencies.free()
-        constellationTypes.free()
-        additionalInfoList.free()
+        unsafe { FfiGeoLocationManagerFreeCJSatelliteStatusInfo(this) }
     }
 }
