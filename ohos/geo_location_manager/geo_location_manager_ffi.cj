@@ -18,6 +18,7 @@
 package ohos.geo_location_manager
 
 import std.collection.HashMap
+import ohos.i18n.System
 
 foreign {
     func FfiOHOSGeoLocationManagerGetCurrentLocation(errCode: CPointer<Int32>): CJLocation
@@ -30,9 +31,19 @@ foreign {
 
     func FfiOHOSGeoLocationManagerIsLocationEnabled(errCode: CPointer<Int32>): Bool
 
+    func FfiOHOSGeoLocationManagerIsGeocoderAvailable(errCode: CPointer<Int32>): Bool
+
     func FfiOHOSGeoLocationManagerSendCommand(command: CJLocationCommand, errCode: CPointer<Int32>): Unit
 
     func FfiOHOSGeoLocationManagerGetCountryCode(errCode: CPointer<Int32>): CJCountryCode
+
+    func FfiOHOSGeoLocationManagerGetAddressesFromLocation(request: CJReverseGeoCodeRequest,
+        errCode: CPointer<Int32>): CJGeoAddressArr
+
+    func FfiOHOSGeoLocationManagerGetAddressesFromLocationName(request: CJGeoCodeRequest,
+        errCode: CPointer<Int32>): CJGeoAddressArr
+
+    func FfiOHOSGeoLocationManagerFreeCJGeoAddressArr(geoAddressArr: CJGeoAddressArr): Unit
 
     func FfiGeoLocationManagerOnLocationChange(request: CJLocationRequest, callbackId: Int64): Int32
 
@@ -72,6 +83,10 @@ foreign {
     func FfiGeoLocationManagerOffNmeaMessage(callbackId: Int64): Int32
 
     func FfiGeoLocationManagerOffNmeaMessageAll(): Int32
+
+    func FfiGeoLocationManagerGetGeofenceSupportedCoordTypes(errCode: CPointer<Int32>): CArrI32
+
+    func FfiOHOSGeoLocationManagerFreeGeofenceSupportedCoordTypes(arr: CArrI32): Unit
 
 }
 
@@ -212,6 +227,136 @@ struct CJCountryCode {
 
     func free(): Unit {
         unsafe { LibC.free(country) }
+    }
+}
+
+@C
+struct CJReverseGeoCodeRequest {
+    var locale: CString = CString(CPointer<UInt8>())
+    var country: CString = CString(CPointer<UInt8>())
+    var latitude: Float64 = 0.0
+    var longitude: Float64 = 0.0
+    var maxItems: Int32 = 1
+
+    init(request: ReverseGeoCodeRequest) {
+        try {
+            locale = unsafe { LibC.mallocCString(request.locale ?? System.getSystemLanguage()) }
+            country = unsafe { LibC.mallocCString(request.country ?? System.getSystemRegion()) }
+        } catch (e: Exception) {
+            unsafe { LibC.free(locale) }
+            unsafe { LibC.free(country) }
+            throw e
+        }
+        latitude = request.latitude
+        longitude = request.longitude
+        maxItems = request.maxItems ?? 1
+    }
+
+    func free(): Unit {
+        unsafe { LibC.free(locale) }
+        unsafe { LibC.free(country) }
+    }
+}
+
+@C
+struct CJGeoCodeRequest {
+    var locale: CString = CString(CPointer<UInt8>())
+    var country: CString = CString(CPointer<UInt8>())
+    var description: CString = CString(CPointer<UInt8>())
+    var maxItems: Int32 = 1
+    var minLatitude: Float64 = -90.0
+    var minLongitude: Float64 = -180.0
+    var maxLatitude: Float64 = 90.0
+    var maxLongitude: Float64 = 180.0
+
+    init(request: GeoCodeRequest) {
+        try {
+            locale = unsafe { LibC.mallocCString(request.locale ?? System.getSystemLanguage()) }
+            country = unsafe { LibC.mallocCString(request.country ?? System.getSystemRegion()) }
+            description = unsafe { LibC.mallocCString(request.description) }
+        } catch (e: Exception) {
+            unsafe { LibC.free(locale) }
+            unsafe { LibC.free(country) }
+            unsafe { LibC.free(description) }
+            throw e
+        }
+        maxItems = request.maxItems ?? 1
+        minLatitude = request.minLatitude ?? -90.0
+        minLongitude = request.minLongitude ?? -180.0
+        maxLatitude = request.maxLatitude ?? 90.0
+        maxLongitude = request.maxLongitude ?? 180.0
+    }
+
+    func free(): Unit {
+        unsafe { LibC.free(locale) }
+        unsafe { LibC.free(country) }
+        unsafe { LibC.free(description) }
+    }
+}
+
+func cStringToOption(value: CString): ?String {
+    if (!value.isNull()) {
+        return Some(value.toString())
+    }
+    return None
+}
+
+@C
+struct CJGeoAddress {
+    var latitude: Float64 = 0.0
+    var longitude: Float64 = 0.0
+    var locale: CString = CString(CPointer<UInt8>())
+    var placeName: CString = CString(CPointer<UInt8>())
+    var countryCode: CString = CString(CPointer<UInt8>())
+    var countryName: CString = CString(CPointer<UInt8>())
+    var administrativeArea: CString = CString(CPointer<UInt8>())
+    var subAdministrativeArea: CString = CString(CPointer<UInt8>())
+    var locality: CString = CString(CPointer<UInt8>())
+    var subLocality: CString = CString(CPointer<UInt8>())
+    var roadName: CString = CString(CPointer<UInt8>())
+    var subRoadName: CString = CString(CPointer<UInt8>())
+    var premises: CString = CString(CPointer<UInt8>())
+    var postalCode: CString = CString(CPointer<UInt8>())
+    var phoneNumber: CString = CString(CPointer<UInt8>())
+    var addressUrl: CString = CString(CPointer<UInt8>())
+    var descriptions: CPointer<CString> = CPointer<CString>()
+    var descriptionsSize: Int32 = 0
+
+    func toGeoAddress(): GeoAddress {
+        var descriptionsArr: ?Array<String> = None
+        if (descriptions.isNotNull()) {
+            descriptionsArr = Some(unsafe {
+                Array<String>(Int64(descriptionsSize), {i => descriptions.read(i).toString()})
+            })
+        }
+        let descriptionsSizeOpt: ?Int32 = if (descriptions.isNotNull()) {
+            Some(descriptionsSize)
+        } else {
+            None
+        }
+        return GeoAddress(Some(latitude), Some(longitude), cStringToOption(locale), cStringToOption(placeName),
+            cStringToOption(countryCode), cStringToOption(countryName), cStringToOption(administrativeArea),
+            cStringToOption(subAdministrativeArea), cStringToOption(locality), cStringToOption(subLocality),
+            cStringToOption(roadName), cStringToOption(subRoadName), cStringToOption(premises),
+            cStringToOption(postalCode), cStringToOption(phoneNumber), cStringToOption(addressUrl), descriptionsArr,
+            descriptionsSizeOpt)
+    }
+}
+
+@C
+struct CJGeoAddressArr {
+    var head: CPointer<CJGeoAddress> = CPointer<CJGeoAddress>()
+    var size: Int64 = 0
+
+    func toArray(): Array<GeoAddress> {
+        if (head.isNull()) {
+            return Array<GeoAddress>()
+        }
+        return unsafe { Array<GeoAddress>(size, {i => head.read(i).toGeoAddress()}) }
+    }
+
+    func free(): Unit {
+        unsafe { FfiOHOSGeoLocationManagerFreeCJGeoAddressArr(this) }
     }
 }
 
