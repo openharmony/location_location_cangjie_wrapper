@@ -26,6 +26,7 @@
             "components": [
                 "cangjie_ark_interop",
                 "hiviewdfx_cangjie_wrapper",
+                "global_cangjie_wrapper",
                 "location"
             ]
         },

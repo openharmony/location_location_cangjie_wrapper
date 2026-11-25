@@ -167,6 +167,37 @@ let NMEA_MESSAGE_CALLBACKS = ArrayList<(CallbackObject, Int64)>()
 let COUNTRY_CODE_CALLBACKS = ArrayList<(CallbackObject, Int64)>()
 let ON_OFF_MUTEX = Mutex()
 
+const MIN_LATITUDE: Float64 = -90.0
+const MAX_LATITUDE: Float64 = 90.0
+const MIN_LONGITUDE: Float64 = -180.0
+const MAX_LONGITUDE: Float64 = 180.0
+
+func isValidLatitude(latitude: Float64): Bool {
+    return !(latitude < MIN_LATITUDE || latitude > MAX_LATITUDE)
+}
+
+func isValidLongitude(longitude: Float64): Bool {
+    return !(longitude < MIN_LONGITUDE || longitude > MAX_LONGITUDE)
+}
+
+func checkReverseGeoCodeRequest(request: ReverseGeoCodeRequest): Unit {
+    if (!isValidLatitude(request.latitude) || !isValidLongitude(request.longitude)) {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+}
+
+func checkGeoCodeRequest(request: GeoCodeRequest): Unit {
+    if (request.description == "") {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+    if (!isValidLatitude(request.minLatitude ?? MIN_LATITUDE) ||
+        !isValidLongitude(request.minLongitude ?? MIN_LONGITUDE) ||
+        !isValidLatitude(request.maxLatitude ?? MAX_LATITUDE) ||
+        !isValidLongitude(request.maxLongitude ?? MAX_LONGITUDE)) {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+}
+
 func checkRet(errCode: Int32): Unit {
     if (errCode != SUCCESS_CODE) {
         throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
@@ -629,6 +660,97 @@ public func getLastLocation(): Location {
 }
 
 /**
+ * Obtain address info from location.
+ *
+ * @param { ReverseGeoCodeRequest } request - Indicates the reverse geocode query parameters.
+ * @param { AsyncCallback<Array<GeoAddress>> } callback - Indicates the callback for reporting the address info.
+ * @throws { BusinessException } 801 - Capability not supported. Failed to call
+ *     ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities.
+ * @throws { BusinessException } 3301000 - The location service is unavailable.
+ * @throws { BusinessException } 3301300 - Reverse geocoding query failed.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func getAddressesFromLocation(request: ReverseGeoCodeRequest,
+    callback: AsyncCallback<Array<GeoAddress>>): Unit {
+    checkReverseGeoCodeRequest(request)
+    spawn {
+        var errCode: Int32 = 0
+        let cRequest = CJReverseGeoCodeRequest(request)
+        let cGeoAddressArr = unsafe { FfiOHOSGeoLocationManagerGetAddressesFromLocation(cRequest, inout errCode) }
+        cRequest.free()
+        if (errCode != SUCCESS_CODE) {
+            cGeoAddressArr.free()
+            callback(Some(BusinessException(getErrorCode(errCode), getErrorMsg(errCode))), None)
+            return
+        }
+        let addresses = cGeoAddressArr.toArray()
+        cGeoAddressArr.free()
+        callback(None, Some(addresses))
+    }
+}
+
+/**
+ * Obtain latitude and longitude info from location address.
+ *
+ * @param { GeoCodeRequest } request - Indicates the geocode query parameters.
+ * @param { AsyncCallback<Array<GeoAddress>> } callback - Indicates the callback for reporting the
+ *     latitude and longitude result.
+ * @throws { BusinessException } 801 - Capability not supported. Failed to call
+ *     ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities.
+ * @throws { BusinessException } 3301000 - The location service is unavailable.
+ * @throws { BusinessException } 3301400 - Geocoding query failed.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func getAddressesFromLocationName(request: GeoCodeRequest,
+    callback: AsyncCallback<Array<GeoAddress>>): Unit {
+    checkGeoCodeRequest(request)
+    spawn {
+        var errCode: Int32 = 0
+        let cRequest = CJGeoCodeRequest(request)
+        let cGeoAddressArr = unsafe { FfiOHOSGeoLocationManagerGetAddressesFromLocationName(cRequest, inout errCode) }
+        cRequest.free()
+        if (errCode != SUCCESS_CODE) {
+            cGeoAddressArr.free()
+            callback(Some(BusinessException(getErrorCode(errCode), getErrorMsg(errCode))), None)
+            return
+        }
+        let addresses = cGeoAddressArr.toArray()
+        cGeoAddressArr.free()
+        callback(None, Some(addresses))
+    }
+}
+
+/**
+ * Obtain geocoding service status.
+ *
+ * @returns { Bool } Returns true if geocoding service is available, returns false otherwise.
+ * @throws { BusinessException } 801 - Capability not supported. Failed to call
+ *     ${geoLocationManager.isGeocoderAvailable} due to limited device capabilities.
+ * @throws { BusinessException } 3301000 - The location service is unavailable.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func isGeocoderAvailable(): Bool {
+    var errCode: Int32 = 0
+    let res = unsafe { FfiOHOSGeoLocationManagerIsGeocoderAvailable(inout errCode) }
+    if (errCode != SUCCESS_CODE) {
+        throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
+    }
+    return res
+}
+
+/**
  * Send extended commands to location subsystem.
  *
  * @param { LocationCommand } command - Indicates the extended command message body.
@@ -686,4 +808,35 @@ public func getCountryCode(callback: AsyncCallback<CountryCode>): Unit {
         cCountryCode.free()
         callback(None, Some(countryCode))
     }
+}
+
+/**
+ * Obtains the coordinate system types supported by geofence.
+ *
+ * @returns { Array<CoordinateSystemType> } Return the coordinate system types supported by geofence.
+ * @throws { BusinessException } 801 - Capability not supported. Failed to call
+ *     ${geoLocationManager.getGeofenceSupportedCoordTypes} due to limited device capabilities.
+ * @throws { BusinessException } 3301000 - The location service is unavailable.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geofence",
+    throwexception: true
+]
+public func getGeofenceSupportedCoordTypes(): Array<CoordinateSystemType> {
+    var errCode: Int32 = 0
+    let carr = unsafe { FfiGeoLocationManagerGetGeofenceSupportedCoordTypes(inout errCode) }
+    if (errCode != SUCCESS_CODE) {
+        unsafe { FfiOHOSGeoLocationManagerFreeGeofenceSupportedCoordTypes(carr) }
+        throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
+    }
+    let head = carr.head
+    if (head.isNull()) {
+        return Array<CoordinateSystemType>()
+    }
+    let res = unsafe {
+        Array<CoordinateSystemType>(carr.size, {i => CoordinateSystemType.parse(head.read(i))})
+    }
+    unsafe { FfiOHOSGeoLocationManagerFreeGeofenceSupportedCoordTypes(carr) }
+    return res
 }

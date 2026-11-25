@@ -828,6 +828,650 @@ func getErrorMsg(code: Int32): String {
 }
 
 /**
+ * Configuring parameters in reverse geocode requests.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class ReverseGeoCodeRequest {
+    private let reverseGeoCodeRequestImpl: ReverseGeoCodeRequestImpl
+
+    /**
+     * Indicates the language area information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            reverseGeoCodeRequestImpl.locale
+        }
+        set(v) {
+            reverseGeoCodeRequestImpl.locale = v
+        }
+    }
+    /**
+     * Indicates the country information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop country: ?String {
+        get() {
+            reverseGeoCodeRequestImpl.country
+        }
+        set(v) {
+            reverseGeoCodeRequestImpl.country = v
+        }
+    }
+    /**
+     * Latitude for reverse geocoding query.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop latitude: Float64 {
+        get() {
+            reverseGeoCodeRequestImpl.latitude
+        }
+        set(v) {
+            reverseGeoCodeRequestImpl.latitude = v
+        }
+    }
+    /**
+     * Longitude for reverse geocoding query.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop longitude: Float64 {
+        get() {
+            reverseGeoCodeRequestImpl.longitude
+        }
+        set(v) {
+            reverseGeoCodeRequestImpl.longitude = v
+        }
+    }
+    /**
+     * Indicates the maximum number of addresses returned by reverse geocoding query.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxItems: ?Int32 {
+        get() {
+            reverseGeoCodeRequestImpl.maxItems
+        }
+        set(v) {
+            reverseGeoCodeRequestImpl.maxItems = v
+        }
+    }
+
+    /**
+     * ReverseGeoCodeRequest Constructor.
+     *
+     * @param { Float64 } latitude - Latitude for reverse geocoding query.
+     * @param { Float64 } longitude - Longitude for reverse geocoding query.
+     * @param { ?String } [locale] - Indicates the language area information. If this parameter is not specified,
+     *     the system language is used.
+     * @param { ?String } [country] - Indicates the country information. If this parameter is not specified,
+     *     the system region is used.
+     * @param { ?Int32 } [maxItems] - The maximum number of addresses returned by reverse geocoding query.
+     *     The default value is 1.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+        maxItems!: ?Int32 = None) {
+        reverseGeoCodeRequestImpl = ReverseGeoCodeRequestImpl(latitude, longitude, locale: locale,
+            country: country, maxItems: maxItems)
+    }
+}
+
+class ReverseGeoCodeRequestImpl {
+    var locale: ?String
+    var country: ?String
+    var latitude: Float64
+    var longitude: Float64
+    var maxItems: ?Int32
+
+    init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+        maxItems!: ?Int32 = None) {
+        this.latitude = latitude
+        this.longitude = longitude
+        this.locale = locale
+        this.country = country
+        this.maxItems = maxItems
+    }
+}
+
+/**
+ * Configuring parameters in geocode requests.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class GeoCodeRequest {
+    private let geoCodeRequestImpl: GeoCodeRequestImpl
+
+    /**
+     * Indicates the language area information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            geoCodeRequestImpl.locale
+        }
+        set(v) {
+            geoCodeRequestImpl.locale = v
+        }
+    }
+    /**
+     * Indicates the country information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop country: ?String {
+        get() {
+            geoCodeRequestImpl.country
+        }
+        set(v) {
+            geoCodeRequestImpl.country = v
+        }
+    }
+    /**
+     * Address information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop description: String {
+        get() {
+            geoCodeRequestImpl.description
+        }
+        set(v) {
+            geoCodeRequestImpl.description = v
+        }
+    }
+    /**
+     * Indicates the maximum number of geocode query results.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxItems: ?Int32 {
+        get() {
+            geoCodeRequestImpl.maxItems
+        }
+        set(v) {
+            geoCodeRequestImpl.maxItems = v
+        }
+    }
+    /**
+     * Indicates the minimum latitude for geocoding query results.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop minLatitude: ?Float64 {
+        get() {
+            geoCodeRequestImpl.minLatitude
+        }
+        set(v) {
+            geoCodeRequestImpl.minLatitude = v
+        }
+    }
+    /**
+     * Indicates the minimum longitude for geocoding query results.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop minLongitude: ?Float64 {
+        get() {
+            geoCodeRequestImpl.minLongitude
+        }
+        set(v) {
+            geoCodeRequestImpl.minLongitude = v
+        }
+    }
+    /**
+     * Indicates the maximum latitude for geocoding query results.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxLatitude: ?Float64 {
+        get() {
+            geoCodeRequestImpl.maxLatitude
+        }
+        set(v) {
+            geoCodeRequestImpl.maxLatitude = v
+        }
+    }
+    /**
+     * Indicates the maximum longitude for geocoding query results.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxLongitude: ?Float64 {
+        get() {
+            geoCodeRequestImpl.maxLongitude
+        }
+        set(v) {
+            geoCodeRequestImpl.maxLongitude = v
+        }
+    }
+
+    /**
+     * GeoCodeRequest Constructor.
+     *
+     * @param { String } description - Address information.
+     * @param { ?String } [locale] - Indicates the language area information. If this parameter is not specified,
+     *     the system language is used.
+     * @param { ?String } [country] - Indicates the country information. If this parameter is not specified,
+     *     the system region is used.
+     * @param { ?Int32 } [maxItems] - The maximum number of geocode query results. The default value is 1.
+     * @param { ?Float64 } [minLatitude] - The minimum latitude for geocoding query results. The default value is -90.0.
+     * @param { ?Float64 } [minLongitude] - The minimum longitude for geocoding query results. The default value is -180.0.
+     * @param { ?Float64 } [maxLatitude] - The maximum latitude for geocoding query results. The default value is 90.0.
+     * @param { ?Float64 } [maxLongitude] - The maximum longitude for geocoding query results. The default value is 180.0.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+        minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+        maxLongitude!: ?Float64 = None) {
+        geoCodeRequestImpl = GeoCodeRequestImpl(description, locale: locale, country: country,
+            maxItems: maxItems, minLatitude: minLatitude, minLongitude: minLongitude,
+            maxLatitude: maxLatitude, maxLongitude: maxLongitude)
+    }
+}
+
+class GeoCodeRequestImpl {
+    var locale: ?String
+    var country: ?String
+    var description: String
+    var maxItems: ?Int32
+    var minLatitude: ?Float64
+    var minLongitude: ?Float64
+    var maxLatitude: ?Float64
+    var maxLongitude: ?Float64
+
+    init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+        minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+        maxLongitude!: ?Float64 = None) {
+        this.description = description
+        this.locale = locale
+        this.country = country
+        this.maxItems = maxItems
+        this.minLatitude = minLatitude
+        this.minLongitude = minLongitude
+        this.maxLatitude = maxLatitude
+        this.maxLongitude = maxLongitude
+    }
+}
+
+/**
+ * Data struct describes geographic locations.
+ */
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class GeoAddress {
+    private let geoAddressImpl: GeoAddressImpl
+
+    /**
+     * Indicates latitude information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop latitude: ?Float64 {
+        get() {
+            geoAddressImpl.latitude
+        }
+        set(v) {
+            geoAddressImpl.latitude = v
+        }
+    }
+    /**
+     * Indicates longitude information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop longitude: ?Float64 {
+        get() {
+            geoAddressImpl.longitude
+        }
+        set(v) {
+            geoAddressImpl.longitude = v
+        }
+    }
+    /**
+     * Indicates language used for the location description.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            geoAddressImpl.locale
+        }
+        set(v) {
+            geoAddressImpl.locale = v
+        }
+    }
+    /**
+     * Indicates detailed address information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop placeName: ?String {
+        get() {
+            geoAddressImpl.placeName
+        }
+        set(v) {
+            geoAddressImpl.placeName = v
+        }
+    }
+    /**
+     * Indicates country code.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop countryCode: ?String {
+        get() {
+            geoAddressImpl.countryCode
+        }
+        set(v) {
+            geoAddressImpl.countryCode = v
+        }
+    }
+    /**
+     * Indicates country name.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop countryName: ?String {
+        get() {
+            geoAddressImpl.countryName
+        }
+        set(v) {
+            geoAddressImpl.countryName = v
+        }
+    }
+    /**
+     * Indicates administrative region name.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop administrativeArea: ?String {
+        get() {
+            geoAddressImpl.administrativeArea
+        }
+        set(v) {
+            geoAddressImpl.administrativeArea = v
+        }
+    }
+    /**
+     * Indicates sub-administrative region name.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subAdministrativeArea: ?String {
+        get() {
+            geoAddressImpl.subAdministrativeArea
+        }
+        set(v) {
+            geoAddressImpl.subAdministrativeArea = v
+        }
+    }
+    /**
+     * Indicates locality information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locality: ?String {
+        get() {
+            geoAddressImpl.locality
+        }
+        set(v) {
+            geoAddressImpl.locality = v
+        }
+    }
+    /**
+     * Indicates sub-locality information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subLocality: ?String {
+        get() {
+            geoAddressImpl.subLocality
+        }
+        set(v) {
+            geoAddressImpl.subLocality = v
+        }
+    }
+    /**
+     * Indicates road name.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop roadName: ?String {
+        get() {
+            geoAddressImpl.roadName
+        }
+        set(v) {
+            geoAddressImpl.roadName = v
+        }
+    }
+    /**
+     * Indicates auxiliary road information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subRoadName: ?String {
+        get() {
+            geoAddressImpl.subRoadName
+        }
+        set(v) {
+            geoAddressImpl.subRoadName = v
+        }
+    }
+    /**
+     * Indicates house information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop premises: ?String {
+        get() {
+            geoAddressImpl.premises
+        }
+        set(v) {
+            geoAddressImpl.premises = v
+        }
+    }
+    /**
+     * Indicates postal code.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop postalCode: ?String {
+        get() {
+            geoAddressImpl.postalCode
+        }
+        set(v) {
+            geoAddressImpl.postalCode = v
+        }
+    }
+    /**
+     * Indicates phone number.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop phoneNumber: ?String {
+        get() {
+            geoAddressImpl.phoneNumber
+        }
+        set(v) {
+            geoAddressImpl.phoneNumber = v
+        }
+    }
+    /**
+     * Indicates website URL.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop addressUrl: ?String {
+        get() {
+            geoAddressImpl.addressUrl
+        }
+        set(v) {
+            geoAddressImpl.addressUrl = v
+        }
+    }
+    /**
+     * Indicates additional information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop descriptions: ?Array<String> {
+        get() {
+            geoAddressImpl.descriptions
+        }
+        set(v) {
+            geoAddressImpl.descriptions = v
+        }
+    }
+    /**
+     * Indicates the amount of additional descriptive information.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop descriptionsSize: ?Int32 {
+        get() {
+            geoAddressImpl.descriptionsSize
+        }
+        set(v) {
+            geoAddressImpl.descriptionsSize = v
+        }
+    }
+
+    init(latitude: ?Float64, longitude: ?Float64, locale: ?String, placeName: ?String, countryCode: ?String,
+        countryName: ?String, administrativeArea: ?String, subAdministrativeArea: ?String, locality: ?String,
+        subLocality: ?String, roadName: ?String, subRoadName: ?String, premises: ?String, postalCode: ?String,
+        phoneNumber: ?String, addressUrl: ?String, descriptions: ?Array<String>, descriptionsSize: ?Int32) {
+        geoAddressImpl = GeoAddressImpl(latitude, longitude, locale, placeName, countryCode, countryName,
+            administrativeArea, subAdministrativeArea, locality, subLocality, roadName, subRoadName, premises,
+            postalCode, phoneNumber, addressUrl, descriptions, descriptionsSize)
+    }
+}
+
+class GeoAddressImpl {
+    var latitude: ?Float64
+    var longitude: ?Float64
+    var locale: ?String
+    var placeName: ?String
+    var countryCode: ?String
+    var countryName: ?String
+    var administrativeArea: ?String
+    var subAdministrativeArea: ?String
+    var locality: ?String
+    var subLocality: ?String
+    var roadName: ?String
+    var subRoadName: ?String
+    var premises: ?String
+    var postalCode: ?String
+    var phoneNumber: ?String
+    var addressUrl: ?String
+    var descriptions: ?Array<String>
+    var descriptionsSize: ?Int32
+
+    init(latitude: ?Float64, longitude: ?Float64, locale: ?String, placeName: ?String, countryCode: ?String,
+        countryName: ?String, administrativeArea: ?String, subAdministrativeArea: ?String, locality: ?String,
+        subLocality: ?String, roadName: ?String, subRoadName: ?String, premises: ?String, postalCode: ?String,
+        phoneNumber: ?String, addressUrl: ?String, descriptions: ?Array<String>, descriptionsSize: ?Int32) {
+        this.latitude = latitude
+        this.longitude = longitude
+        this.locale = locale
+        this.placeName = placeName
+        this.countryCode = countryCode
+        this.countryName = countryName
+        this.administrativeArea = administrativeArea
+        this.subAdministrativeArea = subAdministrativeArea
+        this.locality = locality
+        this.subLocality = subLocality
+        this.roadName = roadName
+        this.subRoadName = subRoadName
+        this.premises = premises
+        this.postalCode = postalCode
+        this.phoneNumber = phoneNumber
+        this.addressUrl = addressUrl
+        this.descriptions = descriptions
+        this.descriptionsSize = descriptionsSize
+    }
+}
+
+/**
  * Configuring parameters in location requests.
  */
 @!APILevel[
@@ -1054,6 +1698,51 @@ public enum ScenarioValueType {
         match (this) {
             case UserActivityScenarioValue(value) => value.getValue()
             case PowerConsumptionScenarioValue(value) => value.getValue()
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
+        }
+    }
+}
+
+/**
+ * Enum for coordinate system type.
+ */
+@Derive[ToString, Equatable]
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geofence"
+]
+public enum CoordinateSystemType {
+    /**
+     * WGS84 coordinates system.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geofence"
+    ]
+    Wgs84
+    |
+    /**
+     * GCJ-02 coordinates system.
+     */
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geofence"
+    ]
+    Gcj02
+    | ...
+
+    static func parse(value: Int32): CoordinateSystemType {
+        match (value) {
+            case 1 => Wgs84
+            case 2 => Gcj02
+            case _ => throw BusinessException(3301000, "The type is not supported yet.")
+        }
+    }
+
+    func getValue(): Int32 {
+        match (this) {
+            case Wgs84 => 1
+            case Gcj02 => 2
             case _ => throw BusinessException(3301000, "The type is not supported yet.")
         }
     }

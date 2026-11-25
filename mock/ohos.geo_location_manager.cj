@@ -391,6 +391,392 @@ public class SingleLocationRequest {
     }
 }
 
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class ReverseGeoCodeRequest {
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop country: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop latitude: Float64 {
+        get() {
+            0.0
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop longitude: Float64 {
+        get() {
+            0.0
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxItems: ?Int32 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+        maxItems!: ?Int32 = None) {
+    }
+}
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class GeoCodeRequest {
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop country: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop description: String {
+        get() {
+            ""
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxItems: ?Int32 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop minLatitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop minLongitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxLatitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop maxLongitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+        minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+        maxLongitude!: ?Float64 = None) {
+    }
+}
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder"
+]
+public class GeoAddress {
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop latitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop longitude: ?Float64 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locale: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop placeName: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop countryCode: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop countryName: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop administrativeArea: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subAdministrativeArea: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop locality: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subLocality: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop roadName: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop subRoadName: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop premises: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop postalCode: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop phoneNumber: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop addressUrl: ?String {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop descriptions: ?Array<String> {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geocoder"
+    ]
+    public mut prop descriptionsSize: ?Int32 {
+        get() {
+            None
+        }
+        set(v) {
+        }
+    }
+
+    private init(latitude: ?Float64, longitude: ?Float64, locale: ?String, placeName: ?String, countryCode: ?String,
+        countryName: ?String, administrativeArea: ?String, subAdministrativeArea: ?String, locality: ?String,
+        subLocality: ?String, roadName: ?String, subRoadName: ?String, premises: ?String, postalCode: ?String,
+        phoneNumber: ?String, addressUrl: ?String, descriptions: ?Array<String>, descriptionsSize: ?Int32) {
+    }
+}
+
 @!APILevel[
     since: "26.1.0",
     syscap: "SystemCapability.Location.Location.Core"
@@ -515,6 +901,26 @@ public enum ScenarioValueType {
         syscap: "SystemCapability.Location.Location.Core"
     ]
     PowerConsumptionScenarioValue(PowerConsumptionScenario)
+    | ...
+}
+
+@Derive[ToString, Equatable]
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geofence"
+]
+public enum CoordinateSystemType {
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geofence"
+    ]
+    Wgs84
+    |
+    @!APILevel[
+        since: "26.1.0",
+        syscap: "SystemCapability.Location.Location.Geofence"
+    ]
+    Gcj02
     | ...
 }
 
@@ -793,6 +1199,31 @@ public func getLastLocation(): Location {
 
 @!APILevel[
     since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func getAddressesFromLocation(request: ReverseGeoCodeRequest,
+    callback: AsyncCallback<Array<GeoAddress>>): Unit {}
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func getAddressesFromLocationName(request: GeoCodeRequest,
+    callback: AsyncCallback<Array<GeoAddress>>): Unit {}
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geocoder",
+    throwexception: true
+]
+public func isGeocoderAvailable(): Bool {
+    return true
+}
+
+@!APILevel[
+    since: "26.1.0",
     syscap: "SystemCapability.Location.Location.Core",
     throwexception: true
 ]
@@ -804,6 +1235,15 @@ public func sendCommand(command: LocationCommand, callback: AsyncCallback<Unit>)
     throwexception: true
 ]
 public func getCountryCode(callback: AsyncCallback<CountryCode>): Unit {}
+
+@!APILevel[
+    since: "26.1.0",
+    syscap: "SystemCapability.Location.Location.Geofence",
+    throwexception: true
+]
+public func getGeofenceSupportedCoordTypes(): Array<CoordinateSystemType> {
+    return []
+}
 
 @!APILevel[
     since: "26.1.0",
