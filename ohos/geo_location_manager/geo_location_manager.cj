@@ -167,6 +167,37 @@ let NMEA_MESSAGE_CALLBACKS = ArrayList<(CallbackObject, Int64)>()
 let COUNTRY_CODE_CALLBACKS = ArrayList<(CallbackObject, Int64)>()
 let ON_OFF_MUTEX = Mutex()
 
+const MIN_LATITUDE: Float64 = -90.0
+const MAX_LATITUDE: Float64 = 90.0
+const MIN_LONGITUDE: Float64 = -180.0
+const MAX_LONGITUDE: Float64 = 180.0
+
+func isValidLatitude(latitude: Float64): Bool {
+    return !(latitude < MIN_LATITUDE || latitude > MAX_LATITUDE)
+}
+
+func isValidLongitude(longitude: Float64): Bool {
+    return !(longitude < MIN_LONGITUDE || longitude > MAX_LONGITUDE)
+}
+
+func checkReverseGeoCodeRequest(request: ReverseGeoCodeRequest): Unit {
+    if (!isValidLatitude(request.latitude) || !isValidLongitude(request.longitude)) {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+}
+
+func checkGeoCodeRequest(request: GeoCodeRequest): Unit {
+    if (request.description == "") {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+    if (!isValidLatitude(request.minLatitude ?? MIN_LATITUDE) ||
+        !isValidLongitude(request.minLongitude ?? MIN_LONGITUDE) ||
+        !isValidLatitude(request.maxLatitude ?? MAX_LATITUDE) ||
+        !isValidLongitude(request.maxLongitude ?? MAX_LONGITUDE)) {
+        throw BusinessException(401, getErrorMsg(401))
+    }
+}
+
 func checkRet(errCode: Int32): Unit {
     if (errCode != SUCCESS_CODE) {
         throw BusinessException(getErrorCode(errCode), getErrorMsg(errCode))
@@ -645,6 +676,7 @@ public func getLastLocation(): Location {
 ]
 public func getAddressesFromLocation(request: ReverseGeoCodeRequest,
     callback: AsyncCallback<Array<GeoAddress>>): Unit {
+    checkReverseGeoCodeRequest(request)
     spawn {
         var errCode: Int32 = 0
         let cRequest = CJReverseGeoCodeRequest(request)
@@ -679,11 +711,8 @@ public func getAddressesFromLocation(request: ReverseGeoCodeRequest,
 ]
 public func getAddressesFromLocationName(request: GeoCodeRequest,
     callback: AsyncCallback<Array<GeoAddress>>): Unit {
+    checkGeoCodeRequest(request)
     spawn {
-        if (request.description == "") {
-            callback(Some(BusinessException(401, getErrorMsg(401))), None)
-            return
-        }
         var errCode: Int32 = 0
         let cRequest = CJGeoCodeRequest(request)
         let cGeoAddressArr = unsafe { FfiOHOSGeoLocationManagerGetAddressesFromLocationName(cRequest, inout errCode) }
